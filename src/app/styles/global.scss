@@ -1,0 +1,60 @@
+@use "reset";
+@use "config" as *;
+
+:root {
+  --viewport-height: 100vh;
+
+  // FONTS
+  --font-family: var(--font-family-geist-mono);
+  --font-family-heading: var(--font-family-geist-sans);
+
+  --font-size-default: #{$font-size};
+
+  // COLORS
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-tertiary: #{$color-tertiary};
+
+  --color-font: #{$color-font};
+  --color-heading: #{$color-heading};
+  --color-background: #{$color-background};
+  --color-background-secondary: #{$color-background-secondary};
+
+  @supports (height: 100vb) {
+    --viewport-height: 100vb;
+  }
+
+  @supports (height: 100svb) {
+    --viewport-height: 100svb;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+
+  @mixin html-overflow-hidden {
+    overflow-y: hidden;
+
+    body {
+      touch-action: none;
+    }
+  }
+
+  scrollbar-gutter: stable;
+
+  color: var(--color-font);
+  background: var(--color-background);
+
+  &.scroll-disabled {
+    // when navigation is open
+    @include html-overflow-hidden;
+  }
+}
+
+body {
+  min-block-size: var(--viewport-height);
+
+  font-family: var(--font-family);
+  font-size: var(--font-size-default);
+  line-height: $line-height;
+}
