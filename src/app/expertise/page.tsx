@@ -1,9 +1,9 @@
 import { Section } from "@/components/section/Section";
 
-export default function Home() {
+export default function ExpertisePage() {
   return (
     <div>
-      <Section>Home</Section>
+      <Section>ExpertisePage</Section>
     </div>
   );
 }

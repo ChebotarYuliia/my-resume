@@ -3,6 +3,13 @@
 
 :root {
   --viewport-height: 100vh;
+  --container-gutter: clamp(
+    #{$container-inline-spacing-min},
+    6vw,
+    #{$container-inline-spacing}
+  );
+
+  --header-height: #{$header-height};
 
   // FONTS
   --font-family: var(--font-family-geist-mono);
@@ -16,6 +23,7 @@
   --color-tertiary: #{$color-tertiary};
 
   --color-font: #{$color-font};
+  --color-font-contrast: #{$color-font-contrast};
   --color-heading: #{$color-heading};
   --color-background: #{$color-background};
   --color-background-secondary: #{$color-background-secondary};

@@ -1,0 +1,17 @@
+@use "../../styles/config.scss" as *;
+
+.nav {
+  font-family: var(--font-family-heading);
+  font-size: $font-size-xs-min;
+
+  @media (min-width: $breakpoint-wide) {
+    font-size: $font-size-xs;
+  }
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: clamp($spacing-xs, 2vw, $spacing-sm);
+  }
+}

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import "./styles/global.scss";
-import { geistFont, geistMonoFont } from "./assets/fonts/config";
+import "../styles/global.scss";
+import { geistFont, geistMonoFont } from "../assets/fonts/config";
+import { NavContainer } from "@/containers/Nav/Nav";
+import { Header } from "@/components/header/Header";
 
 export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
@@ -14,8 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistMonoFont.variable} ${geistFont.variable}`}>
+    <html
+      lang="en"
+      className={`${geistMonoFont.variable} ${geistFont.variable}`}
+    >
+      <body>
+        <Header>
+          <NavContainer />
+        </Header>
         {children}
       </body>
     </html>

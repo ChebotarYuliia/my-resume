@@ -1,0 +1,22 @@
+@use "../../styles/config.scss" as *;
+
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: $zindex-header;
+
+  inline-size: 100vw;
+  block-size: var(--header-height);
+
+  padding-block: $spacing-sm;
+
+  &__inner {
+    @include container();
+    block-size: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,16 @@
+@use "../../styles/config.scss" as *;
+
+.section {
+  padding-block: var(
+    --section-block-spacing,
+    var(--__section-block-spacing, #{$section-block-spacing-min})
+  );
+
+  @media (min-width: $breakpoint-tablet) {
+    --__section-block-spacing: #{$section-block-spacing};
+  }
+
+  &__inner {
+    @include container();
+  }
+}

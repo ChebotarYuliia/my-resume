@@ -1,0 +1,66 @@
+@use "../../styles/config.scss" as *;
+
+@mixin button-hover-styles() {
+  color: var(--color-font-contrast);
+
+  &::after {
+    transform: translateY(0);
+  }
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+
+  min-block-size: $button-height;
+  padding-inline: $spacing-xs;
+
+  display: flex;
+  align-items: center;
+
+  // dont stretch by default
+  align-self: flex-start;
+  justify-content: center;
+  justify-self: flex-start;
+
+  overflow-wrap: break-word;
+  font-weight: 500;
+
+  touch-action: manipulation;
+  text-decoration: none;
+
+  transition: color $transition-duration $default-ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    inset: 0;
+    transform: translateY(98%);
+
+    background-color: var(--color-primary);
+
+    transition: transform $transition-duration $default-ease;
+  }
+
+  &.active {
+    @include button-hover-styles();
+  }
+
+  &.hovered,
+  &:hover {
+    @media (pointer: fine) {
+      @include button-hover-styles();
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    opacity: 0.5;
+  }
+}

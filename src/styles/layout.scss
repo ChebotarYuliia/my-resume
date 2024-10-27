@@ -1,0 +1,7 @@
+@use "variables" as *;
+
+@mixin container {
+  max-inline-size: min(calc(100% - (var(--container-gutter) * 2)), $page-width);
+  flex: 1;
+  margin-inline: auto;
+}
