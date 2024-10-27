@@ -1,0 +1,64 @@
+@use "../../styles/config.scss" as *;
+
+.menu {
+  display: block;
+
+  position: fixed;
+  inset: 0;
+  z-index: $zindex-menu;
+
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  contain: layout;
+
+  inline-size: 100vw;
+  block-size: 100vh;
+
+  transition: opacity $transition-duration $default-ease;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__inner {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    min-block-size: 100%;
+
+    overscroll-behavior: contain;
+
+    pointer-events: auto;
+
+    background: var(--color-background);
+
+    padding-block-start: calc(var(--header-height) * 1.2);
+
+    transform: translate3d(105%, 0, 0);
+    transition: transform $transition-duration $default-ease;
+
+    .active & {
+      transform: none;
+    }
+  }
+
+  &__content {
+    @include container;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: $spacing-sm;
+  }
+}

@@ -1,0 +1,64 @@
+@use "../../styles/config.scss" as *;
+
+.menuToggle {
+  display: block;
+
+  position: relative;
+
+  inline-size: 32px;
+  block-size: 16px;
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before,
+  &::after,
+  > span {
+    display: block;
+
+    position: absolute;
+
+    block-size: 2px;
+
+    background-color: currentColor;
+
+    transform-origin: 50% 50%;
+
+    transition: transform calc($transition-duration / 2) linear;
+  }
+
+  &::before {
+    inset-block-start: 0;
+    inset-inline: 0;
+  }
+
+  &::after {
+    inset-block-start: 7px;
+    inset-inline-start: 0;
+    inset-inline-end: 9px;
+  }
+
+  > span {
+    inset-block-end: 0;
+    inset-inline: 0;
+  }
+
+  &.active {
+    &::before,
+    &::after {
+      transform: rotateZ(30deg);
+      inset-block-start: 7px;
+    }
+
+    &::after {
+      inset-block-start: 4px;
+    }
+
+    > span {
+      transform: rotateZ(-30deg);
+      inset-block-end: 7px;
+    }
+  }
+}

@@ -13,7 +13,7 @@ export const Nav = ({ children }: Props) => {
   }
 
   return (
-    <div className={s.nav}>
+    <nav className={s.nav}>
       <div className={s.nav__inner}>
         {childArray.map((item, i) =>
           cloneElement(item as React.ReactElement, {
@@ -21,6 +21,6 @@ export const Nav = ({ children }: Props) => {
           })
         )}
       </div>
-    </div>
+    </nav>
   );
 };

@@ -21,9 +21,10 @@ export default function RootLayout({
       className={`${geistMonoFont.variable} ${geistFont.variable}`}
     >
       <body>
-        <Header>
+        <Header nav={<NavContainer isMenu />}>
           <NavContainer />
         </Header>
+
         {children}
       </body>
     </html>

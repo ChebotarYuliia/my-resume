@@ -30,6 +30,8 @@ $spacing-xxs: $spacing-base;
 
 // STACK
 $zindex-header: 100;
+$zindex-menu: $zindex-header + 1;
+$zindex-menu-btn: $zindex-header + 2;
 
 // BREAKPOINTS
 $breakpoint-mobile: 480px;

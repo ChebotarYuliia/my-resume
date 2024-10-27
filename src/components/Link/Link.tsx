@@ -9,12 +9,14 @@ type Props = {
 };
 
 export const Link = ({ to, children }: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   const pathname = usePathname();
 
   const handleClick = () => {
     if (pathname !== to) {
-      animatePageOut(to, router);
+      // TODO create animatePageOut
+      // animatePageOut(to, router);
     }
   };
 

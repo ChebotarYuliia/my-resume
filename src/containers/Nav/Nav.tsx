@@ -25,14 +25,15 @@ const navLinks = [
   },
 ];
 
-export const NavContainer = () => {
-  return (
-    <Nav>
-      {navLinks.map(({ label, to }, id) => (
-        <NavLink to={to} key={id}>
-          {label}
-        </NavLink>
-      ))}
-    </Nav>
-  );
+export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
+  const links = navLinks.map(({ label, to }, id) => (
+    <NavLink to={to} key={id}>
+      {label}
+    </NavLink>
+  ));
+
+  if (isMenu) {
+    return links;
+  }
+  return <Nav>{links}</Nav>;
 };
