@@ -30,8 +30,6 @@ export const Header = ({ children, nav }: Props) => {
         <button
           className={s.header__menuButton}
           onClick={() => {
-            console.log("click");
-            console.log("!uiState.isMenuOpen", !uiState.isMenuOpen);
             setUIState({ isMenuOpen: !uiState.isMenuOpen });
           }}
           type="button"

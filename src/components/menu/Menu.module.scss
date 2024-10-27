@@ -10,7 +10,6 @@
   pointer-events: none;
 
   opacity: 0;
-  visibility: hidden;
 
   contain: layout;
 
@@ -24,7 +23,6 @@
   }
 
   &.active {
-    visibility: visible;
     opacity: 1;
   }
 
@@ -60,5 +58,21 @@
     align-items: center;
 
     gap: $spacing-sm;
+  }
+
+  &__item {
+    transform: translateX(15%);
+    opacity: 0;
+
+    transition: $transition-duration $default-ease;
+    transition-property: transform, opacity;
+    transition-delay: calc(var(--i, 0) * #{$animation-delay});
+
+    .active & {
+      transition-delay: calc(var(--i, 0) * #{$animation-delay});
+
+      opacity: 1;
+      transform: translateX(0%);
+    }
   }
 }
