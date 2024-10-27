@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import s from "./Header.module.scss";
 import { MenuToggle } from "../menu/MenuToggle";
 import { Menu } from "../menu/Menu";
+import { useUiState } from "@/hooks/useUiState";
 
 type Props = {
   children: React.ReactNode;
@@ -11,13 +12,16 @@ type Props = {
 };
 
 export const Header = ({ children, nav }: Props) => {
-  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+  const { uiState, setUIState } = useUiState();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      document.body.style.setProperty("overflow-y", isMenuOpen ? "hidden" : "");
+      document.body.style.setProperty(
+        "overflow-y",
+        uiState.isMenuOpen ? "hidden" : ""
+      );
     }
-  }, [isMenuOpen]);
+  }, [uiState.isMenuOpen]);
 
   return (
     <div className={s.header}>
@@ -26,16 +30,18 @@ export const Header = ({ children, nav }: Props) => {
         <button
           className={s.header__menuButton}
           onClick={() => {
-            setMenuOpen((state) => !state);
+            console.log("click");
+            console.log("!uiState.isMenuOpen", !uiState.isMenuOpen);
+            setUIState({ isMenuOpen: !uiState.isMenuOpen });
           }}
           type="button"
           aria-label="menu"
         >
-          <MenuToggle active={isMenuOpen} />
+          <MenuToggle />
         </button>
       </div>
 
-      <Menu active={isMenuOpen}>{nav}</Menu>
+      <Menu>{nav}</Menu>
     </div>
   );
 };

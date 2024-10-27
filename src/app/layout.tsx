@@ -3,6 +3,7 @@ import "../styles/global.scss";
 import { geistFont, geistMonoFont } from "../assets/fonts/config";
 import { NavContainer } from "@/containers/Nav/Nav";
 import { Header } from "@/components/header/Header";
+import { UIStateProvider } from "@/state/state";
 
 export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
@@ -21,11 +22,13 @@ export default function RootLayout({
       className={`${geistMonoFont.variable} ${geistFont.variable}`}
     >
       <body>
-        <Header nav={<NavContainer isMenu />}>
-          <NavContainer />
-        </Header>
+        <UIStateProvider>
+          <Header nav={<NavContainer isMenu />}>
+            <NavContainer />
+          </Header>
 
-        {children}
+          {children}
+        </UIStateProvider>
       </body>
     </html>
   );

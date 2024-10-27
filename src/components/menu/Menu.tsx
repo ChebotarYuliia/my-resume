@@ -1,19 +1,24 @@
 import React, { Children, cloneElement } from "react";
 import s from "./Menu.module.scss";
 import classNames from "classnames/bind";
+import { useUiState } from "@/hooks/useUiState";
 
 const c = classNames.bind(s);
 
 type Props = {
   children: React.ReactNode;
   onClose?: () => void;
-  active: boolean;
 };
 
-export const Menu = ({ active, children }: Props) => {
+export const Menu = ({ children }: Props) => {
+  const { uiState } = useUiState();
+
   return (
     // TODO exit animation
-    <nav className={c(s.menu, { active })} aria-label="menu">
+    <nav
+      className={c(s.menu, { active: uiState.isMenuOpen })}
+      aria-label="menu"
+    >
       <div className={s.menu__inner}>
         <div className={s.menu__content}>
           <ul className={s.menu__list}>

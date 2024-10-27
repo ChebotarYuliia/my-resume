@@ -4,6 +4,10 @@ import React from "react";
 
 const navLinks = [
   {
+    label: "Home",
+    to: "/",
+  },
+  {
     label: "Expertise",
     to: "/expertise",
   },

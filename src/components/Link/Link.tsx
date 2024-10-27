@@ -1,24 +1,32 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+
 import React from "react";
-import { Button } from "../Button/Button";
+import { usePathname, useRouter } from "next/navigation";
+import { animatePageOut } from "@/utils/pageAnimation";
+import { useUiState } from "@/hooks/useUiState";
 
 type Props = {
   to: string;
   children: React.ReactNode;
+  className?: string;
 };
 
-export const Link = ({ to, children }: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Link = ({ to, children, className }: Props) => {
+  const { setUIState } = useUiState();
+
   const router = useRouter();
   const pathname = usePathname();
 
   const handleClick = () => {
     if (pathname !== to) {
-      // TODO create animatePageOut
-      // animatePageOut(to, router);
+      animatePageOut(to, router);
+      setUIState({ isMenuOpen: false });
     }
   };
 
-  return <Button onClick={handleClick}>{children}</Button>;
+  return (
+    <button className={className} onClick={handleClick}>
+      {children}
+    </button>
+  );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./Button.module.scss";
-import Link from "next/link";
 import classNames from "classnames/bind";
+import { Link } from "../link/Link";
 
 const c = classNames.bind(s);
 
@@ -45,7 +45,7 @@ export const Button = ({
   if (to) {
     return (
       <Link
-        href={to}
+        to={to}
         className={classNames}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
