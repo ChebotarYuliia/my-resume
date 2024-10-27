@@ -15,7 +15,11 @@
   --font-family: var(--font-family-geist-mono);
   --font-family-heading: var(--font-family-geist-sans);
 
-  --font-size-default: #{$font-size};
+  --font-size-default: #{$font-size-xs};
+
+  @media (min-width: $breakpoint-tablet) {
+    --font-size-default: #{$font-size};
+  }
 
   // COLORS
   --color-primary: #{$color-primary};

@@ -1,0 +1,7 @@
+@use "../../styles/config.scss" as *;
+
+.hero {
+  &__greeting {
+    font-size: clamp($font-size-lg, 25vw, $font-size-lg * 10);
+  }
+}
