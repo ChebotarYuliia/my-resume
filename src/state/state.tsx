@@ -2,8 +2,11 @@
 
 import { createContext, useCallback, useState } from "react";
 
+export type OpenAnimationState = "active" | "completed";
+
 type UIStateProps = {
   isMenuOpen: boolean;
+  openAnimation: OpenAnimationState;
 };
 
 type UIStateContext = {
@@ -13,6 +16,7 @@ type UIStateContext = {
 
 const uiStateDefaults = {
   isMenuOpen: false,
+  openAnimation: "active" as OpenAnimationState,
 };
 
 export const UIStateContext = createContext<UIStateContext>({

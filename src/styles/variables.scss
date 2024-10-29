@@ -12,7 +12,7 @@ $section-block-spacing-min: 80px;
 
 $viewport-container-gutter: max(
   var(--container-gutter),
-  calc((100vw - #{$page-width} - var(--scrollbar-width)) * 0.5)
+  calc((100vw - #{$page-width}) * 0.5)
 );
 
 $header-height: 90px;

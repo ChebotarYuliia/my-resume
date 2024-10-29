@@ -2,7 +2,7 @@
 
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { animatePageOut } from "@/utils/pageAnimation";
+import { usePageAnimationOut } from "@/hooks/usePageAnimation";
 import { useUiState } from "@/hooks/useUiState";
 
 type Props = {
@@ -16,6 +16,8 @@ export const Link = ({ to, children, className }: Props) => {
 
   const router = useRouter();
   const pathname = usePathname();
+
+  const animatePageOut = usePageAnimationOut();
 
   const handleClick = () => {
     if (pathname !== to) {

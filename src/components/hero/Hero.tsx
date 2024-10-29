@@ -1,6 +1,22 @@
-import React from "react";
+"use client";
+
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import s from "./Hero.module.scss";
+import { useInView } from "react-intersection-observer";
+import classNames from "classnames/bind";
+import gsap, { SteppedEase } from "gsap";
+import { useUiState } from "@/hooks/useUiState";
+import { Section } from "../section/Section";
+import { TextPlugin } from "gsap/all";
+
+const c = classNames.bind(s);
 
 type Props = {
   greeting?: string;
@@ -8,28 +24,142 @@ type Props = {
   titles?: Array<string>;
 };
 
-// TODO finish styles + add transitions
+// const NameStart = "I'm  ";
+
 export const Hero = ({ greeting, name, titles }: Props) => {
+  const { uiState } = useUiState();
+  const { ref, inView } = useInView({ triggerOnce: true });
+  const [animateList, setAnimateList] = useState(false);
+
+  const greetingRef = useRef<HTMLParagraphElement>(null);
+  // const nameContainerRef = useRef<HTMLSpanElement>(null);
+  const nameRef = useRef<HTMLSpanElement>(null);
+  const cursorContainerRef = useRef<HTMLHeadingElement>(null);
+  const nameCursorRef = useRef<HTMLSpanElement>(null);
+
+  const firstRender = useRef(true);
+
+  gsap.registerPlugin(TextPlugin);
+
+  const enterAnimation = useCallback(
+    (tl: gsap.core.Timeline) => {
+      const greetingEl = greetingRef.current;
+      // const nameContainerEl = nameContainerRef.current;
+      const nameEl = nameRef.current;
+      const cursorContainerEl = cursorContainerRef.current;
+      const nameCursorEl = nameCursorRef.current;
+
+      const textTypingOpts = (
+        value: string,
+        duration?: number,
+        ease?: string
+      ) => {
+        return {
+          text: {
+            value,
+          },
+          duration: duration ?? 1,
+          delay: 1,
+          ease: ease ?? "none",
+          onUpdate: () => {
+            if (nameCursorEl) {
+              cursorContainerEl?.appendChild(nameCursorEl);
+            }
+          },
+        };
+      };
+
+      tl.set(greetingEl, {
+        scale: 2,
+        x: "100%",
+        opacity: 0,
+      }).set(nameCursorEl, { opacity: 0 });
+
+      if (inView && uiState.openAnimation === "completed" && firstRender) {
+        const cursorTl = gsap.timeline();
+
+        tl.to(greetingEl, {
+          scale: 2.25,
+          x: "80%",
+          opacity: 1,
+          ease: "power2.inOut",
+        })
+          .to(
+            greetingEl,
+            {
+              scale: 1,
+              x: 0,
+              ease: "power2.inOut",
+              onComplite: () => {
+                cursorTl.to(nameCursorEl, {
+                  autoAlpha: 1,
+                  opacity: 1,
+                  duration: 0.5,
+                  repeat: -1,
+                  ease: SteppedEase.config(1),
+                });
+              },
+            },
+            "+=1"
+          )
+          // .to(nameContainerEl, {
+          //   ...textTypingOpts(NameStart, 0.5, "power2.inOut"),
+          // })
+          .to(nameEl, {
+            ...textTypingOpts(name, name.length * 0.15),
+            onComplete: () => {
+              setAnimateList(true);
+              cursorTl.to(nameCursorEl, { opacity: 0 });
+              cursorTl.kill();
+            },
+          });
+      }
+    },
+    [inView, name, uiState]
+  );
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+    enterAnimation(tl);
+    firstRender.current = false;
+
+    return () => {
+      tl.kill();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enterAnimation]);
+
   return (
-    <div className={s.hero}>
-      <div className={s.hero__inner}>
-        <div className={s.hero__content}>
-          <p className={s.hero__greeting}>{greeting}</p>
-          <h1 className={s.hero__name}>
-            I am <span>{name}</span>
+    <div className={c(s.hero, { inView, animateList })} ref={ref}>
+      <Section>
+        <div className={s.hero__inner}>
+          <div className={s.hero__content}>
+            <p className={s.hero__greeting} ref={greetingRef}>
+              {greeting}
+            </p>
+
+            {titles?.length ? (
+              <ul className={s.hero__list}>
+                {titles.map((title, i) => (
+                  <li
+                    className={s.hero__listItem}
+                    key={i}
+                    style={{ "--i": i } as CSSProperties}
+                  >
+                    <div>{title}</div>
+                  </li>
+                ))}
+              </ul>
+            ) : undefined}
+          </div>
+
+          <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>
+            {/* <span ref={nameContainerRef} /> */}
+            <span className={s.hero__name} ref={nameRef} />
+            <span ref={nameCursorRef}>|</span>
           </h1>
-          {titles?.length ? (
-            // TODO add slide animation to items
-            <ul className={s.hero__list}>
-              {titles.map((title, i) => (
-                <li className={s.hero__listItem} key={i}>
-                  {title}
-                </li>
-              ))}
-            </ul>
-          ) : undefined}
         </div>
-      </div>
+      </Section>
     </div>
   );
 };

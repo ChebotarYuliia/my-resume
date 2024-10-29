@@ -1,7 +1,80 @@
 @use "../../styles/config.scss" as *;
 
 .hero {
+  --section-block-spacing-end: 0;
+
+  position: relative;
+  overflow: hidden;
+  display: flex;
+
+  min-block-size: var(--viewport-height);
+
+  @media (min-width: $breakpoint-tablet) {
+    block-size: var(--viewport-height);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    flex: 1;
+  }
+
+  &__content {
+    @media (max-width: $breakpoint-tablet) {
+      flex: 1;
+    }
+  }
+
   &__greeting {
-    font-size: clamp($font-size-lg, 25vw, $font-size-lg * 10);
+    font-family: var(--font-family-heading);
+    font-size: clamp($font-size-min, 5vw, $font-size * 1.5);
+  }
+
+  &__nameContainer {
+    font-size: clamp($font-size-lg, 12vw, $font-size-lg * 2);
+    text-align: left;
+    margin-inline-end: calc($viewport-container-gutter * -0.9);
+
+    @media (min-width: $breakpoint-tablet) {
+      align-self: flex-end;
+      margin-block-start: auto;
+    }
+  }
+
+  &__name {
+    color: var(--color-heading);
+    font-weight: 700;
+    font-size: clamp($font-size-lg, 15vw, $font-size-lg * 4);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    font-size: clamp($font-size-lg-min, 5vw, $font-size-lg);
+
+    padding-block-start: clamp($spacing-sm, 3vh, $spacing-md);
+    padding-inline-start: clamp($spacing-sm, 3vw, $spacing-md);
+  }
+
+  &__listItem {
+    overflow: hidden;
+
+    div {
+      opacity: 0;
+      transform: translateY(100%);
+
+      .animateList & {
+        opacity: 1;
+        transform: none;
+
+        transition-property: opacity, transform;
+        transition: $transition-duration $default-ease;
+        transition-delay: calc(var(--i) * $animation-delay);
+      }
+    }
   }
 }
