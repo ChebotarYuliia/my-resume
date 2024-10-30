@@ -1,17 +1,10 @@
 @use "../../styles/config.scss" as *;
 
 .hero {
+  @include fullDesktopScreen();
   --section-block-spacing-end: 0;
 
   position: relative;
-  overflow: hidden;
-  display: flex;
-
-  min-block-size: var(--viewport-height);
-
-  @media (min-width: $breakpoint-tablet) {
-    block-size: var(--viewport-height);
-  }
 
   &__inner {
     display: flex;
@@ -33,20 +26,20 @@
   }
 
   &__nameContainer {
-    font-size: clamp($font-size-lg, 12vw, $font-size-lg * 2);
+    font-size: clamp($font-size-lg, 15vw, $font-size-lg * 4);
     text-align: left;
-    margin-inline-end: calc($viewport-container-gutter * -0.9);
 
     @media (min-width: $breakpoint-tablet) {
       align-self: flex-end;
       margin-block-start: auto;
+
+      margin-inline-end: calc($viewport-container-gutter * -1);
     }
   }
 
   &__name {
     color: var(--color-heading);
     font-weight: 700;
-    font-size: clamp($font-size-lg, 15vw, $font-size-lg * 4);
   }
 
   &__list {
@@ -54,7 +47,7 @@
     flex-direction: column;
     gap: $spacing-xs;
 
-    font-size: clamp($font-size-lg-min, 5vw, $font-size-lg);
+    font-size: clamp($font-size-lg, 5vw, $font-size-lg * 1.5);
 
     padding-block-start: clamp($spacing-sm, 3vh, $spacing-md);
     padding-inline-start: clamp($spacing-sm, 3vw, $spacing-md);

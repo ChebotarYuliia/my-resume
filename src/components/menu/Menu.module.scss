@@ -69,8 +69,6 @@
     transition-delay: calc(var(--i, 0) * #{$animation-delay});
 
     .active & {
-      transition-delay: calc(var(--i, 0) * #{$animation-delay});
-
       opacity: 1;
       transform: translateX(0%);
     }

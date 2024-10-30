@@ -59,7 +59,6 @@ export const Hero = ({ greeting, name, titles }: Props) => {
             value,
           },
           duration: duration ?? 1,
-          delay: 1,
           ease: ease ?? "none",
           onUpdate: () => {
             if (nameCursorEl) {
@@ -84,29 +83,25 @@ export const Hero = ({ greeting, name, titles }: Props) => {
           opacity: 1,
           ease: "power2.inOut",
         })
-          .to(
-            greetingEl,
-            {
-              scale: 1,
-              x: 0,
-              ease: "power2.inOut",
-              onComplite: () => {
-                cursorTl.to(nameCursorEl, {
-                  autoAlpha: 1,
-                  opacity: 1,
-                  duration: 0.5,
-                  repeat: -1,
-                  ease: SteppedEase.config(1),
-                });
-              },
+          .to(greetingEl, {
+            scale: 1,
+            x: 0,
+            ease: "power2.inOut",
+            onComplite: () => {
+              cursorTl.to(nameCursorEl, {
+                autoAlpha: 1,
+                opacity: 1,
+                duration: 0.5,
+                repeat: -1,
+                ease: SteppedEase.config(1),
+              });
             },
-            "+=1"
-          )
+          })
           // .to(nameContainerEl, {
           //   ...textTypingOpts(NameStart, 0.5, "power2.inOut"),
           // })
           .to(nameEl, {
-            ...textTypingOpts(name, name.length * 0.15),
+            ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
             onComplete: () => {
               setAnimateList(true);
               cursorTl.to(nameCursorEl, { opacity: 0 });
@@ -151,6 +146,8 @@ export const Hero = ({ greeting, name, titles }: Props) => {
                 ))}
               </ul>
             ) : undefined}
+
+            {/* TODO add button */}
           </div>
 
           <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>

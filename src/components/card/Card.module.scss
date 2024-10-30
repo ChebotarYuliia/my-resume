@@ -1,0 +1,105 @@
+@use "../../styles/config.scss" as *;
+
+.card {
+  --icon-size: 40px;
+
+  position: relative;
+
+  z-index: 0;
+
+  transform: translateY(15%);
+  opacity: 0;
+
+  transition: $transition-duration $default-ease;
+  transition-property: transform, opacity;
+  transition-delay: calc(var(--i, 0) * #{$animation-delay * 0.5});
+
+  &.inView {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    inset: 1px;
+
+    background-color: var(--color-accent, #{$color-primary});
+  }
+
+  &__inner {
+    block-size: 100%;
+
+    background-color: var(--color-background-secondary);
+    padding-block-end: $spacing;
+
+    transform-style: preserve-3d;
+    will-change: transform;
+
+    transition: $transition-duration $default-ease;
+    transition-property: transform box-shadow;
+
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+      rotateY(var(--rotateY)) scale3d(var(--scale3d));
+
+    .hover & {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    }
+  }
+
+  &__icon {
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-block-start: $spacing-xxs;
+    padding-inline-start: $spacing-xxs;
+
+    svg {
+      fill: var(--color-accent);
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      opacity: 0.2;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xxs;
+
+    padding-inline: clamp($spacing, 2vw, $spacing-md);
+    padding-block: $spacing-xs;
+
+    @media (min-width: $breakpoint-wide) {
+      padding-inline-start: var(--icon-size);
+    }
+  }
+
+  &__title {
+    font-size: clamp($font-size-lg-min, 4vw, $font-size-lg);
+    color: var(--color-heading);
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    font-size: $font-size-xs-min;
+    color: var(--color-heading);
+
+    opacity: 0.8;
+  }
+
+  &__text {
+    font-family: var(--font-family-heading);
+    font-size: $font-size-xs-min;
+    padding-block-start: $spacing-xxs;
+  }
+}

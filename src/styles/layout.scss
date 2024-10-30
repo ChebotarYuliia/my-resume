@@ -5,3 +5,14 @@
   flex: 1;
   margin-inline: auto;
 }
+
+@mixin fullDesktopScreen {
+  overflow: hidden;
+  display: flex;
+
+  min-block-size: var(--viewport-height);
+
+  @media (min-width: $breakpoint-tablet) {
+    block-size: var(--viewport-height);
+  }
+}
