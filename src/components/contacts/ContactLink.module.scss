@@ -1,0 +1,36 @@
+@use "../../styles/config.scss" as *;
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: $spacing-xs;
+  flex: 1;
+
+  opacity: 0;
+  transform: scale(0);
+  background-color: transparent;
+
+  transition: $transition-duration $default-ease;
+  transition-property: opacity, transform;
+  transition-delay: calc(var(--i, 0) * #{$animation-delay});
+
+  &.inView {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &:hover {
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  svg {
+    inline-size: min(80%, 100px);
+    fill: $color-black;
+
+    transition: transform $transition-duration / 2 $default-ease;
+  }
+}

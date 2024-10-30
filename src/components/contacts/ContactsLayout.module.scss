@@ -1,0 +1,85 @@
+@use "../../styles/config.scss" as *;
+
+.contactsLayout {
+  @include fullDesktopScreen();
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex: 1;
+  }
+
+  &__titleWrapper {
+    overflow: hidden;
+    margin-block-end: $spacing-md;
+  }
+
+  &__title {
+    opacity: 0;
+    transform: translateY(100%);
+
+    font-size: clamp($font-size-lg-min, 4vw, $font-size-lg * 1.5);
+
+    transition: $transition-duration $default-ease;
+    transition-property: opacity, transform;
+
+    .inView & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing;
+
+    margin-inline: auto;
+    inline-size: min(100%, 800px);
+
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    li {
+      display: flex;
+    }
+  }
+
+  &__media,
+  &__mediaSecond {
+    position: absolute;
+    touch-action: none;
+
+    opacity: 0;
+    z-index: -1;
+
+    transition: opacity $transition-duration $default-ease;
+
+    .inView & {
+      opacity: 0.5;
+    }
+  }
+
+  &__media {
+    inset-block-start: 20%;
+    inset-inline-start: 0%;
+
+    @media (min-width: $breakpoint-desktop) {
+      inset-block-start: -300px;
+      inset-inline-start: -700px;
+    }
+  }
+
+  &__mediaSecond {
+    inset-block-end: 20%;
+    inset-inline-end: 0%;
+
+    @media (min-width: $breakpoint-desktop) {
+      inset-block-end: -300px;
+      inset-inline-end: -700px;
+    }
+  }
+}

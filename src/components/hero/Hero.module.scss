@@ -5,6 +5,7 @@
   --section-block-spacing-end: 0;
 
   position: relative;
+  z-index: 0;
 
   &.animationCompleted {
     opacity: 0;
