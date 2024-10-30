@@ -3,10 +3,12 @@
 import { createContext, useCallback, useState } from "react";
 
 export type OpenAnimationState = "active" | "completed";
+export type HeroAnimationState = "initial" | "completed";
 
 type UIStateProps = {
   isMenuOpen: boolean;
   openAnimation: OpenAnimationState;
+  heroEnterAnimation: HeroAnimationState;
 };
 
 type UIStateContext = {
@@ -17,6 +19,7 @@ type UIStateContext = {
 const uiStateDefaults = {
   isMenuOpen: false,
   openAnimation: "active" as OpenAnimationState,
+  heroEnterAnimation: "initial" as HeroAnimationState,
 };
 
 export const UIStateContext = createContext<UIStateContext>({

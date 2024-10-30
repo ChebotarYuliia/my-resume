@@ -6,6 +6,19 @@
 
   position: relative;
 
+  &.animationCompleted {
+    opacity: 0;
+    transform: translateY(10%);
+
+    transition: opacity $transition-duration $default-ease;
+    transition-property: opacity, transform;
+
+    &.inView {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;
@@ -60,7 +73,7 @@
       opacity: 0;
       transform: translateY(100%);
 
-      .animateList & {
+      .animationCompleted & {
         opacity: 1;
         transform: none;
 

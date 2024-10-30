@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { CSSProperties, useCallback, useEffect, useRef } from "react";
 
 import s from "./Hero.module.scss";
 import { useInView } from "react-intersection-observer";
@@ -27,9 +21,8 @@ type Props = {
 // const NameStart = "I'm  ";
 
 export const Hero = ({ greeting, name, titles }: Props) => {
-  const { uiState } = useUiState();
+  const { uiState, setUIState } = useUiState();
   const { ref, inView } = useInView({ triggerOnce: true });
-  const [animateList, setAnimateList] = useState(false);
 
   const greetingRef = useRef<HTMLParagraphElement>(null);
   // const nameContainerRef = useRef<HTMLSpanElement>(null);
@@ -72,6 +65,7 @@ export const Hero = ({ greeting, name, titles }: Props) => {
         scale: 2,
         x: "100%",
         opacity: 0,
+        duration: "1.5s",
       }).set(nameCursorEl, { opacity: 0 });
 
       if (inView && uiState.openAnimation === "completed" && firstRender) {
@@ -103,29 +97,37 @@ export const Hero = ({ greeting, name, titles }: Props) => {
           .to(nameEl, {
             ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
             onComplete: () => {
-              setAnimateList(true);
+              setUIState({ heroEnterAnimation: "completed" });
               cursorTl.to(nameCursorEl, { opacity: 0 });
               cursorTl.kill();
             },
           });
       }
     },
-    [inView, name, uiState]
+    [inView, name, uiState, setUIState]
   );
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    enterAnimation(tl);
-    firstRender.current = false;
+    if (uiState.heroEnterAnimation !== "completed") {
+      const tl = gsap.timeline();
+      enterAnimation(tl);
+      firstRender.current = false;
 
-    return () => {
-      tl.kill();
-    };
+      return () => {
+        tl.kill();
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enterAnimation]);
 
   return (
-    <div className={c(s.hero, { inView, animateList })} ref={ref}>
+    <div
+      className={c(s.hero, {
+        animationCompleted: uiState.heroEnterAnimation === "completed",
+        inView: inView && uiState.openAnimation === "completed",
+      })}
+      ref={ref}
+    >
       <Section>
         <div className={s.hero__inner}>
           <div className={s.hero__content}>
@@ -152,7 +154,11 @@ export const Hero = ({ greeting, name, titles }: Props) => {
 
           <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>
             {/* <span ref={nameContainerRef} /> */}
-            <span className={s.hero__name} ref={nameRef} />
+            {uiState.heroEnterAnimation === "completed" ? (
+              <span className={s.hero__name}>{name}</span>
+            ) : (
+              <span className={s.hero__name} ref={nameRef} />
+            )}
             <span ref={nameCursorRef}>|</span>
           </h1>
         </div>
