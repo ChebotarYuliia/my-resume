@@ -1,0 +1,47 @@
+@use "../../styles/config.scss" as *;
+
+.themeSwitcher {
+  --switcher-size: 30px;
+
+  outline: none;
+  background-color: transparent;
+
+  overflow: hidden;
+
+  inline-size: var(--switcher-size);
+  aspect-ratio: 1/1;
+
+  &__inner {
+    inline-size: var(--switcher-size);
+    block-size: var(--switcher-size);
+  }
+
+  &__sun,
+  &__moon {
+    inline-size: var(--switcher-size);
+    display: flex;
+    align-items: center;
+    padding: calc($spacing-xxs / 2);
+    aspect-ratio: 1/1;
+
+    fill: var(--color-heading);
+
+    transition: transform $transition-duration $default-ease;
+  }
+
+  &__moon {
+    transform: translateY(0) scale(0.1);
+
+    .theme-light & {
+      transform: translateY(calc(var(--switcher-size) * -1)) scale(1);
+    }
+  }
+
+  &__sun {
+    transform: translateY(calc(var(--switcher-size) * -1)) scale(0.1);
+
+    .theme-dark & {
+      transform: translateY(0) scale(1);
+    }
+  }
+}

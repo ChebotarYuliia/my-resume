@@ -34,6 +34,20 @@
   --color-background-secondary: #{$color-background-secondary};
   --color-border: #{$color-border};
 
+  body[data-theme="dark"] {
+    --color-primary: #{$color-tertiary};
+    --color-secondary: #{$color-secondary};
+    --color-tertiary: #{$color-primary};
+
+    --color-font: #{$color-tertiary};
+    --color-font-contrast: #{$color-font};
+    --color-heading: #{$color-tertiary};
+    --color-background: #{$color-primary};
+    --color-background-contrast: #{$color-paper};
+    --color-background-secondary: #{$color-secondary};
+    --color-border: #{$color-tertiary};
+  }
+
   @supports (height: 100vb) {
     --viewport-height: 100vb;
   }
@@ -56,9 +70,6 @@ html {
 
   scrollbar-gutter: stable;
 
-  color: var(--color-font);
-  background: var(--color-background);
-
   &.scroll-disabled {
     // when navigation is open
     @include html-overflow-hidden;
@@ -71,4 +82,9 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size-default);
   line-height: $line-height;
+
+  color: var(--color-font);
+  background-color: var(--color-background);
+
+  transition: background-color 0.3 ease, color 0.3 ease;
 }

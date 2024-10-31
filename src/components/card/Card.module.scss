@@ -29,7 +29,7 @@
 
     inset: 1px;
 
-    background-color: var(--color-accent, #{$color-primary});
+    background-color: var(--color-accent, var(--color-primary));
   }
 
   &__inner {

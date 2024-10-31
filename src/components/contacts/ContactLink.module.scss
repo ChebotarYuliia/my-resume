@@ -34,7 +34,7 @@
 
   svg {
     inline-size: min(80%, 100px);
-    fill: $color-black;
+    fill: var(--color-font);
 
     transition: transform calc($transition-duration / 2) $default-ease;
   }
