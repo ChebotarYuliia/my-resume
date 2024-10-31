@@ -11,7 +11,7 @@ type Props = {
   className?: string;
 };
 
-export const Link = ({ to, children, className }: Props) => {
+export const TransitionLink = ({ to, children, className }: Props) => {
   const { setUIState } = useUiState();
 
   const router = useRouter();

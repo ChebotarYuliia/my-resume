@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./Button.module.scss";
 import classNames from "classnames/bind";
-import { Link } from "../link/Link";
+import { TransitionLink } from "../transition-link/TransitionLink";
 
 const c = classNames.bind(s);
 
@@ -44,7 +44,7 @@ export const Button = ({
 
   if (to) {
     return (
-      <Link
+      <TransitionLink
         to={to}
         className={classNames}
         onMouseEnter={handleMouseEnter}
@@ -52,7 +52,7 @@ export const Button = ({
         {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
-      </Link>
+      </TransitionLink>
     );
   }
   return (
