@@ -31,6 +31,6 @@
     inline-size: min(80%, 100px);
     fill: $color-black;
 
-    transition: transform $transition-duration / 2 $default-ease;
+    transition: transform calc($transition-duration / 2) $default-ease;
   }
 }

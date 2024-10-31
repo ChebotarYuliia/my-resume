@@ -1,11 +1,12 @@
 @use "../../styles/config.scss" as *;
 
 .hero {
-  @include fullDesktopScreen();
   --section-block-spacing-end: 0;
 
   position: relative;
   z-index: 0;
+
+  @include fullDesktopScreen();
 
   &.animationCompleted {
     opacity: 0;

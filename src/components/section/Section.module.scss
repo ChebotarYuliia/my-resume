@@ -10,19 +10,20 @@
     var(--__section-block-end-spacing, #{$section-block-spacing-min})
   );
 
+  min-block-size: 100%;
+  inline-size: 100%;
+
   @media (min-width: $breakpoint-tablet) {
     --__section-block-start-spacing: #{$section-block-spacing};
     --__section-block-end-spacing: #{$section-block-spacing};
   }
 
-  min-block-size: 100%;
-  inline-size: 100%;
-
   &__inner {
-    @include container();
     min-block-size: 100%;
 
     display: flex;
     flex-direction: column;
+
+    @include container();
   }
 }

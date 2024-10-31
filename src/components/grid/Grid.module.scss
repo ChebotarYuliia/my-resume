@@ -1,8 +1,9 @@
 @use "../../styles/config.scss" as *;
 
 .grid {
-  @include fullDesktopScreen();
   overflow-y: auto;
+
+  @include fullDesktopScreen();
 
   &__list {
     display: grid;
