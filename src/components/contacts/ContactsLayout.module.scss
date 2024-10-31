@@ -74,10 +74,12 @@
   }
 
   &__mediaSecond {
+    display: none;
     inset-block-end: 20%;
     inset-inline-end: 0%;
 
     @media (min-width: $breakpoint-desktop) {
+      display: block;
       inset-block-end: -300px;
       inset-inline-end: -700px;
     }

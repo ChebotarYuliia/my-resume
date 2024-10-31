@@ -7,7 +7,6 @@ import { useInView } from "react-intersection-observer";
 import classNames from "classnames/bind";
 
 import s from "./ContactLink.module.scss";
-import { useUiState } from "@/hooks/useUiState";
 
 const c = classNames.bind(s);
 
@@ -15,16 +14,21 @@ type Props = {
   platform: TSocialIcon;
   link: string;
   style?: CSSProperties;
+  active?: boolean;
 };
 
-export const ContactLink = ({ platform, link, style }: Props) => {
-  const { uiState } = useUiState();
+export const ContactLink = ({
+  platform,
+  link,
+  style,
+  active = false,
+}: Props) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
     <Link
       href={link}
       className={c(s.contactLink, {
-        inView: inView && uiState.openAnimation === "completed",
+        inView: inView && active,
       })}
       style={style}
       ref={ref}

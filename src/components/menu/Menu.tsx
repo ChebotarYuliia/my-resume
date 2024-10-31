@@ -7,10 +7,11 @@ const c = classNames.bind(s);
 
 type Props = {
   children: React.ReactNode;
+  socials: Array<React.ReactElement>;
   onClose?: () => void;
 };
 
-export const Menu = ({ children }: Props) => {
+export const Menu = ({ children, socials }: Props) => {
   const { uiState } = useUiState();
 
   return (
@@ -33,6 +34,16 @@ export const Menu = ({ children }: Props) => {
               </li>
             ))}
           </ul>
+          {socials && (
+            <div className={s.menu__socials}>
+              {socials.map((social) =>
+                cloneElement(social, {
+                  active: uiState.isMenuOpen,
+                  tabIndex: 0,
+                })
+              )}
+            </div>
+          )}
         </div>
       </div>
     </nav>

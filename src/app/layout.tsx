@@ -4,6 +4,9 @@ import { geistFont, geistMonoFont } from "../assets/fonts/config";
 import { NavContainer } from "@/containers/Nav/Nav";
 import { Header } from "@/components/header/Header";
 import { UIStateProvider } from "@/state/state";
+import { ContactLink } from "@/components/contacts/ContactLink";
+import { TSocialIcon } from "@/components/icon/Icon";
+import { socials } from "./data/data";
 
 export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
@@ -23,7 +26,16 @@ export default function RootLayout({
     >
       <body>
         <UIStateProvider>
-          <Header nav={<NavContainer isMenu />}>
+          <Header
+            nav={<NavContainer isMenu />}
+            socials={socials.map((link, i) => (
+              <ContactLink
+                key={i}
+                platform={link.platform as TSocialIcon}
+                link={link.link}
+              />
+            ))}
+          >
             <NavContainer />
           </Header>
 

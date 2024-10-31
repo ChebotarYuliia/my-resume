@@ -1,6 +1,6 @@
 "use client";
 
-import React, { CSSProperties } from "react";
+import React, { cloneElement, CSSProperties } from "react";
 import { useInView } from "react-intersection-observer";
 import { Section } from "../section/Section";
 import classNames from "classnames/bind";
@@ -35,7 +35,10 @@ export const ContactsLayout = ({ children, links, title }: Props) => {
           <ul className={s.contactsLayout__list}>
             {links.map((link, i) => (
               <li style={{ "--i": i } as CSSProperties} key={i}>
-                {link}
+                {cloneElement(link, {
+                  active: uiState.openAnimation === "completed",
+                  tabIndex: 0,
+                })}
               </li>
             ))}
           </ul>

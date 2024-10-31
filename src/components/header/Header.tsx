@@ -9,9 +9,10 @@ import { useUiState } from "@/hooks/useUiState";
 type Props = {
   children: React.ReactNode;
   nav: React.ReactNode;
+  socials: Array<React.ReactElement>;
 };
 
-export const Header = ({ children, nav }: Props) => {
+export const Header = ({ children, nav, socials }: Props) => {
   const { uiState, setUIState } = useUiState();
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export const Header = ({ children, nav }: Props) => {
         </button>
       </div>
 
-      <Menu>{nav}</Menu>
+      <Menu socials={socials}>{nav}</Menu>
     </div>
   );
 };
