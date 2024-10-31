@@ -22,6 +22,7 @@ export const ThemeSwitcher = ({ className }: { className: string }) => {
     setTheme((theme) => (theme === "dark" ? "light" : "dark"));
   };
 
+  // FIX display in Safari
   return (
     <button
       type="button"
