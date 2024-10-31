@@ -51,7 +51,7 @@
 
   &.hovered,
   &:hover {
-    @media (pointer: fine) {
+    @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
       @include button-hover-styles();
     }
   }

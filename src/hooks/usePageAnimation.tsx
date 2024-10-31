@@ -18,23 +18,27 @@ export const getCurtains = () => {
 };
 
 export const usePageAnimationIn = () => {
-  const { setUIState } = useUiState();
+  const { uiState, setUIState } = useUiState();
 
   const animate = () => {
-    const [curtainOne, curtainTwo, curtainThree, curtainFour] = getCurtains();
+    if (!uiState.prefersReducedMotion) {
+      const [curtainOne, curtainTwo, curtainThree, curtainFour] = getCurtains();
 
-    if (curtainOne && curtainTwo && curtainThree && curtainFour) {
-      const tl = gsap.timeline();
+      if (curtainOne && curtainTwo && curtainThree && curtainFour) {
+        const tl = gsap.timeline();
 
-      tl.set([curtainOne, curtainTwo, curtainThree, curtainFour], {
-        yPercent: 0,
-      }).to([curtainOne, curtainTwo, curtainThree, curtainFour], {
-        yPercent: 100,
-        stagger: 0.1,
-        onComplete: () => {
-          setUIState({ openAnimation: "completed" });
-        },
-      });
+        tl.set([curtainOne, curtainTwo, curtainThree, curtainFour], {
+          yPercent: 0,
+        }).to([curtainOne, curtainTwo, curtainThree, curtainFour], {
+          yPercent: 100,
+          stagger: 0.1,
+          onComplete: () => {
+            setUIState({ openAnimation: "completed" });
+          },
+        });
+      }
+    } else {
+      setUIState({ openAnimation: "completed" });
     }
   };
 
@@ -42,25 +46,27 @@ export const usePageAnimationIn = () => {
 };
 
 export const usePageAnimationOut = () => {
-  const { setUIState } = useUiState();
+  const { uiState, setUIState } = useUiState();
   const [curtainOne, curtainTwo, curtainThree, curtainFour] = getCurtains();
 
   const animate = (href: string, router: AppRouterInstance) => {
-    if (curtainOne && curtainTwo && curtainThree && curtainFour) {
-      const tl = gsap.timeline();
+    if (!uiState.prefersReducedMotion) {
+      if (curtainOne && curtainTwo && curtainThree && curtainFour) {
+        const tl = gsap.timeline();
 
-      tl.set([curtainOne, curtainTwo, curtainThree, curtainFour], {
-        yPercent: -100,
-      }).to([curtainOne, curtainTwo, curtainThree, curtainFour], {
-        onStart: () => {
-          setUIState({ openAnimation: "active" });
-        },
-        yPercent: 0,
-        stagger: 0.1,
-        onComplete: () => {
-          router.push(href);
-        },
-      });
+        tl.set([curtainOne, curtainTwo, curtainThree, curtainFour], {
+          yPercent: -100,
+        }).to([curtainOne, curtainTwo, curtainThree, curtainFour], {
+          onStart: () => {
+            setUIState({ openAnimation: "active" });
+          },
+          yPercent: 0,
+          stagger: 0.1,
+          onComplete: () => {
+            router.push(href);
+          },
+        });
+      }
     }
   };
 

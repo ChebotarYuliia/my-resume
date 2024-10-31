@@ -10,7 +10,10 @@
 
   &.animationCompleted {
     opacity: 0;
-    transform: translateY(10%);
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(10%);
+    }
 
     transition: opacity $transition-duration $default-ease;
     transition-property: opacity, transform;
@@ -36,6 +39,7 @@
   }
 
   &__greeting {
+    inline-size: fit-content;
     font-family: var(--font-family-heading);
     font-size: clamp($font-size-min, 5vw, $font-size * 1.5);
   }
@@ -73,7 +77,10 @@
 
     div {
       opacity: 0;
-      transform: translateY(100%);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transform: translateY(100%);
+      }
 
       .animationCompleted & {
         opacity: 1;

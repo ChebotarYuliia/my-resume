@@ -7,12 +7,15 @@
 
   z-index: 0;
 
-  transform: translateY(15%);
   opacity: 0;
 
   transition: $transition-duration $default-ease;
   transition-property: transform, opacity;
   transition-delay: calc(var(--i, 0) * #{$animation-delay * 0.5});
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: translateY(15%);
+  }
 
   &.inView {
     opacity: 1;
@@ -45,8 +48,10 @@
       rotateY(var(--rotateY)) scale3d(var(--scale3d));
 
     .hover & {
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-        rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      @media (prefers-reduced-motion: no-preference) {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+          rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
     }
   }
 

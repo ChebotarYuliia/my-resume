@@ -18,12 +18,15 @@
 
   &__title {
     opacity: 0;
-    transform: translateY(100%);
 
     font-size: clamp($font-size-lg-min, 4vw, $font-size-lg * 1.5);
 
     transition: $transition-duration $default-ease;
     transition-property: opacity, transform;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(100%);
+    }
 
     .inView & {
       opacity: 1;

@@ -36,6 +36,8 @@ export const Hero = ({ greeting, name, titles }: Props) => {
 
   const enterAnimation = useCallback(
     (tl: gsap.core.Timeline) => {
+      const mq = gsap.matchMedia();
+
       const greetingEl = greetingRef.current;
       // const nameContainerEl = nameContainerRef.current;
       const nameEl = nameRef.current;
@@ -62,7 +64,7 @@ export const Hero = ({ greeting, name, titles }: Props) => {
       };
 
       tl.set(greetingEl, {
-        scale: 2,
+        scale: 0,
         x: "100%",
         opacity: 0,
         duration: "1.5s",
@@ -71,37 +73,39 @@ export const Hero = ({ greeting, name, titles }: Props) => {
       if (inView && uiState.openAnimation === "completed" && firstRender) {
         const cursorTl = gsap.timeline();
 
-        tl.to(greetingEl, {
-          scale: 2.25,
-          x: "80%",
-          opacity: 1,
-          ease: "power2.inOut",
-        })
-          .to(greetingEl, {
-            scale: 1,
-            x: 0,
+        mq.add(`(prefers-reduced-motion: no-preference)`, () => {
+          tl.to(greetingEl, {
+            scale: 2.5,
+            opacity: 1,
             ease: "power2.inOut",
-            onComplite: () => {
-              cursorTl.to(nameCursorEl, {
-                autoAlpha: 1,
-                opacity: 1,
-                duration: 0.5,
-                repeat: -1,
-                ease: SteppedEase.config(1),
-              });
-            },
+            duration: 1,
           })
-          // .to(nameContainerEl, {
-          //   ...textTypingOpts(NameStart, 0.5, "power2.inOut"),
-          // })
-          .to(nameEl, {
-            ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
-            onComplete: () => {
-              setUIState({ heroEnterAnimation: "completed" });
-              cursorTl.to(nameCursorEl, { opacity: 0 });
-              cursorTl.kill();
-            },
-          });
+            .to(greetingEl, {
+              scale: 1,
+              x: 0,
+              ease: "ease",
+              onComplite: () => {
+                cursorTl.to(nameCursorEl, {
+                  autoAlpha: 1,
+                  opacity: 1,
+                  duration: 0.5,
+                  repeat: -1,
+                  ease: SteppedEase.config(1),
+                });
+              },
+            })
+            // .to(nameContainerEl, {
+            //   ...textTypingOpts(NameStart, 0.5, "power2.inOut"),
+            // })
+            .to(nameEl, {
+              ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
+              onComplete: () => {
+                setUIState({ heroEnterAnimation: "completed" });
+                cursorTl.to(nameCursorEl, { opacity: 0 });
+                cursorTl.kill();
+              },
+            });
+        });
       }
     },
     [inView, name, uiState, setUIState]
