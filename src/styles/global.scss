@@ -87,4 +87,22 @@ body {
   background-color: var(--color-background);
 
   transition: background-color 0.3 ease, color 0.3 ease;
+
+  .cursor-sparkle {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -4px;
+    opacity: 0.5;
+    pointer-events: none;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: 5px;
+      width: 0;
+      height: 0;
+    }
+  }
 }

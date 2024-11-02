@@ -11,12 +11,12 @@
   &.animationCompleted {
     opacity: 0;
 
+    transition: $transition-duration $default-ease;
+    transition-property: opacity, transform;
+
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(10%);
     }
-
-    transition: opacity $transition-duration $default-ease;
-    transition-property: opacity, transform;
 
     &.inView {
       opacity: 1;

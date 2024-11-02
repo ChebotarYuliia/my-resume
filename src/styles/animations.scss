@@ -2,3 +2,13 @@ $default-ease: ease;
 $transition-duration: 300ms;
 $animation-duration: 500ms;
 $animation-delay: 100ms;
+
+@keyframes fallingCursorSparkles {
+  from {
+    transform: translateY(0);
+  }
+  /* 50 = falling distance */
+  to {
+    transform: translateY(50px);
+  }
+}
