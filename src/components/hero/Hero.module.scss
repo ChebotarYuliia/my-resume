@@ -9,18 +9,10 @@
   @include fullDesktopScreen();
 
   &.animationCompleted {
-    opacity: 0;
-
-    transition: $transition-duration $default-ease;
-    transition-property: opacity, transform;
+    @include enterAnimation($parent: true, $transform: true);
 
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(10%);
-    }
-
-    &.inView {
-      opacity: 1;
-      transform: translateY(0);
     }
   }
 
@@ -76,19 +68,15 @@
     overflow: hidden;
 
     div {
-      opacity: 0;
+      @include enterAnimation(
+        $parent: false,
+        $transform: true,
+        $className: ".animationCompleted",
+        $delay: #{calc(var(--i) * $animation-delay)}
+      );
 
       @media (prefers-reduced-motion: no-preference) {
         transform: translateY(100%);
-      }
-
-      .animationCompleted & {
-        opacity: 1;
-        transform: none;
-
-        transition-property: opacity, transform;
-        transition: $transition-duration $default-ease;
-        transition-delay: calc(var(--i) * $animation-delay);
       }
     }
   }

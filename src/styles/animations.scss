@@ -12,3 +12,37 @@ $animation-delay: 100ms;
     transform: translateY(50px);
   }
 }
+
+@mixin enterAnimation(
+  $className: ".inView",
+  $parent: false,
+  $transform: true,
+  $delay: ""
+) {
+  opacity: 0;
+  transition: opacity $transition-duration $default-ease;
+
+  @if $transform {
+    transition-property: opacity, transform;
+  }
+
+  @if $parent {
+    &#{$className} {
+      opacity: 1;
+      transition-delay: #{$delay};
+
+      @if $transform {
+        transform: none;
+      }
+    }
+  } @else {
+    #{$className} & {
+      opacity: 1;
+      transition-delay: #{$delay};
+
+      @if $transform {
+        transform: none;
+      }
+    }
+  }
+}

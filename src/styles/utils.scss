@@ -1,0 +1,6 @@
+// Convert a hex value to comma-delimited rgb values
+// In: #000
+// Out: 0,0,0
+@function derive-rgb-values-from-hex($hex) {
+  @return red($hex), green($hex), blue($hex);
+}

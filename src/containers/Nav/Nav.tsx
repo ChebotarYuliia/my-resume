@@ -21,7 +21,7 @@ const navLinks = [
   },
   {
     label: "Work experience",
-    to: "/skills",
+    to: "/experience",
   },
   {
     label: "Contact me",

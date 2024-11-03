@@ -1,0 +1,28 @@
+@use "../../styles/config.scss" as *;
+
+.skillList {
+  &__title {
+    @include enterAnimation($parent: false);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+
+    gap: $spacing-md;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-rows: auto;
+
+    row-gap: $spacing-md;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+
+      column-gap: $spacing-md;
+      row-gap: $spacing-sm;
+    }
+  }
+}

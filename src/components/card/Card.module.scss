@@ -7,19 +7,14 @@
 
   z-index: 0;
 
-  opacity: 0;
-
-  transition: $transition-duration $default-ease;
-  transition-property: transform, opacity;
-  transition-delay: calc(var(--i, 0) * #{$animation-delay * 0.5});
+  @include enterAnimation(
+    $parent: true,
+    $transform: true,
+    $delay: #{calc(var(--i, 0) * #{$animation-delay * 0.5})}
+  );
 
   @media (prefers-reduced-motion: no-preference) {
     transform: translateY(15%);
-  }
-
-  &.inView {
-    opacity: 1;
-    transform: translateY(0%);
   }
 
   &::after {

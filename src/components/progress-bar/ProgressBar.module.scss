@@ -1,0 +1,63 @@
+@use "../../styles/config.scss" as *;
+
+.progressBar {
+  --color-progress: var(--color-primary);
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xxs;
+
+  transform: translateY(10px);
+
+  transition: $transition-duration $default-ease;
+  transition-property: transform, opacity;
+
+  @include enterAnimation(
+    $parent: true,
+    $transform: true,
+    $delay: #{calc(var(--i, 0) * #{$animation-delay * 0.5})}
+  );
+
+  @media (min-width: $breakpoint-tablet) {
+    gap: $spacing-xs;
+  }
+  &.intermediate {
+    --color-progress: rgba(var(--color-primary-rgb), 0.75);
+  }
+
+  &.fundamental {
+    --color-progress: rgba(var(--color-primary-rgb), 0.4);
+  }
+
+  &__title {
+    color: var(--color-heading);
+    font-weight: 500;
+  }
+
+  &__progress {
+    position: relative;
+
+    inline-size: 100%;
+    block-size: 6px;
+
+    border: 1px solid;
+    border-color: rgba(var(--color-primary-rgb), 0.2);
+    background-color: var(--color-background-secondary);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block: 0;
+      inline-size: 0;
+      background-color: var(--color-progress);
+
+      transition: inline-size calc($animation-duration * 2) ease-in-out;
+    }
+
+    .inView &::after {
+      transition-delay: calc($animation-delay * 2);
+      inline-size: var(--progress-inline-size);
+    }
+  }
+}

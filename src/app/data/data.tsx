@@ -1,5 +1,6 @@
 import { CardProps } from "@/components/card/Card";
 import { Icon } from "@/components/icon/Icon";
+import { ProgressBarProps } from "@/components/progress-bar/ProgressBar";
 
 export const socials = [
   {
@@ -62,5 +63,64 @@ export const expertiseCards: Array<CardProps> = [
     children:
       "Collaborating with cross-functional teams to deliver cohesive, high-quality projects.",
     icon: <Icon name="idea" />,
+  },
+];
+
+export const skills: Array<ProgressBarProps> = [
+  {
+    title: "JavaScript",
+    percentage: 85,
+  },
+  {
+    title: "HTML5",
+    percentage: 90,
+  },
+  {
+    title: "CSS, SASS/SCSS, LESS, CSS Modules",
+    percentage: 90,
+  },
+  {
+    title: "TypeScript",
+    percentage: 70,
+  },
+  {
+    title: "SQL/PostgreSQL",
+    percentage: 50,
+  },
+  {
+    title: "React.js + Redux",
+    percentage: 87,
+  },
+  {
+    title: "Next.js",
+    percentage: 80,
+  },
+  {
+    title: "CMS: Prismic, Payload",
+    percentage: 75,
+  },
+  {
+    title: "UI/UX",
+    percentage: 84,
+  },
+  {
+    title: "Webflow",
+    percentage: 50,
+  },
+  {
+    title: "Pagespeed optimization",
+    percentage: 69,
+  },
+  {
+    title: "Figma",
+    percentage: 70,
+  },
+  {
+    title: "SEO",
+    percentage: 70,
+  },
+  {
+    title: "React Native",
+    percentage: 35,
   },
 ];

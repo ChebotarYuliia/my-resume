@@ -70,16 +70,12 @@
 
   &__item {
     transform: translateX(15%);
-    opacity: 0;
-
-    transition: $transition-duration $default-ease;
-    transition-property: transform, opacity;
-    transition-delay: calc(var(--i, 0) * #{$animation-delay});
-
-    .active & {
-      opacity: 1;
-      transform: translateX(0%);
-    }
+    @include enterAnimation(
+      $parent: false,
+      $transform: true,
+      $className: ".active",
+      $delay: #{calc(var(--i, 0) * #{$animation-delay})}
+    );
   }
 
   &__socials {

@@ -8,20 +8,16 @@
   padding: $spacing-xs;
   flex: 1;
 
-  opacity: 0;
   background-color: transparent;
 
-  transition: $transition-duration $default-ease;
-  transition-property: opacity, transform;
-  transition-delay: calc(var(--i, 0) * #{$animation-delay});
+  @include enterAnimation(
+    $parent: true,
+    $transform: true,
+    $delay: #{calc(var(--i, 0) * #{$animation-delay})}
+  );
 
   @media (prefers-reduced-motion: no-preference) {
     transform: scale(0);
-  }
-
-  &.inView {
-    opacity: 1;
-    transform: scale(1);
   }
 
   &:hover {

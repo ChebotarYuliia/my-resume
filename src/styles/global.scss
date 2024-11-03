@@ -23,6 +23,7 @@
 
   // COLORS
   --color-primary: #{$color-primary};
+  --color-primary-rgb: #{derive-rgb-values-from-hex($color-primary)};
   --color-secondary: #{$color-secondary};
   --color-tertiary: #{$color-tertiary};
 
@@ -36,6 +37,7 @@
 
   body[data-theme="dark"] {
     --color-primary: #{$color-tertiary};
+    --color-primary-rgb: #{derive-rgb-values-from-hex($color-tertiary)};
     --color-secondary: #{$color-secondary};
     --color-tertiary: #{$color-primary};
 

@@ -17,20 +17,12 @@
   }
 
   &__title {
-    opacity: 0;
-
     font-size: clamp($font-size-lg-min, 4vw, $font-size-lg * 1.5);
 
-    transition: $transition-duration $default-ease;
-    transition-property: opacity, transform;
+    @include enterAnimation($parent: false, $transform: true);
 
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(100%);
-    }
-
-    .inView & {
-      opacity: 1;
-      transform: translateY(0);
     }
   }
 
