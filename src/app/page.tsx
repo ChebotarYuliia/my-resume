@@ -9,6 +9,7 @@ import { ContactsLayout } from "@/components/contacts/ContactsLayout";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
 import Image from "next/image";
+import { navLinks } from "./data/nav";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
       />
 
       {/* Expertise section */}
-      <Grid>
+      <Grid id={navLinks.expertise.to}>
         {expertiseCards.map(({ children, ...rest }, id) => (
           <Card key={id} {...rest}>
             {children}
@@ -36,10 +37,12 @@ export default function Home() {
       </Grid>
 
       {/* About me section */}
-      <div>About me section</div>
+      <div style={{ height: "90vh" }} id={navLinks.about.to}>
+        About me section
+      </div>
 
       {/* Skills section */}
-      <SkillListLayout>
+      <SkillListLayout id={navLinks.skills.to}>
         <SkillList title={"My skill list:"}>
           {skills.map((skill, i) => (
             <ProgressBar key={i} {...skill} />
@@ -48,10 +51,13 @@ export default function Home() {
       </SkillListLayout>
 
       {/* Work experience section */}
-      <div>Work experience section</div>
+      <div style={{ height: "90vh" }} id={navLinks.experience.to}>
+        Work experience section
+      </div>
 
       {/* Contacts section */}
       <ContactsLayout
+        id={navLinks.contact.to}
         links={socials.map((link, i) => (
           <ContactLink
             key={i}

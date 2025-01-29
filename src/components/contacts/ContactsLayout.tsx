@@ -14,9 +14,10 @@ type Props = {
   children: React.ReactNode; // media
   links: Array<React.ReactElement>;
   title: string;
+  id?: string;
 };
 
-export const ContactsLayout = ({ children, links, title }: Props) => {
+export const ContactsLayout = ({ children, links, title, id }: Props) => {
   const { uiState } = useUiState();
   const { ref, inView } = useInView({ triggerOnce: true });
 
@@ -25,6 +26,7 @@ export const ContactsLayout = ({ children, links, title }: Props) => {
       className={c(s.contactsLayout, {
         inView: inView && uiState.openAnimation === "completed",
       })}
+      id={id}
       ref={ref}
     >
       <Section>

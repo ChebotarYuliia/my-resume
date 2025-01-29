@@ -12,7 +12,11 @@ type Props = {
 };
 
 export const Menu = ({ children, socials }: Props) => {
-  const { uiState } = useUiState();
+  const { uiState, setUIState } = useUiState();
+
+  const handleClick = () => {
+    setUIState({ isMenuOpen: false });
+  };
 
   return (
     <nav
@@ -27,6 +31,7 @@ export const Menu = ({ children, socials }: Props) => {
                 className={s.menu__item}
                 key={i}
                 style={{ "--i": i } as CSSProperties}
+                onClick={handleClick}
               >
                 {cloneElement(child as React.ReactElement, {
                   tabIndex: 0,

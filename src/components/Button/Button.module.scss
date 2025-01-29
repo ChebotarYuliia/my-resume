@@ -30,7 +30,7 @@
   touch-action: manipulation;
   text-decoration: none;
 
-  transition: color $transition-duration $default-ease;
+  transition: color $transition-duration / 2 $default-ease;
 
   &::after {
     content: "";

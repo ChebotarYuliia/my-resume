@@ -24,7 +24,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistMonoFont.variable} ${geistFont.variable}`}
     >
-      <body>
+      <body id="body">
         <UIStateProvider>
           <Header
             nav={<NavContainer isMenu />}

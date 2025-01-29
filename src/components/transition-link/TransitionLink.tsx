@@ -20,6 +20,11 @@ export const TransitionLink = ({ to, children, className }: Props) => {
   const animatePageOut = usePageAnimationOut();
 
   const handleClick = () => {
+    // do not apply transition animation to anchors on the page
+    if (to[0] === "#") {
+      router.push(to);
+    }
+
     if (pathname !== to) {
       animatePageOut(to, router);
       setUIState({ isMenuOpen: false });

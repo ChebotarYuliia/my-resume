@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import s from "./Button.module.scss";
 import classNames from "classnames/bind";
 import { TransitionLink } from "../transition-link/TransitionLink";
@@ -8,7 +8,7 @@ const c = classNames.bind(s);
 export type ButtonProps = {
   children: React.ReactNode;
   to?: string;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent) => void;
   className?: string;
   animated?: boolean;
   active?: boolean;
@@ -42,6 +42,7 @@ export const Button = ({
     setHovered(false);
   };
 
+  // used for cool interpage transition
   if (to) {
     return (
       <TransitionLink

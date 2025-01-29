@@ -10,12 +10,13 @@ const c = classNames.bind(s);
 
 type Props = {
   children: React.ReactNode;
+  id?: string;
 };
 
-export const Grid = ({ children }: Props) => {
+export const Grid = ({ children, id }: Props) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
-    <div className={c(s.grid, { inView })} ref={ref}>
+    <div id={id} className={c(s.grid, { inView })} ref={ref}>
       <Section>
         <ul className={s.grid__list}>
           {Children.map(children, (child, i) => {

@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 export const useCursor = () => {
   // bubbles in array
-  // const trailArr = [1, 1.5];
-  const trailArr = [1, 0.01, 1.2, 0.5, 1.5, 0.6, 0.4, 0.9, 0.2];
+  const trailArr = [1, 1.5];
+  // const trailArr = [1, 0.01, 1.2, 0.5, 1.5, 0.6, 0.4, 0.9, 0.2];
 
   const trailAnimation = (
     e: MouseEvent,
@@ -53,8 +53,7 @@ export const useCursor = () => {
     const size = Math.ceil(Math.random() * 5 * i) + "px";
 
     // 2 = effevescence
-    elem.style.top =
-      e.pageY - window.scrollY + Math.round(Math.random() * j - j / 2) + "px";
+    elem.style.top = e.pageY + Math.round(Math.random() * j - j / 2) + "px";
     elem.style.left = e.pageX + Math.round(Math.random() * j - j / 2) + "px";
 
     elem.style.width = size;
