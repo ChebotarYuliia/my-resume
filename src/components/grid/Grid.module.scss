@@ -3,8 +3,6 @@
 .grid {
   overflow-y: auto;
 
-  @include fullDesktopScreen();
-
   &__list {
     display: grid;
     gap: clamp($spacing-sm, 2vw, $spacing-md);

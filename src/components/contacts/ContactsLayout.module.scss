@@ -1,8 +1,6 @@
 @use "../../styles/config.scss" as *;
 
 .contactsLayout {
-  @include fullDesktopScreen();
-
   &__inner {
     display: flex;
     flex-direction: column;
