@@ -5,6 +5,7 @@ import { Button } from "@/components/Button/Button";
 import { Nav } from "@/components/nav/Nav";
 import React, { useEffect, useState } from "react";
 
+// TODO fix unactive button flash on scroll
 export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const navLinksLocation: { [key: string]: number | null } = {};

@@ -2,7 +2,6 @@
 
 import React, { cloneElement, CSSProperties } from "react";
 import { useInView } from "react-intersection-observer";
-import { Section } from "../section/Section";
 import classNames from "classnames/bind";
 
 import s from "./ContactsLayout.module.scss";
@@ -14,10 +13,9 @@ type Props = {
   children: React.ReactNode; // media
   links: Array<React.ReactElement>;
   title: string;
-  id?: string;
 };
 
-export const ContactsLayout = ({ children, links, title, id }: Props) => {
+export const ContactsLayout = ({ children, links, title }: Props) => {
   const { uiState } = useUiState();
   const { ref, inView } = useInView({ triggerOnce: true });
 
@@ -26,26 +24,23 @@ export const ContactsLayout = ({ children, links, title, id }: Props) => {
       className={c(s.contactsLayout, {
         inView: inView && uiState.openAnimation === "completed",
       })}
-      id={id}
       ref={ref}
     >
-      <Section>
-        <div className={s.contactsLayout__inner}>
-          <div className={s.contactsLayout__titleWrapper}>
-            <h2 className={s.contactsLayout__title}>{title}</h2>
-          </div>
-          <ul className={s.contactsLayout__list}>
-            {links.map((link, i) => (
-              <li style={{ "--i": i } as CSSProperties} key={i}>
-                {cloneElement(link, {
-                  active: uiState.openAnimation === "completed",
-                  tabIndex: 0,
-                })}
-              </li>
-            ))}
-          </ul>
+      <div className={s.contactsLayout__inner}>
+        <div className={s.contactsLayout__titleWrapper}>
+          <h2 className={s.contactsLayout__title}>{title}</h2>
         </div>
-      </Section>
+        <ul className={s.contactsLayout__list}>
+          {links.map((link, i) => (
+            <li style={{ "--i": i } as CSSProperties} key={i}>
+              {cloneElement(link, {
+                active: uiState.openAnimation === "completed",
+                tabIndex: 0,
+              })}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className={s.contactsLayout__media}>{children}</div>
       <div className={s.contactsLayout__mediaSecond}>{children}</div>

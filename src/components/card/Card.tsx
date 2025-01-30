@@ -20,7 +20,10 @@ const THRESHOLD = 15;
 
 export const Card = ({ icon, title, subtitle, children, style }: CardProps) => {
   const { uiState } = useUiState();
-  const { ref, inView } = useInView({ triggerOnce: true });
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: "0px -50px",
+  });
   const [hover, setHover] = useState(false);
   const [motionMatchMedia, setMotionMatchMedia] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -38,6 +41,7 @@ export const Card = ({ icon, title, subtitle, children, style }: CardProps) => {
     setIsDesktop(isDesktop);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleHover(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (!motionMatchMedia && isDesktop) {
       setHover(true);
@@ -57,6 +61,7 @@ export const Card = ({ icon, title, subtitle, children, style }: CardProps) => {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function resetStyles(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     setHover(false);
     setPerspective(`${e.currentTarget.clientWidth}px`);
@@ -71,8 +76,8 @@ export const Card = ({ icon, title, subtitle, children, style }: CardProps) => {
         inView: inView && uiState.openAnimation === "completed",
         hover,
       })}
-      onMouseOver={handleHover}
-      onMouseLeave={resetStyles}
+      // onMouseOver={handleHover}
+      // onMouseLeave={resetStyles}
       ref={ref}
       style={
         {

@@ -5,7 +5,6 @@ import s from "./Header.module.scss";
 import { MenuToggle } from "../menu/MenuToggle";
 import { Menu } from "../menu/Menu";
 import { useUiState } from "@/hooks/useUiState";
-import { ThemeSwitcher } from "../theme-switcher/ThemeSwitcher";
 
 type Props = {
   children: React.ReactNode;
@@ -29,7 +28,7 @@ export const Header = ({ children, nav, socials }: Props) => {
     <div className={s.header}>
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
-        <ThemeSwitcher className={s.header__switcher} />
+        {/* <ThemeSwitcher className={s.header__switcher} /> */}
         <button
           className={s.header__menuButton}
           onClick={() => {

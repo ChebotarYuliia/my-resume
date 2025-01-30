@@ -12,6 +12,8 @@
   &__titleWrapper {
     overflow: hidden;
     margin-block-end: $spacing-md;
+
+    z-index: 0;
   }
 
   &__title {

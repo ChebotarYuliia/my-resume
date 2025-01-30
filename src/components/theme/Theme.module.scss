@@ -1,0 +1,38 @@
+@use "../../styles/config.scss" as *;
+
+.theme {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  pointer-events: none;
+
+  &__background {
+    &:where(.default) {
+      --__color-background: var(--color-background);
+    }
+
+    &:where(.primary) {
+      --__color-background: var(--color-primary);
+    }
+
+    &:where(.colored) {
+      --__color-background: var(--color-secondary, #edded3);
+    }
+
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    opacity: 0;
+
+    transition: opacity 700ms linear;
+    background-color: var(--__color-background);
+    pointer-events: none;
+
+    &.active {
+      // z-index: 1;
+      opacity: 1;
+    }
+  }
+}

@@ -24,13 +24,13 @@
 
     inset: 1px;
 
-    background-color: var(--color-accent, var(--color-primary));
+    background-color: currentColor;
+    opacity: 0.1;
   }
 
   &__inner {
     block-size: 100%;
 
-    background-color: var(--color-background-secondary);
     padding-block-end: $spacing;
 
     transform-style: preserve-3d;
@@ -85,14 +85,14 @@
 
   &__title {
     font-size: clamp($font-size-lg-min, 4vw, $font-size-lg);
-    color: var(--color-heading);
+    // color: var(--color-heading);
     font-weight: 500;
   }
 
   &__subtitle {
     text-transform: uppercase;
     font-size: $font-size-xs-min;
-    color: var(--color-heading);
+    // color: var(--color-heading);
 
     opacity: 0.8;
   }

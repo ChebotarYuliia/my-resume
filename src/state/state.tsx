@@ -4,12 +4,15 @@ import { createContext, useCallback, useEffect, useState } from "react";
 
 export type OpenAnimationState = "active" | "completed";
 export type HeroAnimationState = "initial" | "completed";
+export const SectionTheme = ["default", "primary", "colored"] as const;
+export type TSectionTheme = (typeof SectionTheme)[number];
 
 type UIStateProps = {
   isMenuOpen: boolean;
   openAnimation: OpenAnimationState;
   heroEnterAnimation: HeroAnimationState;
   prefersReducedMotion: boolean;
+  sectionTheme: TSectionTheme;
 };
 
 type UIStateContext = {
@@ -22,6 +25,7 @@ const uiStateDefaults = {
   openAnimation: "active" as OpenAnimationState,
   heroEnterAnimation: "initial" as HeroAnimationState,
   prefersReducedMotion: false,
+  sectionTheme: "default" as TSectionTheme,
 };
 
 export const UIStateContext = createContext<UIStateContext>({

@@ -24,13 +24,15 @@
     @media (prefers-reduced-motion: no-preference) {
       svg {
         transform: scale(1.1);
+        opacity: 1;
       }
     }
   }
 
   svg {
     inline-size: min(80%, 100px);
-    fill: var(--color-font);
+    fill: currentColor;
+    opacity: 0.8;
 
     transition: transform calc($transition-duration / 2) $default-ease;
   }

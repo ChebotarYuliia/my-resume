@@ -11,6 +11,8 @@
 
   padding-block: $spacing-sm;
 
+  background-color: var(--color-background);
+
   &__inner {
     @include container();
     block-size: 100%;

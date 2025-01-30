@@ -1,8 +1,6 @@
 @use "../../styles/config.scss" as *;
 
 .grid {
-  overflow-y: auto;
-
   &__list {
     display: grid;
     gap: clamp($spacing-sm, 2vw, $spacing-md);
@@ -19,9 +17,12 @@
   }
 
   &__item {
-    min-block-size: 35vh;
-    > div {
-      block-size: 100%;
+    @media (min-width: $breakpoint-desktop) {
+      min-block-size: 35vh;
+
+      > div {
+        block-size: 100%;
+      }
     }
   }
 }

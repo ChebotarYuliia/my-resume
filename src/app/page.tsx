@@ -10,10 +10,13 @@ import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
 import Image from "next/image";
 import { navLinks } from "./data/nav";
+import { Section } from "@/components/section/Section";
+import { Theme } from "@/components/theme/Theme";
 
 export default function Home() {
   return (
     <>
+      <Theme />
       <Hero
         name="Yuliia Chebotar"
         // greeting="Hello from:"
@@ -28,53 +31,58 @@ export default function Home() {
       />
 
       {/* Expertise section */}
-      <Grid id={navLinks.expertise.to}>
-        {expertiseCards.map(({ children, ...rest }, id) => (
-          <Card key={id} {...rest}>
-            {children}
-          </Card>
-        ))}
-      </Grid>
+      <Section id={navLinks.expertise.to}>
+        <Grid>
+          {expertiseCards.map(({ children, ...rest }, id) => (
+            <Card key={id} {...rest}>
+              {children}
+            </Card>
+          ))}
+        </Grid>
+      </Section>
 
       {/* About me section */}
-      <div style={{ height: "90vh" }} id={navLinks.about.to}>
-        About me section
-      </div>
+      <Section id={navLinks.about.to} theme={"primary"}>
+        <div style={{ height: "90vh" }}>About me section</div>
+      </Section>
 
       {/* Skills section */}
-      <SkillListLayout id={navLinks.skills.to}>
-        <SkillList title={"My skill list:"}>
-          {skills.map((skill, i) => (
-            <ProgressBar key={i} {...skill} />
-          ))}
-        </SkillList>
-      </SkillListLayout>
+      <Section id={navLinks.skills.to}>
+        <SkillListLayout>
+          <SkillList title={"My skill list:"}>
+            {skills.map((skill, i) => (
+              <ProgressBar key={i} {...skill} />
+            ))}
+          </SkillList>
+        </SkillListLayout>
+      </Section>
 
       {/* Work experience section */}
-      <div style={{ height: "90vh" }} id={navLinks.experience.to}>
-        Work experience section
-      </div>
+      <Section id={navLinks.experience.to} theme={"colored"}>
+        <div style={{ height: "90vh" }}>Work experience section</div>
+      </Section>
 
       {/* Contacts section */}
-      <ContactsLayout
-        id={navLinks.contact.to}
-        links={socials.map((link, i) => (
-          <ContactLink
-            key={i}
-            platform={link.platform as TSocialIcon}
-            link={link.link}
+      <Section id={navLinks.contact.to} theme={"primary"}>
+        <ContactsLayout
+          links={socials.map((link, i) => (
+            <ContactLink
+              key={i}
+              platform={link.platform as TSocialIcon}
+              link={link.link}
+            />
+          ))}
+          title="Where you can find me:"
+        >
+          <Image
+            src="/contacts.gif"
+            width={1500}
+            height={1000}
+            alt="swimming fish"
+            priority={true}
           />
-        ))}
-        title="Where you can find me:"
-      >
-        <Image
-          src="/contacts.gif"
-          width={1500}
-          height={1000}
-          alt="swimming fish"
-          priority={true}
-        />
-      </ContactsLayout>
+        </ContactsLayout>
+      </Section>
     </>
   );
 }
