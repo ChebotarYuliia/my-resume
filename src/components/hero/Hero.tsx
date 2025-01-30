@@ -1,14 +1,20 @@
 "use client";
 
-import React, { CSSProperties, useCallback, useEffect, useRef } from "react";
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import s from "./Hero.module.scss";
 import { useInView } from "react-intersection-observer";
 import classNames from "classnames/bind";
 import gsap from "gsap";
 import { useUiState } from "@/hooks/useUiState";
-import { Section } from "../section/Section";
 import { TextPlugin } from "gsap/all";
+import Image from "next/image";
 
 const c = classNames.bind(s);
 
@@ -22,6 +28,7 @@ type Props = {
 
 export const Hero = ({ greeting, name, titles }: Props) => {
   const { uiState, setUIState } = useUiState();
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true });
 
   const greetingRef = useRef<HTMLParagraphElement>(null);
@@ -129,11 +136,12 @@ export const Hero = ({ greeting, name, titles }: Props) => {
       className={c(s.hero, {
         animationCompleted: uiState.heroEnterAnimation === "completed",
         inView: inView && uiState.openAnimation === "completed",
+        imageLoaded,
       })}
       ref={ref}
     >
-      <Section>
-        <div className={s.hero__inner}>
+      <div className={s.hero__inner}>
+        <div className={s.hero__contentWrap}>
           <div className={s.hero__content}>
             <p className={s.hero__greeting} ref={greetingRef}>
               {greeting}
@@ -166,7 +174,19 @@ export const Hero = ({ greeting, name, titles }: Props) => {
             <span ref={nameCursorRef}>|</span>
           </h1>
         </div>
-      </Section>
+
+        <div className={s.hero__imageWrap}>
+          <Image
+            src="/temp-hero-img.jpg"
+            width={900}
+            height={400}
+            alt="Yuliia Chebotar portrait"
+            priority={true}
+            className={s.hero__image}
+            onLoad={() => setImageLoaded(true)}
+          />
+        </div>
+      </div>
     </div>
   );
 };
