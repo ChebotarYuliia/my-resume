@@ -37,7 +37,6 @@ export const Section = ({ children, id, theme = "default" }: Props) => {
     tl.add(() => {
       const prevTheme =
         parent.previousElementSibling?.getAttribute("data-theme");
-      console.log("prevTheme", prevTheme);
 
       ScrollTrigger.create({
         trigger,
