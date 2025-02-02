@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import s from "./Header.module.scss";
 import { MenuToggle } from "../menu/MenuToggle";
 import { Menu } from "../menu/Menu";
 import { useUiState } from "@/hooks/useUiState";
+import classNames from "classnames/bind";
+
+const c = classNames.bind(s);
 
 type Props = {
   children: React.ReactNode;
@@ -14,6 +17,10 @@ type Props = {
 
 export const Header = ({ children, nav, socials }: Props) => {
   const { uiState, setUIState } = useUiState();
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
+    null
+  );
+  const storedScrollY = useRef(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -24,8 +31,30 @@ export const Header = ({ children, nav, socials }: Props) => {
     }
   }, [uiState.isMenuOpen]);
 
+  const handleScroll = useCallback(() => {
+    const position = window.scrollY;
+
+    if (position <= 100) {
+      setScrollDirection(null);
+    } else {
+      setScrollDirection(storedScrollY.current >= position ? "up" : "down");
+    }
+
+    storedScrollY.current = position;
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
   return (
-    <div className={s.header}>
+    <div className={c(s.header, { scrollingDown: scrollDirection === "down" })}>
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
         {/* <ThemeSwitcher className={s.header__switcher} /> */}

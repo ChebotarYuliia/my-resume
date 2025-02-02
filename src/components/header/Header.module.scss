@@ -11,7 +11,21 @@
 
   padding-block: $spacing-sm;
 
-  background-color: var(--color-background);
+  transition: transform $transition-duration linear;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background-color: var(--color-background);
+    opacity: 0.85;
+  }
+
+  &.scrollingDown {
+    transform: translateY(-100%);
+  }
 
   &__inner {
     @include container();

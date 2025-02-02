@@ -27,7 +27,6 @@ export default function RootLayout({
       <body id="body">
         <UIStateProvider>
           {/* TODO add fixed socials on desktop */}
-          {/* TODO hide header on scroll down on desktop */}
           {/* TODO add CV button to nav on mobile */}
           <Header
             nav={<NavContainer isMenu />}
