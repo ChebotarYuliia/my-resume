@@ -41,7 +41,7 @@
     flex: 1;
 
     padding-block: clamp($spacing, 6vw, $spacing-lg);
-    padding-inline: clamp($spacing, 8vw, $spacing-xl);
+    padding-inline: clamp($spacing-lg, 10vw, $spacing-xl);
 
     &::after {
       @include enterAnimation($parent: false, $className: ".inView");
@@ -144,6 +144,8 @@
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(100%);
     }
+
+    max-inline-size: min(100%, 600px);
   }
 
   &__actionWrap {

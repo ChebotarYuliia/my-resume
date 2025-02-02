@@ -10,13 +10,12 @@ import { useUiState } from "@/hooks/useUiState";
 const c = classNames.bind(s);
 
 type Props = {
-  children?: React.ReactNode; // media
   links: Array<React.ReactElement>;
   title?: string;
   author?: string;
 };
 
-export const ContactsLayout = ({ children, links, title, author }: Props) => {
+export const ContactsLayout = ({ links, title, author }: Props) => {
   const { uiState } = useUiState();
   const { ref, inView } = useInView({ triggerOnce: true });
 
@@ -43,9 +42,6 @@ export const ContactsLayout = ({ children, links, title, author }: Props) => {
         </ul>
         <p className={s.contactsLayout__author}>{author}</p>
       </div>
-
-      <div className={s.contactsLayout__media}>{children}</div>
-      <div className={s.contactsLayout__mediaSecond}>{children}</div>
     </div>
   );
 };

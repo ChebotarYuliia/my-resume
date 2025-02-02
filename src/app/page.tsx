@@ -1,6 +1,6 @@
 import { Grid } from "@/components/grid/Grid";
 import { Hero } from "@/components/hero/Hero";
-import { expertiseCards, skills, socials } from "./data/data";
+import { expertiseCards, skills, socials, workPlaces } from "./data/data";
 import { Card } from "@/components/card/Card";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
 import { SkillList } from "@/components/skill-list/SkillList";
@@ -8,12 +8,13 @@ import { ProgressBar } from "@/components/progress-bar/ProgressBar";
 import { ContactsLayout } from "@/components/contacts/ContactsLayout";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
-// import Image from "next/image";
 import { navLinks } from "./data/nav";
 import { Section } from "@/components/section/Section";
 import { Theme } from "@/components/theme/Theme";
 import { SectionTitle } from "@/components/section-title/SectionTitle";
 import { Button } from "@/components/Button/Button";
+import { WorkCard } from "@/components/work-card/WorkCard";
+import { Pill } from "@/components/pill/Pill";
 
 export default function Home() {
   return (
@@ -75,7 +76,15 @@ export default function Home() {
       {/* Work experience section */}
       <Section id={navLinks.experience.to} theme={"colored"}>
         <SectionTitle>Where I’ve Worked</SectionTitle>
-        <div style={{ height: "90vh" }}>content...</div>
+        {workPlaces.map(({ pills, ...props }, i) => (
+          <WorkCard
+            pills={pills.map((pill, i) => (
+              <Pill key={i}>{pill}</Pill>
+            ))}
+            {...props}
+            key={i}
+          />
+        ))}
       </Section>
 
       {/* Contacts section */}
@@ -90,15 +99,7 @@ export default function Home() {
           ))}
           title="Get In Touch"
           author="Designed & Built by Yuliia Chebotar"
-        >
-          {/* <Image
-            src="/contacts.gif"
-            width={1500}
-            height={1000}
-            alt="swimming fish"
-            priority={true}
-          /> */}
-        </ContactsLayout>
+        ></ContactsLayout>
       </Section>
     </>
   );

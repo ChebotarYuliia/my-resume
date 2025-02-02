@@ -1,0 +1,79 @@
+@use "../../styles/config.scss" as *;
+
+.workCard {
+  @include enterAnimation($parent: true);
+
+  @media (min-width: $breakpoint-desktop) {
+    max-inline-size: 800px;
+    margin: 0 auto;
+  }
+
+  &:not(:last-child) {
+    margin-block-end: $spacing-lg;
+  }
+
+  &.link {
+    text-decoration: none;
+
+    &:hover {
+      // TODO
+      cursor: pointer;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+    gap: $spacing-xxs;
+
+    @media (min-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr 3fr;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__period {
+    font-size: clamp($font-size-xs-min, 1vw, $font-size-xs);
+    text-transform: uppercase;
+
+    opacity: 0.8;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    @media (min-width: $breakpoint-mobile) {
+      gap: $spacing-xs;
+    }
+  }
+
+  &__title {
+    font-size: clamp($font-size, 1.5vw, $font-size-lg);
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+  }
+
+  &__text {
+    line-height: 1.5;
+  }
+
+  &__text,
+  &__pillsList {
+    font-size: clamp($font-size-xs-min, 1vw, $font-size-xs);
+  }
+
+  &__pillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xxs;
+
+    li {
+      &:nth-child(2n) {
+        --pill-border-radius: 0;
+      }
+    }
+  }
+}

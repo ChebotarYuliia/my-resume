@@ -1,0 +1,28 @@
+@use "../../styles/config.scss" as *;
+
+.pill {
+  @include enterAnimation(
+    $parent: true,
+    $transform: true,
+    $delay: #{calc(var(--i, 0) * #{$animation-delay * 0.5})}
+  );
+
+  transform: translateX(10px);
+  display: block;
+
+  position: relative;
+  color: var(--pill-color, var(--color-font-contrast));
+  padding: $spacing-xxs / 2 $spacing-xxs;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    opacity: 0.3;
+
+    border-radius: var(--pill-border-radius, #{$border-radius});
+    background-color: var(--pill-bg, var(--color-accent, #{$color-tertiary}));
+  }
+}

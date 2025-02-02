@@ -8,6 +8,7 @@ import classNames from "classnames/bind";
 
 const c = classNames.bind(s);
 
+// TODO fix theme colors to more pleasand palette
 export const Theme = () => {
   const { uiState } = useUiState();
   const { sectionTheme } = uiState;

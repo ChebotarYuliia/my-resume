@@ -1,6 +1,7 @@
 import { CardProps } from "@/components/card/Card";
 import { Icon } from "@/components/icon/Icon";
 import { ProgressBarProps } from "@/components/progress-bar/ProgressBar";
+import { WorkCardProps } from "@/components/work-card/WorkCard";
 
 export const socials = [
   {
@@ -123,4 +124,82 @@ export const skills: Array<ProgressBarProps> = [
     title: "React Native",
     percentage: 35,
   },
+];
+
+export const workPlaces: Array<
+  Omit<WorkCardProps, "pills"> & { pills: Array<string> }
+> = [
+  {
+    period: "Mar 2024 - Present",
+    children: `Planned and built the front-end part completely from scratch. 
+    Implemented smooth transitions and animation of 
+components. Maintained admin panel in Payload CMS.`,
+    title: "Web developer",
+    company: "Freelance",
+    pills: [
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "GSAP",
+      "SCSS",
+      "Payload CMS",
+      "Prismic CMS",
+      "MongoDB",
+      "GraphQL",
+    ],
+  },
+  {
+    period: "Aug 2022 - Mar 2024",
+    children: `Contributed to the development of the fintech app, helping users achieve financial goals through features like a 
+      sleek, intuitive Wishlist tool for budgeting and planning. Worked on a paragliding social network, building key interfaces 
+      and features such as User Profiles, Reviews, and Complaints & Suggestions, 
+      while ensuring a user-friendly experience with real-time weather 
+      updates and event tracking.`,
+    title: "Fullstack Developer",
+    company: "ElifTech",
+    link: "https://www.eliftech.com",
+    pills: [
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "SCSS",
+      "NestJS",
+      "MongoDB",
+    ],
+  },
+  {
+    period: "Feb 2019 - Dec 2019",
+    children:
+      "Developed, maintained, and shipped production code for client websites primarily using Vue, HTML, CSS, Sass, JavaScript, and jQuery",
+    title: "Front-end Engineer",
+    company: "Custom4Web",
+    link: "https://www.custom4web.com",
+    pills: ["JavaScript", "Vue", "HTML & Scss", "jQuery", "WordPress"],
+  },
+  {
+    period: "Apr 2018 - Feb 2019",
+    children:
+      "Developed, maintained, and shipped production code for client websites primarily using HTML, CSS, Sass, JavaScript, and jQuery",
+    title: "Front-end Engineer",
+    company: "Triplefork IT",
+    link: "https://tripleforkit.com",
+    pills: [
+      "JavaScript",
+      "HTML & Scss",
+      "jQuery",
+      "Bootstrap",
+      "WordPress",
+      "Photoshop",
+    ],
+  },
+  // {
+  //   period: "",
+  //   children: "",
+  //   title: "",
+  //   company: "",
+  //   link: "",
+  //   pills: [""],
+  // },
 ];
