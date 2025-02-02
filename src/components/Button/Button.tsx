@@ -1,9 +1,12 @@
+"use client";
 import React, { MouseEvent, useState } from "react";
 import s from "./Button.module.scss";
 import classNames from "classnames/bind";
 import { TransitionLink } from "../transition-link/TransitionLink";
 
 const c = classNames.bind(s);
+
+export type ButtonVariant = "default" | "outlined" | "filled";
 
 export type ButtonProps = {
   children: React.ReactNode;
@@ -13,6 +16,7 @@ export type ButtonProps = {
   animated?: boolean;
   active?: boolean;
   disabled?: boolean;
+  variant?: ButtonVariant;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const Button = ({
@@ -23,11 +27,13 @@ export const Button = ({
   animated,
   active,
   disabled,
+  variant = "default",
+  href,
   ...props
 }: ButtonProps) => {
   const [hovered, setHovered] = useState(false);
 
-  const classNames = c(s.button, className, {
+  const classNames = c(s.button, className, `variant-${variant}`, {
     hovered,
     active,
     animated,
@@ -54,6 +60,19 @@ export const Button = ({
       >
         {children}
       </TransitionLink>
+    );
+  }
+  if (href) {
+    return (
+      <a
+        className={classNames}
+        type="button"
+        aria-disabled={disabled}
+        href={href}
+        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {children}
+      </a>
     );
   }
   return (

@@ -1,10 +1,6 @@
 @use "../../styles/config.scss" as *;
 
 .skillList {
-  &__title {
-    @include enterAnimation($parent: false);
-  }
-
   &__inner {
     display: flex;
     flex-direction: column;

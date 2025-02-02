@@ -32,7 +32,7 @@ export const TransitionLink = ({ to, children, className }: Props) => {
   };
 
   return (
-    <button className={className} onClick={handleClick}>
+    <button className={className} tabIndex={0} onClick={handleClick}>
       {children}
     </button>
   );

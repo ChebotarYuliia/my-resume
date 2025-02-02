@@ -6,6 +6,8 @@
     flex-direction: column;
     justify-content: center;
 
+    gap: $spacing;
+
     flex: 1;
   }
 
@@ -17,6 +19,7 @@
   }
 
   &__title {
+    text-align: center;
     font-size: clamp($font-size-lg-min, 4vw, $font-size-lg * 1.5);
 
     @include enterAnimation($parent: false, $transform: true);
@@ -28,19 +31,20 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing;
+    justify-content: space-between;
 
     margin-inline: auto;
-    inline-size: min(100%, 800px);
-
-    @media (min-width: $breakpoint-desktop) {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    inline-size: min(100%, 300px);
+    grid-template-columns: repeat(4, 1fr);
 
     li {
       display: flex;
     }
+  }
+
+  &__author {
+    text-align: center;
+    font-size: $font-size-xs-min;
   }
 
   &__media,

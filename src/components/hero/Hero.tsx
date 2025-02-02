@@ -15,23 +15,23 @@ import gsap from "gsap";
 import { useUiState } from "@/hooks/useUiState";
 import { TextPlugin } from "gsap/all";
 import Image from "next/image";
+import { ButtonProps } from "../Button/Button";
 
 const c = classNames.bind(s);
 
 type Props = {
-  greeting?: string;
+  subtitle?: string;
   name: string;
+  text: string;
   titles?: Array<string>;
+  action?: React.ReactElement<ButtonProps>;
 };
 
-// const NameStart = "I'm  ";
-
-export const Hero = ({ greeting, name, titles }: Props) => {
+export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
   const { uiState, setUIState } = useUiState();
   const [imageLoaded, setImageLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true });
 
-  const greetingRef = useRef<HTMLParagraphElement>(null);
   // const nameContainerRef = useRef<HTMLSpanElement>(null);
   const nameRef = useRef<HTMLSpanElement>(null);
   const cursorContainerRef = useRef<HTMLHeadingElement>(null);
@@ -45,7 +45,6 @@ export const Hero = ({ greeting, name, titles }: Props) => {
     (tl: gsap.core.Timeline) => {
       const mq = gsap.matchMedia();
 
-      // const greetingEl = greetingRef.current;
       // const nameContainerEl = nameContainerRef.current;
       const nameEl = nameRef.current;
       const cursorContainerEl = cursorContainerRef.current;
@@ -70,38 +69,11 @@ export const Hero = ({ greeting, name, titles }: Props) => {
         };
       };
 
-      // tl.set(greetingEl, {
-      //   scale: 0,
-      //   x: "100%",
-      //   opacity: 0,
-      //   duration: "1.5s",
-      // }).set(nameCursorEl, { opacity: 0 });
-
       if (inView && uiState.openAnimation === "completed" && firstRender) {
         const cursorTl = gsap.timeline();
 
         mq.add(`(prefers-reduced-motion: no-preference)`, () => {
-          // tl.to(greetingEl, {
-          //   scale: 2.5,
-          //   opacity: 1,
-          //   ease: "power2.inOut",
-          //   duration: 1,
-          // })
-          //   .to(greetingEl, {
-          //     scale: 1,
-          //     x: 0,
-          //     ease: "ease",
-          //     onComplite: () => {
-          //       cursorTl.to(nameCursorEl, {
-          //         autoAlpha: 1,
-          //         opacity: 1,
-          //         duration: 0.5,
-          //         repeat: -1,
-          //         ease: SteppedEase.config(1),
-          //       });
-          //     },
-          //   })
-          // .to(nameContainerEl, {
+          // tl.to(nameContainerEl, {
           //   ...textTypingOpts(NameStart, 0.5, "power2.inOut"),
           // })
           tl.to(nameEl, {
@@ -143,9 +115,27 @@ export const Hero = ({ greeting, name, titles }: Props) => {
       <div className={s.hero__inner}>
         <div className={s.hero__contentWrap}>
           <div className={s.hero__content}>
-            <p className={s.hero__greeting} ref={greetingRef}>
-              {greeting}
-            </p>
+            <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>
+              {/* <span ref={nameContainerRef} /> */}
+              {uiState.heroEnterAnimation === "completed" ? (
+                <span className={s.hero__name}>{name}</span>
+              ) : (
+                <span className={s.hero__name} ref={nameRef} />
+              )}
+              <span ref={nameCursorRef}>|</span>
+            </h1>
+
+            {subtitle && (
+              <div className={s.hero__subtitleWrap}>
+                <p className={s.hero__subtitle}>{subtitle}</p>
+              </div>
+            )}
+
+            {text && (
+              <div className={s.hero__textWrap}>
+                <p className={s.hero__text}>{text}</p>
+              </div>
+            )}
 
             {titles?.length ? (
               <ul className={s.hero__list}>
@@ -161,18 +151,8 @@ export const Hero = ({ greeting, name, titles }: Props) => {
               </ul>
             ) : undefined}
 
-            {/* TODO add button */}
+            {action && <div className={s.hero__actionWrap}>{action}</div>}
           </div>
-
-          <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>
-            {/* <span ref={nameContainerRef} /> */}
-            {uiState.heroEnterAnimation === "completed" ? (
-              <span className={s.hero__name}>{name}</span>
-            ) : (
-              <span className={s.hero__name} ref={nameRef} />
-            )}
-            <span ref={nameCursorRef}>|</span>
-          </h1>
         </div>
 
         <div className={s.hero__imageWrap}>

@@ -62,11 +62,11 @@
     padding-inline-start: $spacing-xxs;
 
     svg {
-      fill: var(--color-accent);
+      fill: currentColor;
     }
 
     @media (min-width: $breakpoint-desktop) {
-      opacity: 0.2;
+      opacity: 0.5;
     }
   }
 

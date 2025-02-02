@@ -11,10 +11,9 @@ const c = classNames.bind(s);
 
 export type SkillListProps = {
   children: Array<React.ReactElement<ProgressBarProps>>;
-  title: string;
 };
 
-export const SkillList = ({ children, title }: SkillListProps) => {
+export const SkillList = ({ children }: SkillListProps) => {
   const { uiState } = useUiState();
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -29,7 +28,6 @@ export const SkillList = ({ children, title }: SkillListProps) => {
       ref={ref}
     >
       <div className={s.skillList__inner}>
-        <h2 className={s.skillList__title}>{title}</h2>
         <ul className={s.skillList__list}>
           {Children.map(children, (child, i) => (
             <li style={{ "--i": i } as CSSProperties} key={i}>

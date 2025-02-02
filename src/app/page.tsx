@@ -8,10 +8,12 @@ import { ProgressBar } from "@/components/progress-bar/ProgressBar";
 import { ContactsLayout } from "@/components/contacts/ContactsLayout";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
-import Image from "next/image";
+// import Image from "next/image";
 import { navLinks } from "./data/nav";
 import { Section } from "@/components/section/Section";
 import { Theme } from "@/components/theme/Theme";
+import { SectionTitle } from "@/components/section-title/SectionTitle";
+import { Button } from "@/components/Button/Button";
 
 export default function Home() {
   return (
@@ -19,19 +21,30 @@ export default function Home() {
       <Theme />
       <Hero
         name="Yuliia Chebotar"
-        // greeting="Hello from:"
-        titles={[
-          "Web developer",
-          "UI/UX",
-          "Adaptive design",
-          "Smooth animations",
-          "Clean code",
-          "Cool smile",
-        ]}
+        subtitle="I build things for the web."
+        text="I'm a developer with a passion for building accessible, pixel-perfect user interfaces that seamlessly combine thoughtful design with solid engineering."
+        // titles={[
+        //   "Web developer",
+        //   "UI/UX",
+        //   "Adaptive design",
+        //   "Smooth animations",
+        //   "Clean code",
+        //   // "Cool smile",
+        // ]}
+        action={
+          <Button
+            variant="filled"
+            href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
+            target="_blank"
+          >
+            Download my CV
+          </Button>
+        }
       />
 
       {/* Expertise section */}
       <Section id={navLinks.expertise.to}>
+        <SectionTitle>Expertise</SectionTitle>
         <Grid>
           {expertiseCards.map(({ children, ...rest }, id) => (
             <Card key={id} {...rest}>
@@ -43,13 +56,15 @@ export default function Home() {
 
       {/* About me section */}
       <Section id={navLinks.about.to} theme={"primary"}>
-        <div style={{ height: "90vh" }}>About me section</div>
+        <SectionTitle>About me</SectionTitle>
+        <div style={{ height: "90vh" }}>content...</div>
       </Section>
 
       {/* Skills section */}
       <Section id={navLinks.skills.to}>
+        <SectionTitle>Technologies I’ve been working with</SectionTitle>
         <SkillListLayout>
-          <SkillList title={"My skill list:"}>
+          <SkillList>
             {skills.map((skill, i) => (
               <ProgressBar key={i} {...skill} />
             ))}
@@ -59,7 +74,8 @@ export default function Home() {
 
       {/* Work experience section */}
       <Section id={navLinks.experience.to} theme={"colored"}>
-        <div style={{ height: "90vh" }}>Work experience section</div>
+        <SectionTitle>Where I’ve Worked</SectionTitle>
+        <div style={{ height: "90vh" }}>content...</div>
       </Section>
 
       {/* Contacts section */}
@@ -72,15 +88,16 @@ export default function Home() {
               link={link.link}
             />
           ))}
-          title="Where you can find me:"
+          title="Get In Touch"
+          author="Designed & Built by Yuliia Chebotar"
         >
-          <Image
+          {/* <Image
             src="/contacts.gif"
             width={1500}
             height={1000}
             alt="swimming fish"
             priority={true}
-          />
+          /> */}
         </ContactsLayout>
       </Section>
     </>

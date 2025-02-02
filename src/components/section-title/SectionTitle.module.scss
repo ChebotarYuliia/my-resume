@@ -1,0 +1,36 @@
+@use "../../styles/config.scss" as *;
+
+.sectionTitle {
+  font-size: clamp($font-size-min, 6vw, $font-size-lg * 1.5);
+  font-weight: 700;
+  font-family: var(--font-family-heading);
+  margin-block: $spacing-xxs $spacing-md;
+
+  overflow: hidden;
+
+  &__title {
+    @include enterAnimation($transform: true);
+
+    display: flex;
+
+    flex-direction: column;
+    align-items: unset;
+    gap: $spacing-xs;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(100%);
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      align-items: center;
+      flex-direction: row;
+    }
+
+    &::after {
+      content: "";
+      inline-size: clamp(50px, 25vw, 300px);
+      block-size: 2px;
+      background-color: currentColor;
+    }
+  }
+}
