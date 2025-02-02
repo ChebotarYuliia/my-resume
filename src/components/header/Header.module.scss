@@ -9,7 +9,7 @@
   inline-size: 100vw;
   block-size: var(--header-height);
 
-  padding-block: $spacing-sm;
+  padding-block: $spacing-xxs;
 
   transition: transform $transition-duration linear;
 
@@ -34,6 +34,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    @media (max-width: $breakpoint-tablet) {
+      gap: $spacing-xxs;
+      justify-content: space-between;
+    }
   }
 
   &__nav {
@@ -53,7 +58,8 @@
     }
   }
 
-  &__menuButton {
+  &__menuButton,
+  &__action {
     display: block;
     z-index: $zindex-menu-btn;
     @media (min-width: $breakpoint-tablet) {

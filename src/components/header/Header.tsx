@@ -6,6 +6,7 @@ import { MenuToggle } from "../menu/MenuToggle";
 import { Menu } from "../menu/Menu";
 import { useUiState } from "@/hooks/useUiState";
 import classNames from "classnames/bind";
+import { ButtonProps } from "../Button/Button";
 
 const c = classNames.bind(s);
 
@@ -13,9 +14,10 @@ type Props = {
   children: React.ReactNode;
   nav: React.ReactNode;
   socials: Array<React.ReactElement>;
+  action?: React.ReactElement<ButtonProps>;
 };
 
-export const Header = ({ children, nav, socials }: Props) => {
+export const Header = ({ children, nav, socials, action }: Props) => {
   const { uiState, setUIState } = useUiState();
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
     null
@@ -58,6 +60,7 @@ export const Header = ({ children, nav, socials }: Props) => {
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
         {/* <ThemeSwitcher className={s.header__switcher} /> */}
+        <div className={s.header__action}>{action}</div>
         <button
           className={s.header__menuButton}
           onClick={() => {

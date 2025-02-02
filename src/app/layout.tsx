@@ -7,6 +7,7 @@ import { UIStateProvider } from "@/state/state";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
 import { socials } from "./data/data";
+import { Button } from "@/components/Button/Button";
 
 export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
@@ -27,7 +28,6 @@ export default function RootLayout({
       <body id="body">
         <UIStateProvider>
           {/* TODO add fixed socials on desktop */}
-          {/* TODO add CV button to nav on mobile */}
           <Header
             nav={<NavContainer isMenu />}
             socials={socials.map((link, i) => (
@@ -37,6 +37,15 @@ export default function RootLayout({
                 link={link.link}
               />
             ))}
+            action={
+              <Button
+                variant="outlined"
+                href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
+                target="_blank"
+              >
+                Resume
+              </Button>
+            }
           >
             <NavContainer />
           </Header>
