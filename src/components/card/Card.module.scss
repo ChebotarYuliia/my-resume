@@ -24,8 +24,8 @@
 
     inset: 1px;
 
-    background-color: currentColor;
-    opacity: 0.05;
+    background-color: var(--color-background-secondary);
+    // opacity: 0.05;
   }
 
   &__inner {
@@ -62,7 +62,7 @@
     padding-inline-start: $spacing-xxs;
 
     svg {
-      fill: currentColor;
+      fill: var(--color-accent);
     }
 
     @media (min-width: $breakpoint-desktop) {

@@ -3,10 +3,6 @@ export const navLinks: { [key: string]: { [key: string]: string } } = {
     label: "Expertise",
     to: "#expertise",
   },
-  about: {
-    label: "About me",
-    to: "#about",
-  },
   skills: {
     label: "Skills",
     to: "#skills",
@@ -18,6 +14,10 @@ export const navLinks: { [key: string]: { [key: string]: string } } = {
   projects: {
     label: "Projects",
     to: "#projects",
+  },
+  about: {
+    label: "About me",
+    to: "#about",
   },
   // contact: {
   //   label: "Contact me",

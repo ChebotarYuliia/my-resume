@@ -1,7 +1,7 @@
 @use "../../styles/config.scss" as *;
 
 .contactLabels {
-  --color: var(--color-accent, var(--color-font));
+  --color: var(--section-color-font);
   --stick-height: 120px;
 
   @include enterAnimation($parent: true, $transform: true);
@@ -49,6 +49,10 @@
 
       inline-size: 25px;
       aspect-ratio: 1/1;
+
+      svg {
+        color: var(--color);
+      }
     }
   }
 

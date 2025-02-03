@@ -19,7 +19,8 @@
     inset: 0;
     z-index: -1;
 
-    background-color: var(--color-background);
+    // background-color: var(--section-color-background);
+    backdrop-filter: blur(20px);
     opacity: 0.85;
   }
 

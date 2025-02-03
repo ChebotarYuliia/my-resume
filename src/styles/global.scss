@@ -37,6 +37,26 @@
 
   --container-width-narrow: #{$container-width-narrow};
 
+  // THEMES
+  --color-teal-500: #{$color-teal-500};
+
+  --color-moonlight-700: #{$color-moonlight-700};
+  --color-moonlight-600: #{$color-moonlight-600};
+  --color-moonlight-500: #{$color-moonlight-500};
+  --color-moonlight-300: #{$color-moonlight-300};
+  --color-moonlight-200: #{$color-moonlight-200};
+
+  --color-olive-800: #{$color-olive-800};
+  --color-olive-700: #{$color-olive-700};
+  --color-olive-500: #{$color-olive-500};
+  --color-olive-300: #{$color-olive-300};
+
+  --color-slate-800: #{$color-slate-800};
+  --color-slate-700: #{$color-slate-700};
+  --color-slate-600: #{$color-slate-600};
+  --color-slate-500: #{$color-slate-500};
+  --color-slate-300: #{$color-slate-300};
+
   body[data-theme="dark"] {
     --color-primary: #{$color-tertiary};
     --color-primary-rgb: #{derive-rgb-values-from-hex($color-tertiary)};

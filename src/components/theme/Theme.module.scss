@@ -13,11 +13,15 @@
     }
 
     &:where(.primary) {
-      --__color-background: var(--color-primary);
+      --__color-background: var(--color-moonlight-700);
     }
 
-    &:where(.colored) {
-      --__color-background: var(--color-secondary, #edded3);
+    &:where(.olive) {
+      --__color-background: var(--color-olive-300);
+    }
+
+    &:where(.slate) {
+      --__color-background: var(--color-slate-300);
     }
 
     position: absolute;

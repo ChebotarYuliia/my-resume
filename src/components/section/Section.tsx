@@ -46,7 +46,7 @@ export const Section = ({
 
       ScrollTrigger.create({
         trigger,
-        start: "top 75%",
+        start: "top 50%",
         onEnter: () => {
           setUIState({ sectionTheme: theme });
         },

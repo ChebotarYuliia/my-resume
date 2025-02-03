@@ -1,7 +1,7 @@
 @use "../../styles/config.scss" as *;
 
 @mixin button-hover-styles() {
-  color: var(--color-font-contrast);
+  color: var(--button-color-font, var(--color-font-contrast));
 
   &::after {
     transform: translateY(0);
@@ -40,7 +40,7 @@
     inset: 0;
     transform: translateY(98%);
 
-    background-color: var(--__button-background, var(--color-primary));
+    background-color: var(--button-background, var(--color-primary));
 
     transition: transform $transition-duration $default-ease;
   }

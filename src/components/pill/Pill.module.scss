@@ -20,7 +20,7 @@
     inset: 0;
     z-index: -1;
 
-    opacity: var(--pill-opacity, 0.3);
+    opacity: var(--pill-opacity, 0.8);
 
     border-radius: var(--pill-border-radius, #{$border-radius});
     background-color: var(--pill-bg, var(--color-accent, #{$color-tertiary}));

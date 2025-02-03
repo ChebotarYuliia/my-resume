@@ -1,6 +1,10 @@
 @use "../../styles/config.scss" as *;
 
 .section {
+  --color-accent: var(--section-color-accent);
+  --color-font-contrast: var(--section-color-font-contrast);
+  --color-background-secondary: var(--section-background-secondary);
+
   padding-block-start: var(
     --section-block-spacing-start,
     var(--__section-block-start-spacing, #{$section-block-spacing-min})

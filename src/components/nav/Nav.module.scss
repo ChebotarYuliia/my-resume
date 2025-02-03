@@ -1,8 +1,11 @@
 @use "../../styles/config.scss" as *;
 
 .nav {
+  --button-background: var(--section-color-accent);
+
   font-family: var(--font-family-heading);
   font-size: $font-size-xs-min;
+  color: var(--section-color-font, var(--color-font));
 
   @media (min-width: $breakpoint-wide) {
     font-size: $font-size-xs;

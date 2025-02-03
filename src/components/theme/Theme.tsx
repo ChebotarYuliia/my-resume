@@ -8,28 +8,76 @@ import classNames from "classnames/bind";
 
 const c = classNames.bind(s);
 
-// TODO fix theme colors to more pleasand palette
 export const Theme = () => {
   const { uiState } = useUiState();
   const { sectionTheme } = uiState;
 
   const themeColor = useCallback(() => {
+    // default theme
+    let color = "var(--color-font)";
+    let colorContrast = "var(--color-font-contrast)";
+    let accent = "var(--color-teal-500)";
+    let bgSecondary = "var(--color-background-secondary)";
+
     switch (sectionTheme) {
-      case "default":
-        return "var(--color-font)";
       case "primary":
-        return "var(--color-font-contrast)";
-      case "colored":
-        return "var(--color-font-contrast)";
+        color = "var(--color-moonlight-300)";
+        colorContrast = "var(--color-moonlight-200)";
+        accent = "var(--color-moonlight-500)";
+        bgSecondary = "var(--color-moonlight-600)";
+        break;
+      case "olive":
+        accent = "var(--color-olive-500)";
+        color = "var(--color-olive-800)";
+        bgSecondary = "var(--color-olive-700)";
+        break;
+      case "slate":
+        accent = "var(--color-slate-500)";
+        color = "var(--color-slate-600)";
+        bgSecondary = "var(--color-slate-700)";
+        break;
     }
+
+    return { color, colorContrast, accent, bgSecondary };
   }, [sectionTheme]);
 
   useEffect(() => {
-    const color = themeColor();
+    const { color, colorContrast, accent, bgSecondary } = themeColor();
     document.documentElement.style.setProperty("--section-color-font", color);
+    document.documentElement.style.setProperty(
+      "--section-color-font-contrast",
+      colorContrast
+    );
+    document.documentElement.style.setProperty(
+      "--section-color-accent",
+      accent
+    );
+    document.documentElement.style.setProperty(
+      "--section-background-secondary",
+      bgSecondary
+    );
 
-    return () =>
-      document.documentElement.style.setProperty("--section-color-font", null);
+    // clean up
+    return () => {
+      return (
+        document.documentElement.style.setProperty(
+          "--section-color-font",
+          null
+        ),
+        document.documentElement.style.setProperty(
+          "--section-color-font-contrast",
+          null
+        ),
+        document.documentElement.style.setProperty(
+          "--section-color-accent",
+          null
+        ),
+        document.documentElement.style.setProperty(
+          "--section-background-secondary",
+          null
+        )
+      );
+    };
   }, [sectionTheme, themeColor]);
 
   return (

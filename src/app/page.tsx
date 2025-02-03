@@ -63,12 +63,6 @@ export default function Home() {
         </Grid>
       </Section>
 
-      {/* About me section */}
-      <Section id={navLinks.about.to} theme={"primary"}>
-        <SectionTitle>About me</SectionTitle>
-        <div style={{ height: "90vh" }}>content...</div>
-      </Section>
-
       {/* Skills section */}
       <Section fullHeight id={navLinks.skills.to}>
         <SectionTitle>Technologies I’ve been working with</SectionTitle>
@@ -83,7 +77,7 @@ export default function Home() {
       </Section>
 
       {/* Work experience section */}
-      <Section id={navLinks.experience.to} theme={"colored"}>
+      <Section id={navLinks.experience.to} theme={"olive"}>
         <SectionTitle>Where I’ve Worked</SectionTitle>
         {workPlaces.map(({ pills, ...props }, i) => (
           <WorkCard
@@ -97,7 +91,7 @@ export default function Home() {
       </Section>
 
       {/* Projects section */}
-      <Section id={navLinks.projects.to} theme={"colored"}>
+      <Section id={navLinks.projects.to} theme="slate">
         <SectionTitle>Some Things I’ve Built</SectionTitle>
         {projects.map((project, i) => (
           <ProjectCard
@@ -122,6 +116,12 @@ export default function Home() {
             </ProjectCardContent>
           </ProjectCard>
         ))}
+      </Section>
+
+      {/* About me section */}
+      <Section id={navLinks.about.to} theme={"primary"}>
+        <SectionTitle>About me</SectionTitle>
+        <div style={{ height: "90vh" }}>content...</div>
       </Section>
 
       {/* Contacts section */}

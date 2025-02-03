@@ -27,7 +27,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background-color: var(--color-background);
+      background-color: var(--color-background-secondary);
     }
   }
 
@@ -35,16 +35,15 @@
     font-size: 0.8em;
     text-align: right;
 
-    color: var(--color-font);
+    color: var(--color-font-contrast);
   }
 
   &__pills {
-    --pill-bg: var(--color-accent, var(--color-background));
-    --pill-opacity: 1;
-    --pill-color: var(--color-font);
+    --pill-color: var(--color-font-contrast);
 
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
 
     gap: $spacing-xs;
     font-size: 0.85em;
