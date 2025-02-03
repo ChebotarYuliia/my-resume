@@ -10,10 +10,11 @@ import { ProgressBarProps } from "../progress-bar/ProgressBar";
 const c = classNames.bind(s);
 
 export type SkillListProps = {
-  children: Array<React.ReactElement<ProgressBarProps>>;
+  children: Array<React.ReactElement<ProgressBarProps | HTMLSpanElement>>;
+  variant?: "default" | "compact";
 };
 
-export const SkillList = ({ children }: SkillListProps) => {
+export const SkillList = ({ children, variant }: SkillListProps) => {
   const { uiState } = useUiState();
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -22,7 +23,7 @@ export const SkillList = ({ children }: SkillListProps) => {
 
   return (
     <div
-      className={c(s.skillList, {
+      className={c(s.skillList, `variant-${variant}`, {
         inView: inView && uiState.openAnimation === "completed",
       })}
       ref={ref}
@@ -30,7 +31,11 @@ export const SkillList = ({ children }: SkillListProps) => {
       <div className={s.skillList__inner}>
         <ul className={s.skillList__list}>
           {Children.map(children, (child, i) => (
-            <li style={{ "--i": i } as CSSProperties} key={i}>
+            <li
+              className={variant === "compact" ? s.skillList__listItem : ""}
+              style={{ "--i": i } as CSSProperties}
+              key={i}
+            >
               {child}
             </li>
           ))}

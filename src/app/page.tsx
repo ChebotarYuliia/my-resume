@@ -4,7 +4,6 @@ import { expertiseCards, skills, socials, workPlaces } from "./data/data";
 import { Card } from "@/components/card/Card";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
 import { SkillList } from "@/components/skill-list/SkillList";
-import { ProgressBar } from "@/components/progress-bar/ProgressBar";
 import { ContactsLayout } from "@/components/contacts/ContactsLayout";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
@@ -62,12 +61,13 @@ export default function Home() {
       </Section>
 
       {/* Skills section */}
-      <Section id={navLinks.skills.to}>
+      <Section fullHeight id={navLinks.skills.to}>
         <SectionTitle>Technologies I’ve been working with</SectionTitle>
         <SkillListLayout>
-          <SkillList>
+          <SkillList variant="compact">
             {skills.map((skill, i) => (
-              <ProgressBar key={i} {...skill} />
+              // <ProgressBar key={i} {...skill} />
+              <span key={i}>{skill.title}</span>
             ))}
           </SkillList>
         </SkillListLayout>

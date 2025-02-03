@@ -18,9 +18,15 @@ type Props = {
   children?: React.ReactNode;
   id?: string;
   theme?: TSectionTheme;
+  fullHeight?: boolean;
 };
 
-export const Section = ({ children, id, theme = "default" }: Props) => {
+export const Section = ({
+  children,
+  id,
+  theme = "default",
+  fullHeight = false,
+}: Props) => {
   const { uiState, setUIState } = useUiState();
   const ref = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -57,7 +63,12 @@ export const Section = ({ children, id, theme = "default" }: Props) => {
   }, []);
 
   return (
-    <div className={c(s.section, theme)} data-theme={theme} id={id} ref={ref}>
+    <div
+      className={c(s.section, theme, { fullHeight })}
+      data-theme={theme}
+      id={id}
+      ref={ref}
+    >
       <div className={s.section__trigger} ref={triggerRef} />
       <div className={s.section__inner}>{children}</div>
     </div>

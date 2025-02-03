@@ -35,6 +35,8 @@
   --color-background-secondary: #{$color-background-secondary};
   --color-border: #{$color-border};
 
+  --container-width-narrow: #{$container-width-narrow};
+
   body[data-theme="dark"] {
     --color-primary: #{$color-tertiary};
     --color-primary-rgb: #{derive-rgb-values-from-hex($color-tertiary)};

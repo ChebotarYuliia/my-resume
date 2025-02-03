@@ -6,6 +6,11 @@
   font-family: var(--font-family-heading);
   margin-block: $spacing-xxs $spacing-md;
 
+  @media (min-width: $breakpoint-tablet) {
+    padding-block-end: $spacing-md;
+    margin-block-end: $spacing-md;
+  }
+
   overflow: hidden;
 
   &__title {

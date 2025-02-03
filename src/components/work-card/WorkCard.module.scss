@@ -4,7 +4,7 @@
   @include enterAnimation($parent: true);
 
   @media (min-width: $breakpoint-desktop) {
-    max-inline-size: 800px;
+    max-inline-size: var(--container-width-narrow);
     margin: 0 auto;
   }
 

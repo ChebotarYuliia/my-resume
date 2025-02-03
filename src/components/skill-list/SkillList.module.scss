@@ -19,6 +19,35 @@
 
       column-gap: $spacing-md;
       row-gap: $spacing-sm;
+
+      .variant-compact & {
+        max-inline-size: var(--container-width-narrow);
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__listItem {
+    @include enterAnimation(
+      $parent: false,
+      $transform: true,
+      $delay: #{calc(var(--i, 0) * #{$animation-delay * 0.5})}
+    );
+
+    transform: translateX(5px);
+
+    &::before {
+      content: "";
+      block-size: 4px;
+      inline-size: 4px;
+      display: inline-block;
+
+      background-color: var(
+        --color-accent,
+        var(--color-primary, var(--color-font))
+      );
+
+      margin-inline-end: $spacing-xxs;
     }
   }
 }

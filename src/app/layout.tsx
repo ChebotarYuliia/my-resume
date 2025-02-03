@@ -27,7 +27,7 @@ export default function RootLayout({
     >
       <body id="body">
         <UIStateProvider>
-          {/* TODO add fixed socials on desktop */}
+          {/* TODO add fixed socials amd email on desktop */}
           <Header
             nav={<NavContainer isMenu />}
             socials={socials.map((link, i) => (
