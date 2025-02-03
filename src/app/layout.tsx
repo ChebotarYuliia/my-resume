@@ -8,6 +8,10 @@ import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
 import { socials } from "./data/data";
 import { Button } from "@/components/Button/Button";
+import {
+  EmailLabel,
+  SocialLabel,
+} from "@/components/contact-labels/ContactLabels";
 
 export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
@@ -20,6 +24,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const socialEls = socials.map((link, i) => (
+    <ContactLink
+      key={i}
+      platform={link.platform as TSocialIcon}
+      link={link.link}
+    />
+  ));
   return (
     <html
       lang="en"
@@ -27,16 +38,9 @@ export default function RootLayout({
     >
       <body id="body">
         <UIStateProvider>
-          {/* TODO add fixed socials amd email on desktop */}
           <Header
             nav={<NavContainer isMenu />}
-            socials={socials.map((link, i) => (
-              <ContactLink
-                key={i}
-                platform={link.platform as TSocialIcon}
-                link={link.link}
-              />
-            ))}
+            socials={socialEls}
             action={
               <Button
                 variant="outlined"
@@ -49,6 +53,9 @@ export default function RootLayout({
           >
             <NavContainer />
           </Header>
+
+          <SocialLabel socials={socialEls} />
+          <EmailLabel email={"chebotar609@gmail.com"} />
 
           {children}
         </UIStateProvider>

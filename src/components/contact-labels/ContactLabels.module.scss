@@ -1,0 +1,75 @@
+@use "../../styles/config.scss" as *;
+
+.contactLabels {
+  --color: var(--color-accent, var(--color-font));
+  --stick-height: 120px;
+
+  @include enterAnimation($parent: true, $transform: true);
+  transform: translateY(50%);
+
+  position: fixed;
+  inset-block-end: 0;
+  z-index: $zindex-header;
+
+  display: none;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: block;
+  }
+
+  &.socials {
+    inset-inline-start: 35px;
+  }
+
+  &.email {
+    inset-inline-end: 0;
+    inset-block-end: auto;
+    inset-block-start: 35px;
+    writing-mode: vertical-rl;
+  }
+
+  &__socialsList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: $spacing-xs;
+
+    &::after {
+      content: "";
+      inline-size: 2px;
+      block-size: var(--stick-height);
+      background-color: var(--color);
+      opacity: 0.5;
+    }
+
+    li {
+      --contact-link-padding: 0;
+
+      inline-size: 25px;
+      aspect-ratio: 1/1;
+    }
+  }
+
+  &__emailInner {
+    display: flex;
+    align-items: center;
+
+    gap: $spacing-xxs;
+
+    &::after {
+      content: "";
+      block-size: 2px;
+      inline-size: var(--stick-height);
+      background-color: var(--color);
+      opacity: 0.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color);
+      font-size: 0.8em;
+    }
+  }
+}

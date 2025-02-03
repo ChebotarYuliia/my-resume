@@ -75,7 +75,7 @@ html {
   scrollbar-gutter: stable;
 
   &.scroll-disabled {
-    // when navigation is open
+    // when mobile menu is open
     @include html-overflow-hidden;
   }
 }

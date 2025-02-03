@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
 
-  padding: $spacing-xs;
+  padding: var(--contact-link-padding, #{$spacing-xs});
   flex: 1;
 
   background-color: transparent;

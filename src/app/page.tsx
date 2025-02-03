@@ -125,7 +125,7 @@ export default function Home() {
       </Section>
 
       {/* Contacts section */}
-      <Section id={navLinks.contact.to} theme={"primary"}>
+      <Section theme={"primary"}>
         <ContactsLayout
           links={socials.map((link, i) => (
             <ContactLink

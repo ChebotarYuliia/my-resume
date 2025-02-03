@@ -55,6 +55,17 @@ export const UIStateProvider = ({
     setUIState({ prefersReducedMotion: reducedMotion });
   }, [setUIState]);
 
+  const preventScroll = useCallback((prevent: boolean) => {
+    const htmlClassName = "scroll-disabled";
+    document.documentElement.classList[prevent ? "add" : "remove"](
+      htmlClassName
+    );
+  }, []);
+
+  useEffect(() => {
+    preventScroll(uiState.isMenuOpen);
+  }, [uiState.isMenuOpen, preventScroll]);
+
   return (
     <UIStateContext.Provider
       value={{
