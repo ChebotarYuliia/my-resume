@@ -22,6 +22,7 @@ import { WorkCard } from "@/components/work-card/WorkCard";
 import { Pill } from "@/components/pill/Pill";
 import { ProjectCard } from "@/components/project-card/ProjectCard";
 import { ProjectCardContent } from "@/components/project-card/ProjectCardContent";
+import { Video } from "@/components/video/Video";
 
 export default function Home() {
   return (
@@ -101,11 +102,11 @@ export default function Home() {
         {projects.map((project, i) => (
           <ProjectCard
             media={
-              <video
+              <Video
                 src={project.media}
                 width={600}
                 height={400}
-                autoPlay={false}
+                autoplay={false}
                 loop={true}
               />
             }
