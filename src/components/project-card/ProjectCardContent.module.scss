@@ -1,0 +1,52 @@
+@use "../../styles/config.scss" as *;
+
+.projectCardContent {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: $spacing-xs;
+  }
+
+  &__title {
+    font-size: clamp($font-size-min, 2vw, $font-size-lg);
+    font-family: var(--font-family-heading);
+
+    font-weight: 700;
+
+    color: var(--color-accent);
+  }
+
+  &__textWrap {
+    padding: $spacing-sm;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-background);
+    }
+  }
+
+  &__text {
+    font-size: 0.8em;
+    text-align: right;
+
+    color: var(--color-font);
+  }
+
+  &__pills {
+    --pill-bg: var(--color-accent, var(--color-background));
+    --pill-opacity: 1;
+    --pill-color: var(--color-font);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: $spacing-xs;
+    font-size: 0.85em;
+  }
+}

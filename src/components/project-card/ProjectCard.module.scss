@@ -1,0 +1,60 @@
+@use "../../styles/config.scss" as *;
+
+.projectCard {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacing-xs;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-block-end: $spacing-lg;
+  }
+
+  &__mediaWrap {
+    background-color: var(--color-background);
+    inline-size: 100%;
+    aspect-ratio: 570/250;
+
+    position: relative;
+    z-index: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-row: 1;
+      grid-column: 1/9;
+    }
+  }
+
+  &__mediaInner {
+    @include enterAnimation();
+    position: relative;
+    z-index: 0;
+
+    img,
+    video {
+      position: absolute;
+      inset: 0;
+
+      object-fit: cover;
+
+      min-inline-size: 100%;
+      min-block-size: 100%;
+    }
+  }
+
+  &__content {
+    @include enterAnimation($transform: true, $delay: #{$animation-delay * 2});
+
+    transform: translateX(15%);
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-column: 6 / -1;
+      grid-row: 1;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      grid-column: 8 / -1;
+    }
+  }
+}

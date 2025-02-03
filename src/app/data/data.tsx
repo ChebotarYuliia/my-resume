@@ -203,3 +203,29 @@ components. Maintained admin panel in Payload CMS.`,
   //   pills: [""],
   // },
 ];
+
+export const projects = [
+  {
+    title: "Art center",
+    text: `Portal with articles, events, and new releases 
+    within the art space. Implemented smooth transitions 
+    and animation of components.`,
+    pills: ["Next.js", "SCSS", "Google Map API"],
+    media: "/projects/art_center.mp4",
+  },
+  {
+    title: "Music Award",
+    text: `The Icelandic Music Awards are a harvest festival for the Icelandic 
+    music industry, where what is done well is celebrated and respected. Built majority of screens and components.
+    Transfered FE to the headless CMS Prismic.`,
+    pills: [
+      "Next.js",
+      "SCSS",
+      "Prismic CMS",
+      "GraphQl",
+      "Google Sheets API",
+      "Spotify API",
+    ],
+    media: "/projects/music_award.mp4",
+  },
+];

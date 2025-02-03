@@ -1,6 +1,12 @@
 import { Grid } from "@/components/grid/Grid";
 import { Hero } from "@/components/hero/Hero";
-import { expertiseCards, skills, socials, workPlaces } from "./data/data";
+import {
+  expertiseCards,
+  projects,
+  skills,
+  socials,
+  workPlaces,
+} from "./data/data";
 import { Card } from "@/components/card/Card";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
 import { SkillList } from "@/components/skill-list/SkillList";
@@ -14,6 +20,8 @@ import { SectionTitle } from "@/components/section-title/SectionTitle";
 import { Button } from "@/components/Button/Button";
 import { WorkCard } from "@/components/work-card/WorkCard";
 import { Pill } from "@/components/pill/Pill";
+import { ProjectCard } from "@/components/project-card/ProjectCard";
+import { ProjectCardContent } from "@/components/project-card/ProjectCardContent";
 
 export default function Home() {
   return (
@@ -84,6 +92,34 @@ export default function Home() {
             {...props}
             key={i}
           />
+        ))}
+      </Section>
+
+      {/* Projects section */}
+      <Section id={navLinks.projects.to} theme={"colored"}>
+        <SectionTitle>Some Things I’ve Built</SectionTitle>
+        {projects.map((project, i) => (
+          <ProjectCard
+            media={
+              <video
+                src={project.media}
+                width={600}
+                height={400}
+                autoPlay={false}
+                loop={true}
+              />
+            }
+            key={i}
+          >
+            <ProjectCardContent
+              title={project.title}
+              pills={project.pills.map((pill, i) => (
+                <Pill key={i}>{pill}</Pill>
+              ))}
+            >
+              {project.text}
+            </ProjectCardContent>
+          </ProjectCard>
         ))}
       </Section>
 
