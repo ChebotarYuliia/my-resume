@@ -71,6 +71,7 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
       window.addEventListener("scrollend", handleScroll);
     }
     return () => window.removeEventListener("scrollend", handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = (

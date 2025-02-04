@@ -12,7 +12,7 @@
 
   position: relative;
   color: var(--pill-color, var(--color-font-contrast));
-  padding: $spacing-xxs / 2 $spacing-xxs;
+  padding: calc($spacing-xxs / 2) $spacing-xxs;
 
   &::before {
     content: "";

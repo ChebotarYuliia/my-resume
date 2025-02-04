@@ -10,7 +10,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   const { setUIState } = useUiState();
   useEffect(() => {
     setUIState({ openAnimation: "completed" });
-  }, []);
+  }, [setUIState]);
   // end
 
   useCursor();

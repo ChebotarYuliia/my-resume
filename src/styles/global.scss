@@ -83,16 +83,16 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 
   @mixin html-overflow-hidden {
     overflow-y: hidden;
 
     body {
       touch-action: none;
+      overflow-y: hidden;
     }
   }
-
-  scrollbar-gutter: stable;
 
   &.scroll-disabled {
     // when mobile menu is open

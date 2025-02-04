@@ -7,7 +7,8 @@
   align-items: center;
 
   &:not(:last-child) {
-    margin-block-end: $spacing-lg;
+    padding-block-end: $spacing-sm;
+    margin-block-end: $spacing-sm;
   }
 
   @media (min-width: $breakpoint-tablet) {

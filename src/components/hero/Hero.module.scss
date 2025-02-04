@@ -134,6 +134,8 @@
   }
 
   &__textWrap {
+    max-inline-size: min(100%, 600px);
+
     @include enterAnimation(
       $parent: false,
       $transform: true,
@@ -144,8 +146,6 @@
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(100%);
     }
-
-    max-inline-size: min(100%, 600px);
   }
 
   &__actionWrap {

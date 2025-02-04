@@ -6,12 +6,12 @@
   font-family: var(--font-family-heading);
   margin-block: $spacing-xxs $spacing-md;
 
+  overflow: hidden;
+
   @media (min-width: $breakpoint-tablet) {
     padding-block-end: $spacing-md;
     margin-block-end: $spacing-md;
   }
-
-  overflow: hidden;
 
   &__title {
     @include enterAnimation($transform: true);

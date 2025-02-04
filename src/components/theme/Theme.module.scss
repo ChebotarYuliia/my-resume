@@ -8,6 +8,16 @@
   pointer-events: none;
 
   &__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    opacity: 0;
+
+    transition: opacity 700ms linear;
+    background-color: var(--__color-background);
+    pointer-events: none;
+
     &:where(.default) {
       --__color-background: var(--color-background);
     }
@@ -23,16 +33,6 @@
     &:where(.slate) {
       --__color-background: var(--color-slate-300);
     }
-
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-
-    opacity: 0;
-
-    transition: opacity 700ms linear;
-    background-color: var(--__color-background);
-    pointer-events: none;
 
     &.active {
       // z-index: 1;
