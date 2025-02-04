@@ -25,29 +25,6 @@
     inset: 1px;
 
     background-color: var(--color-background-secondary);
-    // opacity: 0.05;
-  }
-
-  &__inner {
-    block-size: 100%;
-
-    padding-block-end: $spacing;
-
-    transform-style: preserve-3d;
-    will-change: transform;
-
-    transition: $transition-duration $default-ease;
-    transition-property: transform box-shadow;
-
-    transform: perspective(var(--perspective)) rotateX(var(--rotateX))
-      rotateY(var(--rotateY)) scale3d(var(--scale3d));
-
-    .hover & {
-      @media (prefers-reduced-motion: no-preference) {
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-          rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-      }
-    }
   }
 
   &__icon {
@@ -85,14 +62,12 @@
 
   &__title {
     font-size: clamp($font-size-lg-min, 4vw, $font-size-lg);
-    // color: var(--color-heading);
     font-weight: 500;
   }
 
   &__subtitle {
     text-transform: uppercase;
     font-size: $font-size-xs-min;
-    // color: var(--color-heading);
 
     opacity: 0.8;
   }

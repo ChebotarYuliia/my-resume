@@ -1,10 +1,11 @@
 "use client";
 
+// import { SectionTheme } from "@/state/state";
 import { useEffect } from "react";
 
 export const useCursor = () => {
   // bubbles in array
-  const trailArr = [1, 1.5];
+  const trailArr = [1, 0.5];
   // const trailArr = [1, 0.01, 1.2, 0.5, 1.5, 0.6, 0.4, 0.9, 0.2];
 
   const trailAnimation = (
@@ -27,23 +28,37 @@ export const useCursor = () => {
     setTimeout(function () {
       document.body.removeChild(elem);
 
-      // 1000 = lifespan of particles
-    }, Math.round(Math.random() * i * 600));
+      // 500 = lifespan of particles
+    }, Math.round(Math.random() * i * 500));
   };
 
+  // absolutely random color
+  // const randomColor = () => {
+  //   const c = [];
+  //   c[0] = 255;
+  //   c[1] = Math.floor(Math.random() * 256);
+  //   c[2] = Math.floor(Math.random() * (256 - c[1] / 2));
+  //   c.sort(function () {
+  //     return 0.5 - Math.random();
+  //   });
+  //   return "rgb(" + c[0] + ", " + c[1] + ", " + c[2] + ")";
+  // };
+
+  // random color from the theme
+  // const randomColor = () => {
+  //   const weights = [300, 500];
+  //   const randomThemeNumber = Math.floor(Math.random() * SectionTheme.length);
+  //   const randomWeightNumber = Math.floor(Math.random() * weights.length);
+  //   return `var(--color-${SectionTheme[randomThemeNumber]}-${weights[randomWeightNumber]})`;
+  // };
+
+  // current section theme accent color;
   const randomColor = () => {
-    const c = [];
-    c[0] = 255;
-    c[1] = Math.floor(Math.random() * 256);
-    c[2] = Math.floor(Math.random() * (256 - c[1] / 2));
-    c.sort(function () {
-      return 0.5 - Math.random();
-    });
-    return "rgb(" + c[0] + ", " + c[1] + ", " + c[2] + ")";
+    return "var(--section-color-accent)";
   };
 
   // 50 = spread of particles
-  // 10 = size of particles
+  // 5 = size of particles
   const styleSparkle = (
     elem: HTMLDivElement,
     e: MouseEvent,

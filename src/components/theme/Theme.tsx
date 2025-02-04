@@ -21,10 +21,10 @@ export const Theme = () => {
 
     switch (sectionTheme) {
       case "primary":
-        color = "var(--color-moonlight-300)";
-        colorContrast = "var(--color-moonlight-200)";
-        accent = "var(--color-moonlight-500)";
-        bgSecondary = "var(--color-moonlight-600)";
+        color = "var(--color-primary-300)";
+        colorContrast = "var(--color-primary-200)";
+        accent = "var(--color-primary-500)";
+        bgSecondary = "var(--color-primary-600)";
         break;
       case "olive":
         accent = "var(--color-olive-500)";
