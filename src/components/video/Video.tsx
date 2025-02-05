@@ -97,6 +97,7 @@ export const Video = ({
         height={height}
         muted={muted}
         ref={videoRef}
+        playsInline={true}
       />
       <div
         className={s.video__buttonContainer}
