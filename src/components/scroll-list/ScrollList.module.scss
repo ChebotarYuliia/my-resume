@@ -50,7 +50,7 @@
       transform: translateY(-100%);
       background-color: var(--color-background-secondary);
       padding-inline: $spacing-xxs;
-      padding-block: $spacing-xxs / 2;
+      padding-block: calc($spacing-xxs / 2);
 
       @media (min-width: $major-breakpoint) {
         transform: none;
