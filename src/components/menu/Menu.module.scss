@@ -66,16 +66,19 @@
     align-items: center;
 
     gap: $spacing-sm;
-  }
 
-  &__item {
-    transform: translateX(15%);
-    @include enterAnimation(
-      $parent: false,
-      $transform: true,
-      $className: ".active",
-      $delay: #{calc(var(--i, 0) * #{$animation-delay})}
-    );
+    padding-block-start: $spacing-md;
+
+    & > button {
+      transform: translateX(15%);
+
+      @include enterAnimation(
+        $parent: false,
+        $transform: true,
+        $className: ".active",
+        $delay: #{calc(var(--i, 0) * #{$animation-delay})}
+      );
+    }
   }
 
   &__socials {

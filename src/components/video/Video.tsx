@@ -104,7 +104,12 @@ export const Video = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <button type="button" tabIndex={0} aria-label="Play video">
+        <button
+          className={s.video__button}
+          type="button"
+          tabIndex={0}
+          aria-label="Play video"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="100px"
@@ -114,14 +119,14 @@ export const Video = ({
           >
             <path
               className={s.video__buttonStroke}
-              stroke="var(--color-accent, var(--color-font-contrast))"
+              stroke="var(--color-background, var(--color-font-contrast))"
               fill="none"
               d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7
     C97.3,23.7,75.7,2.3,49.9,2.5"
             />
             <path
               className={s.video__buttonPlay}
-              fill="var(--color-accent, var(--color-font-contrast))"
+              fill="var(--color-background, var(--color-font-contrast))"
               d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"
             />
           </svg>

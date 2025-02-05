@@ -101,6 +101,7 @@ html {
 }
 
 body {
+  overflow: hidden;
   min-block-size: var(--viewport-height);
 
   font-family: var(--font-family);

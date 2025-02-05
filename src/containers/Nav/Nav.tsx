@@ -3,9 +3,11 @@
 import { navLinks } from "@/app/data/nav";
 import { Button } from "@/components/Button/Button";
 import { Nav } from "@/components/nav/Nav";
+import { useUiState } from "@/hooks/useUiState";
 import React, { useEffect, useState } from "react";
 
 export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
+  const { setUIState } = useUiState();
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const navLinksLocation: { [key: string]: number | null } = {};
 
@@ -80,6 +82,7 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
     id: string
   ) => {
     event.preventDefault();
+    setUIState({ isMenuOpen: false });
     document
       .getElementById(id)
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -93,6 +96,8 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
       aria-current={activeItem === key ? true : undefined}
       area-label={`Scroll to ${navLinks[key].label}`}
       onClick={(e) => handleClick(e, key, navLinks[key].to)}
+      style={{ "--i": id } as React.CSSProperties}
+      tabIndex={0}
       key={id}
     >
       {navLinks[key].label}

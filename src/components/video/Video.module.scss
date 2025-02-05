@@ -26,12 +26,13 @@
       content: "";
       position: absolute;
       inset: 0;
+      z-index: -1;
       background-color: var(
         --video-background,
-        var(--color-accent, #{$color-primary})
+        var(--color-background-secondary, #{$color-primary})
       );
 
-      opacity: 0.3;
+      opacity: 0.5;
 
       transition: opacity $transition-duration $default-ease;
     }
@@ -43,7 +44,13 @@
     }
   }
 
+  &__button {
+    inline-size: 4em;
+    aspect-ratio: 1;
+  }
+
   &__buttonSvg {
+    inline-size: 100%;
     transition: opacity 1s ease;
 
     .isPlaying & {

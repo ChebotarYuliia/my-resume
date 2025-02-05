@@ -13,6 +13,14 @@
     content: "";
   }
 
+  &.active {
+    &::before,
+    &::after,
+    > span {
+      background-color: var(--color-primary);
+    }
+  }
+
   &::before,
   &::after,
   > span {
@@ -22,7 +30,7 @@
 
     block-size: 2px;
 
-    background-color: currentColor;
+    background-color: var(--section-color-font);
 
     transform-origin: 50% 50%;
 

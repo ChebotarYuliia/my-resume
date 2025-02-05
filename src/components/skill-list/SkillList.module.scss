@@ -12,7 +12,7 @@
     display: grid;
     grid-template-rows: auto;
 
-    row-gap: $spacing-md;
+    row-gap: $spacing-xs;
 
     @media (min-width: $breakpoint-tablet) {
       grid-template-columns: repeat(2, 1fr);

@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, CSSProperties } from "react";
+import React, { Children, cloneElement } from "react";
 import s from "./Menu.module.scss";
 import classNames from "classnames/bind";
 import { useUiState } from "@/hooks/useUiState";
@@ -12,11 +12,9 @@ type Props = {
 };
 
 export const Menu = ({ children, socials }: Props) => {
-  const { uiState, setUIState } = useUiState();
+  const { uiState } = useUiState();
 
-  const handleClick = () => {
-    setUIState({ isMenuOpen: false });
-  };
+  const childArray = Children.toArray(children);
 
   return (
     <nav
@@ -25,20 +23,7 @@ export const Menu = ({ children, socials }: Props) => {
     >
       <div className={s.menu__inner}>
         <div className={s.menu__content}>
-          <ul className={s.menu__list}>
-            {Children.map(children, (child, i) => (
-              <li
-                className={s.menu__item}
-                key={i}
-                style={{ "--i": i } as CSSProperties}
-                onClick={handleClick}
-              >
-                {cloneElement(child as React.ReactElement, {
-                  tabIndex: 0,
-                })}
-              </li>
-            ))}
-          </ul>
+          <div className={s.menu__list}>{childArray}</div>
           {socials && (
             <div className={s.menu__socials}>
               {socials.map((social) =>

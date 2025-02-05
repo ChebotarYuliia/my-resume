@@ -1,6 +1,11 @@
 @use "../../styles/config.scss" as *;
 
 .header {
+  &:not(.isMenuOpen) {
+    --button-color-font: var(--section-color-font);
+    --button-background: var(--section-color-accent);
+  }
+
   position: fixed;
   inset-block-start: 0;
   inset-inline-start: 0;

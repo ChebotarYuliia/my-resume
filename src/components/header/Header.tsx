@@ -56,7 +56,12 @@ export const Header = ({ children, nav, socials, action }: Props) => {
   }, [handleScroll]);
 
   return (
-    <div className={c(s.header, { scrollingDown: scrollDirection === "down" })}>
+    <div
+      className={c(s.header, {
+        scrollingDown: scrollDirection === "down",
+        isMenuOpen: uiState.isMenuOpen,
+      })}
+    >
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
         {/* <ThemeSwitcher className={s.header__switcher} /> */}
