@@ -210,7 +210,14 @@ export const projects = [
     text: `Portal with articles, events, and new releases 
     within the art space. Implemented smooth transitions 
     and animation of components.`,
-    pills: ["Next.js", "SCSS", "Google Map API"],
+    pills: [
+      "Awwwards",
+      "Honorable Mention",
+      "Public website of the year",
+      "Next.js",
+      "SCSS",
+      "Google Map API",
+    ],
     media: "/projects/art_center.mp4",
   },
   {

@@ -20,7 +20,7 @@ export const Card = ({ icon, title, subtitle, children }: CardProps) => {
   const { uiState } = useUiState();
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: "0px -50px",
+    rootMargin: "-50px 0px",
   });
 
   return (
