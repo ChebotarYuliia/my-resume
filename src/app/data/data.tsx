@@ -218,7 +218,7 @@ export const projects = [
       "SCSS",
       "Google Map API",
     ],
-    media: "/projects/art_center.mp4",
+    media: "/projects/art_center.webm",
   },
   {
     title: "Music Award",
@@ -233,6 +233,6 @@ export const projects = [
       "Google Sheets API",
       "Spotify API",
     ],
-    media: "/projects/music_award.mp4",
+    media: "/projects/music_award.webm",
   },
 ];

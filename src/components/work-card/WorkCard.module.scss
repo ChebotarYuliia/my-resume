@@ -56,10 +56,6 @@
 
   &__text {
     line-height: 1.5;
-  }
-
-  &__text,
-  &__pillsList {
     font-size: clamp($font-size-xs-min, 1vw, $font-size-xs);
   }
 

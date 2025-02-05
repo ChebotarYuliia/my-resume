@@ -14,6 +14,8 @@
   color: var(--pill-color, var(--color-font-contrast));
   padding: calc($spacing-xxs / 2) $spacing-xxs;
 
+  font-size: clamp(14px, 1vw, 16px);
+
   &::before {
     content: "";
     position: absolute;

@@ -10,7 +10,7 @@
   }
 
   &__title {
-    font-size: clamp($font-size-min, 2vw, $font-size-lg);
+    font-size: $font-size-lg;
     font-family: var(--font-family-heading);
 
     font-weight: 700;
@@ -32,10 +32,14 @@
   }
 
   &__text {
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-align: right;
 
     color: var(--color-font-contrast);
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 0.8em;
+    }
   }
 
   &__pills {
@@ -45,7 +49,6 @@
     flex-wrap: wrap;
     justify-content: flex-end;
 
-    gap: $spacing-xs;
-    font-size: 0.85em;
+    gap: $spacing-xxs;
   }
 }
