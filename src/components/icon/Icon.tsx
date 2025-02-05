@@ -17,7 +17,13 @@ export type TSocialIcon = (typeof SOCIALS)[number];
 
 const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
   idea: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      width={40}
+      height={40}
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
         <path
           d="M185,5112.2c-37.3-4.3-70.6-23.3-92.9-52.9c-30.5-40.5-36.3-94.9-14.9-140c5.1-10.8,10.3-19.1,17.9-28.6
@@ -63,7 +69,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   pixel: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
         <path
           d="M60.6,5110.7l-2-1.9V5085v-23.7H34.9H11.2l-1.9-2c-2.7-2.6-2.7-6.3,0-8.8l1.9-2h23.8h23.7V4920v-128.5H34.9H11.2l-1.9-2
@@ -95,7 +107,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   "slow-motion": (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M16.2,12.7c1.9,1.6,3.1,3.8,3.4,6.2c0.1,1.3,0.1,2.5-0.3,3.7c0,0.1,0,0.1-0.1,0.2c-0.4,1.5-1.2,2.7-2.2,3.9
 	c-0.1,0.1-0.1,0.1-0.2,0.2c-1.7,1.8-4.1,2.7-6.5,2.9c-2.9,0-5.3-1-7.4-3c-1.9-1.9-2.6-4.4-2.6-7c0-2.7,1.2-5,3.2-6.9
@@ -114,7 +132,7 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   sparkle: (
-    <svg version="1.1" viewBox="0 0 40 40">
+    <svg version="1.1" width={40} height={40} viewBox="0 0 40 40">
       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
         <path
           d="M326.7,5098.8c-3.3-17-14.2-28.5-31.1-32.8c-2.6-0.7-5.7-1.2-6.9-1.2c-3.3,0-1.9-0.6,4.7-1.9c17.7-3.5,28.4-14.4,33.1-33.6
@@ -142,7 +160,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   view: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
         <path
           d="M178.7,5042.2c-47.2-7.2-94.7-34-139.5-78.8c-14.7-14.7-25.8-27.7-28.3-32.9C9.3,4927,9,4925.3,9,4920
@@ -162,7 +186,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   web: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
         <path
           d="M191.1,5107.6c-23.9-7.9-46.8-48.4-58.4-103.3l-1.8-8.6H200h69.2l-1.8,8.6c-11.3,53-33.6,93.8-56.3,102.6
@@ -204,7 +234,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   telegram: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M36.4,2.2c-0.6,0-1.1,0.2-1.6,0.4c-0.4,0.2-2,0.8-4.4,1.8s-5.6,2.4-9.1,3.8C14.5,11.1,6.8,14.4,2.8,16
 	c-0.1,0.1-0.7,0.2-1.3,0.7c-0.6,0.5-1.3,1.5-1.3,2.6c0,0.9,0.4,1.8,1,2.3s1.1,0.8,1.5,0.9v0c1.5,0.6,6.1,2.5,7.2,2.9
@@ -219,7 +255,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   github: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M20,0.4C9.2,0.4,0.4,9.2,0.4,20S9.2,39.6,20,39.6S39.6,30.8,39.6,20S30.8,0.4,20,0.4z M20,4.3c8.6,0,15.7,7,15.7,15.7
 	c0,0.9-0.1,1.8-0.2,2.7c-0.5-0.1-1.2-0.2-2-0.2c-0.6,0-1.4,0.1-2,0.2c0.2-0.7,0.4-1.4,0.4-2.2c0-1.9-0.9-3.6-2.4-5.1
@@ -239,7 +281,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   linkedin: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M35.5,1.1H4.5c-1.9,0-3.5,1.6-3.5,3.5v30.9c0,1.9,1.6,3.5,3.5,3.5h30.9c1.9,0,3.5-1.6,3.5-3.5V4.5
    C38.9,2.6,37.4,1.1,35.5,1.1z M12.1,32.6H5.8V15.3h6.3V32.6z M8.9,13.2c-1.9,0-3.2-1.3-3.2-2.8c0-1.7,1.3-3,3.2-3s3.2,1.3,3.2,2.8
@@ -249,7 +297,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   gmail: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M0.7,5.8v29.2h38.6V5.8H0.7z M35,8.5L21.3,22.2c-0.3,0.3-0.7,0.5-1.2,0.5c-0.5,0-0.9-0.2-1.2-0.5L5.3,8.5H35z M3.4,10.4
 	l9.8,9.9l-9.8,10V10.4z M5.3,32.2l9.8-10l1.9,1.9c0.8,0.8,1.9,1.3,3.1,1.3c1.2,0,2.3-0.5,3.1-1.3l1.8-1.9l9.7,10H5.3z M36.7,30.3
@@ -258,7 +312,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   sun: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M20,0c0,0-0.1,0-0.1,0c-0.4,0.1-0.8,0.5-0.7,0.9v5.7c0,0.3,0.2,0.7,0.5,0.8c0.3,0.2,0.7,0.2,1,0C20.8,7.3,21,7,21,6.7V1
 	c0-0.3-0.1-0.5-0.3-0.7C20.5,0.1,20.2,0,20,0z M6.5,5.6C6.1,5.6,5.8,5.9,5.7,6.2C5.6,6.6,5.7,7,6,7.2l4,4c0.2,0.3,0.6,0.4,1,0.3
@@ -280,7 +340,13 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
     </svg>
   ),
   moon: (
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <svg
+      version="1.1"
+      width={40}
+      height={40}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 40 40"
+    >
       <path
         d="M30,7.2l-3.5-1.7L28.2,9c1,2,1.5,4.2,1.5,6.5c0,8.1-6.6,14.7-14.7,14.7c-2.3,0-4.5-0.5-6.5-1.5l-3.5-1.7
 	l1.7,3.5c2.9,5.9,8.9,9.6,15.5,9.6c9.5,0,17.3-7.8,17.3-17.3C39.6,16.1,35.9,10.2,30,7.2z M22.3,38.7c-6.3,0-11.7-3.6-14.3-8.9
