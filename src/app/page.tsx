@@ -23,6 +23,9 @@ import { Pill } from "@/components/pill/Pill";
 import { ProjectCard } from "@/components/project-card/ProjectCard";
 import { ProjectCardContent } from "@/components/project-card/ProjectCardContent";
 import { Video } from "@/components/video/Video";
+import { About } from "@/components/about/About";
+import { Text } from "@/components/text/Text";
+import { ScrollList } from "@/components/scroll-list/ScrollList";
 
 export default function Home() {
   return (
@@ -119,9 +122,44 @@ export default function Home() {
       </Section>
 
       {/* About me section */}
-      <Section id={navLinks.about.to} theme={"primary"}>
+      <Section fullHeight id={navLinks.about.to} theme={"primary"}>
         <SectionTitle>About me</SectionTitle>
-        <div style={{ height: "90vh" }}>content...</div>
+        <About
+          features={
+            <ScrollList
+              heading="I'm"
+              items={[
+                <span>connoisseur of beauty</span>,
+                <span>traveler</span>,
+                <span>
+                  curator of inspiring
+                  <br /> work desks
+                </span>,
+              ]}
+            />
+          }
+        >
+          <Text>
+            <p>
+              Hi there! <br /> You’ve probably figured out by now that I’m a Web
+              Developer who’s passionate about crafting{" "}
+              <b>smooth, responsive, and visually engaging web experiences</b>.{" "}
+              I love blending creativity with code, making sure every pixel is
+              in its place while keeping performance top-notch. I’ve been doing
+              this for almost <b>3 years</b> now, and it never gets old.
+            </p>
+          </Text>
+          <Text>
+            <p>
+              One of the projects I had the chance to contribute to even earned
+              an <b>Honorable Mention on Awwwards</b>&mdash;which was a pretty
+              cool moment!
+            </p>
+          </Text>
+          <Text>
+            <p>But beyond the code,</p>
+          </Text>
+        </About>
       </Section>
 
       {/* Contacts section */}

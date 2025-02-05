@@ -1,0 +1,7 @@
+@use "../../styles/config.scss" as *;
+
+.about {
+  &__features {
+    margin-block-start: clamp(250px, 35vh, 400px);
+  }
+}
