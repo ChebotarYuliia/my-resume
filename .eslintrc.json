@@ -1,4 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
-  "silenceDeprecations": ["mixed-decls"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:storybook/recommended"
+  ],
+  "silenceDeprecations": [
+    "mixed-decls"
+  ]
 }

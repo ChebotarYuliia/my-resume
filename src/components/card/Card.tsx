@@ -4,7 +4,6 @@ import React, { CSSProperties, ReactNode } from "react";
 import s from "./Card.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
-import { useUiState } from "@/hooks/useUiState";
 
 const c = classNames.bind(s);
 
@@ -17,7 +16,6 @@ export type CardProps = {
 };
 
 export const Card = ({ icon, title, subtitle, children }: CardProps) => {
-  const { uiState } = useUiState();
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: "-50px 0px",
@@ -26,7 +24,7 @@ export const Card = ({ icon, title, subtitle, children }: CardProps) => {
   return (
     <div
       className={c(s.card, {
-        inView: inView && uiState.openAnimation === "completed",
+        inView,
       })}
       ref={ref}
     >

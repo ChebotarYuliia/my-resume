@@ -6,7 +6,8 @@ import { TransitionLink } from "../transition-link/TransitionLink";
 
 const c = classNames.bind(s);
 
-export type ButtonVariant = "default" | "outlined" | "filled";
+export const ButtonVariant = ["default", "outlined", "filled"] as const;
+export type ButtonVariantType = (typeof ButtonVariant)[number];
 
 export type ButtonProps = {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ export type ButtonProps = {
   animated?: boolean;
   active?: boolean;
   disabled?: boolean;
-  variant?: ButtonVariant;
+  variant?: ButtonVariantType;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const Button = ({

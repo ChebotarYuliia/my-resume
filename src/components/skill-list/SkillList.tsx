@@ -4,18 +4,19 @@ import React, { Children, CSSProperties } from "react";
 import s from "./SkillList.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
-import { useUiState } from "@/hooks/useUiState";
 import { ProgressBarProps } from "../progress-bar/ProgressBar";
 
 const c = classNames.bind(s);
 
+export const SkillListVariant = ["default", "compact"] as const;
+export type TSkillListVariant = (typeof SkillListVariant)[number];
+
 export type SkillListProps = {
   children: Array<React.ReactElement<ProgressBarProps | HTMLSpanElement>>;
-  variant?: "default" | "compact";
+  variant?: TSkillListVariant;
 };
 
 export const SkillList = ({ children, variant }: SkillListProps) => {
-  const { uiState } = useUiState();
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: "-15% 0px",
@@ -24,7 +25,7 @@ export const SkillList = ({ children, variant }: SkillListProps) => {
   return (
     <div
       className={c(s.skillList, `variant-${variant}`, {
-        inView: inView && uiState.openAnimation === "completed",
+        inView,
       })}
       ref={ref}
     >

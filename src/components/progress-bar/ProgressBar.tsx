@@ -32,7 +32,9 @@ export const ProgressBar = ({ percentage, title, style }: ProgressBarProps) => {
             ? "fundamental"
             : "intermediate"
         }`,
-        { inView: inView && uiState.openAnimation === "completed" }
+        {
+          inView,
+        }
       )}
       style={
         {

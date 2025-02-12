@@ -42,7 +42,7 @@
       inline-size: 4px;
       display: inline-block;
 
-      background-color: var(--color-accent);
+      background-color: var(--color-accent, var(--color-teal-500));
 
       margin-inline-end: $spacing-xxs;
     }

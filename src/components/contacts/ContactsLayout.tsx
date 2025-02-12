@@ -22,7 +22,7 @@ export const ContactsLayout = ({ links, title, author }: Props) => {
   return (
     <div
       className={c(s.contactsLayout, {
-        inView: inView && uiState.openAnimation === "completed",
+        inView,
       })}
       ref={ref}
     >

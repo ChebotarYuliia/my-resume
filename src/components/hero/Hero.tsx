@@ -102,7 +102,7 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
     <div
       className={c(s.hero, {
         animationCompleted: uiState.heroEnterAnimation === "completed",
-        inView: inView && uiState.openAnimation === "completed",
+        inView,
         imageLoaded,
       })}
       ref={ref}
