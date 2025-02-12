@@ -32,10 +32,9 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true });
 
-  // const nameContainerRef = useRef<HTMLSpanElement>(null);
   const nameRef = useRef<HTMLSpanElement>(null);
   const cursorContainerRef = useRef<HTMLHeadingElement>(null);
-  const nameCursorRef = useRef<HTMLSpanElement>(null);
+  // const nameCursorRef = useRef<HTMLSpanElement>(null);
 
   const firstRender = useRef(true);
 
@@ -45,10 +44,9 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
     (tl: gsap.core.Timeline) => {
       const mq = gsap.matchMedia();
 
-      // const nameContainerEl = nameContainerRef.current;
       const nameEl = nameRef.current;
-      const cursorContainerEl = cursorContainerRef.current;
-      const nameCursorEl = nameCursorRef.current;
+      // const cursorContainerEl = cursorContainerRef.current;
+      // const nameCursorEl = nameCursorRef.current;
 
       const textTypingOpts = (
         value: string,
@@ -62,26 +60,23 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
           duration: duration ?? 1,
           ease: ease ?? "none",
           onUpdate: () => {
-            if (nameCursorEl) {
-              cursorContainerEl?.appendChild(nameCursorEl);
-            }
+            // if (nameCursorEl) {
+            //   cursorContainerEl?.appendChild(nameCursorEl);
+            // }
           },
         };
       };
 
       if (inView && uiState.openAnimation === "completed" && firstRender) {
-        const cursorTl = gsap.timeline();
+        // const cursorTl = gsap.timeline();
 
         mq.add(`(prefers-reduced-motion: no-preference)`, () => {
-          // tl.to(nameContainerEl, {
-          //   ...textTypingOpts(NameStart, 0.5, "power2.inOut"),
-          // })
           tl.to(nameEl, {
             ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
             onComplete: () => {
               setUIState({ heroEnterAnimation: "completed" });
-              cursorTl.to(nameCursorEl, { opacity: 0 });
-              cursorTl.kill();
+              // cursorTl.to(nameCursorEl, { opacity: 0 });
+              // cursorTl.kill();
             },
           });
         });
@@ -116,13 +111,12 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
         <div className={s.hero__contentWrap}>
           <div className={s.hero__content}>
             <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>
-              {/* <span ref={nameContainerRef} /> */}
               {uiState.heroEnterAnimation === "completed" ? (
                 <span className={s.hero__name}>{name}</span>
               ) : (
                 <span className={s.hero__name} ref={nameRef} />
               )}
-              <span ref={nameCursorRef}>|</span>
+              {/* <span ref={nameCursorRef}>|</span> */}
             </h1>
 
             {subtitle && (

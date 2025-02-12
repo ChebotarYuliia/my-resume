@@ -24,7 +24,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    gap: $spacing-xxs;
+    gap: $spacing-xs;
 
     @media (min-width: $major-breakpoint) {
       margin-block-start: -20vh;
@@ -39,6 +39,8 @@
     flex-direction: column-reverse;
     align-items: flex-end;
 
+    gap: calc($spacing-xxs / 2);
+
     @media (min-width: $major-breakpoint) {
       padding-block: 20vh;
       position: relative;
@@ -47,14 +49,9 @@
 
     span {
       display: inline-block;
-      transform: translateY(-100%);
-      background-color: var(--color-background-secondary);
-      padding-inline: $spacing-xxs;
       padding-block: calc($spacing-xxs / 2);
 
       @media (min-width: $major-breakpoint) {
-        transform: none;
-        background-color: transparent;
         padding-block: 0;
       }
     }
@@ -67,7 +64,8 @@
       @media (min-width: $major-breakpoint) {
         position: absolute;
         inset-inline-start: 90%;
-        inset-block-start: 0;
+        inset-block-start: 50%;
+        transform: translateY(-50%);
         z-index: -1;
       }
     }

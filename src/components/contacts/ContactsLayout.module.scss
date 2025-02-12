@@ -6,16 +6,23 @@
     flex-direction: column;
     justify-content: center;
 
-    gap: $spacing;
+    gap: $spacing-xs;
 
     flex: 1;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $spacing;
+    }
   }
 
   &__titleWrapper {
     overflow: hidden;
-    margin-block-end: $spacing-md;
 
     z-index: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-block-end: $spacing-md;
+    }
   }
 
   &__title {

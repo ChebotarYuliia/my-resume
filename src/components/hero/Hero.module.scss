@@ -41,7 +41,11 @@
     flex: 1;
 
     padding-block: clamp($spacing, 6vw, $spacing-lg);
-    padding-inline: clamp($spacing-lg, 10vw, $spacing-xl);
+    padding-inline: $spacing-sm;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-inline: clamp($spacing-lg, 10vw, $spacing-xl);
+    }
 
     &::after {
       @include enterAnimation($parent: false, $className: ".inView");
@@ -70,10 +74,12 @@
   &__nameContainer,
   &__subtitleWrap {
     inline-size: 100%;
-    font-size: clamp($font-size-lg, 15vw, $font-size-lg * 2);
+    font-size: clamp($font-size, 10vw, $font-size * 2);
     text-align: left;
 
     @media (min-width: $breakpoint-tablet) {
+      font-size: clamp($font-size-lg, 15vw, $font-size-lg * 2);
+
       margin-block-start: auto;
 
       margin-inline-end: calc($viewport-container-gutter * -1);

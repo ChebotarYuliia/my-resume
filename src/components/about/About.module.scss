@@ -2,6 +2,8 @@
 
 .about {
   &__features {
-    margin-block-start: clamp(250px, 35vh, 400px);
+    @media (min-width: $breakpoint-desktop) {
+      margin-block-start: clamp(250px, 35vh, 400px);
+    }
   }
 }

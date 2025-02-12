@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
   description:
     "Yuliia Chebotar -Web developer. React, TypeScript, Next, SCSS, gsap",
+  authors: { name: "Yuliia Chebotar" },
+  keywords: ["Web developer", "Frontend developer", "React", "Nextjs"],
 };
 
 export default function RootLayout({
