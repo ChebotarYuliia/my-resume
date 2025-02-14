@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls, IconGallery, IconItem } from '@storybook/blocks';
+import { Icon, ICONS, SOCIALS } from '../components/icon/Icon';
+import * as IconStories from './Iconography.stories';
+
+
+<Meta title="Iconography" of={IconStories} />
+
+# Iconography
+
+## List of all icons
+
+### Common
+<IconGallery>
+  {
+  ICONS.map((icon)=> 
+      <IconItem name={icon}>
+        <Icon name={icon} />
+      </IconItem>
+  )
+  }
+</IconGallery>
+
+### Social
+<IconGallery>
+  {
+  SOCIALS.map((icon)=> 
+      <IconItem name={icon}>
+        <Icon name={icon} />
+      </IconItem>
+  )
+  }
+</IconGallery>
+
+## Usage
+<Canvas>
+  <IconItem name={ICONS[0]}>
+    <Icon name={ICONS[0]} />
+  </IconItem>
+</Canvas>
+
+## Props
+<Controls />

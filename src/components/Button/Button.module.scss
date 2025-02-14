@@ -52,7 +52,10 @@
 
   &.variant-outlined {
     border: 1px solid
-      var(--button-background, var(--color-accent, var(--color-primary)));
+      var(
+        --button-background,
+        var(--color-accent, var(--color-primary, currentColor))
+      );
   }
 
   &.variant-filled {
