@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Children, cloneElement } from "react";
+import React, { Children, cloneElement, useState } from "react";
 import s from "./ContactLabels.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
@@ -36,12 +36,30 @@ type EmailLabelProps = {
 
 export const EmailLabel = ({ email }: EmailLabelProps) => {
   const { ref, inView } = useInView({ triggerOnce: true });
+  const [copySuccess, setCopySuccess] = useState<string>();
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(email);
+    setCopySuccess("Copied!");
+
+    setTimeout(() => {
+      setCopySuccess(undefined);
+    }, 1000);
+  };
 
   return (
-    <div className={c(s.contactLabels, "email", { inView })} ref={ref}>
-      <div className={s.contactLabels__emailInner}>
-        <a href={`mailto:${email}`}>{email}</a>
+    <>
+      <div className={c(s.contactLabels, "email", { inView })} ref={ref}>
+        <div className={s.contactLabels__emailInner}>
+          <a href={`mailto:${email}`} onClick={copyToClipboard}>
+            {email}
+          </a>
+        </div>
+
+        <span className={c(s.contactLabelsCopy, { active: copySuccess })}>
+          {copySuccess ?? ""}
+        </span>
       </div>
-    </div>
+    </>
   );
 };

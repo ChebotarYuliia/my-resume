@@ -102,7 +102,7 @@ export const ScrollList = ({ items, heading }: Props) => {
             endTrigger: `.${itemClass}:last-of-type`,
             end: "center center",
             pin: true,
-            markers: true,
+            // markers: true,
             animation: tl,
             scrub: true,
             pinSpacing: false,

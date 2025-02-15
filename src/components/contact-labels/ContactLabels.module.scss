@@ -77,3 +77,23 @@
     }
   }
 }
+
+.contactLabelsCopy {
+  position: absolute;
+  inset-block-start: 0%;
+  opacity: 0;
+
+  color: var(--color-background);
+  font-size: $font-size-xs-min;
+  font-weight: 700;
+  padding: $spacing-xxs / 2;
+
+  writing-mode: lr;
+
+  background-color: var(--color-font);
+
+  &.active {
+    opacity: 1;
+    transition: opacity $transition-duration $default-ease;
+  }
+}
