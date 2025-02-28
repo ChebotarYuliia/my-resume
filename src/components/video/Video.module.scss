@@ -22,6 +22,12 @@
     align-items: center;
     justify-content: center;
 
+    pointer-events: none;
+
+    @media (min-width: $breakpoint-desktop) {
+      pointer-events: initial;
+    }
+
     &::after {
       content: "";
       position: absolute;

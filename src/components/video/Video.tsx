@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import s from "./Video.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 
 const c = classNames.bind(s);
 
@@ -26,6 +27,7 @@ export const Video = ({
   loop,
   muted = true,
 }: Props) => {
+  const { isTablet } = useWindowWidth();
   const { ref, inView } = useInView();
   const [paused, setPaused] = useState(!autoplay);
   const [isPlaying, setIsPlaying] = useState(autoplay);
@@ -98,6 +100,7 @@ export const Video = ({
         muted={muted}
         ref={videoRef}
         playsInline={true}
+        controls={isTablet ? true : false}
       />
       <div
         className={s.video__buttonContainer}
