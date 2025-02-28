@@ -10,11 +10,11 @@ export const socials = [
   },
   {
     platform: "linkedin",
-    link: "https://www.linkedin.com/in/yuliia-chebotar-421340169/",
+    link: "https://www.linkedin.com/in/yuliia-c-421340169/",
   },
   {
     platform: "telegram",
-    link: "t.me/soykaJ",
+    link: "https://t.me/soykaJ",
   },
   {
     platform: "gmail",
