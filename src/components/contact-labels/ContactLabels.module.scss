@@ -86,7 +86,7 @@
   color: var(--color-background);
   font-size: $font-size-xs-min;
   font-weight: 700;
-  padding: $spacing-xxs / 2;
+  padding: calc($spacing-xxs / 2);
 
   writing-mode: lr;
 
