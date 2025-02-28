@@ -35,14 +35,6 @@ export default function Home() {
         name="Yuliia Chebotar"
         subtitle="I build things for the web."
         text="I'm a developer with a passion for building accessible, pixel-perfect user interfaces that seamlessly combine thoughtful design with solid engineering."
-        // titles={[
-        //   "Web developer",
-        //   "UI/UX",
-        //   "Adaptive design",
-        //   "Smooth animations",
-        //   "Clean code",
-        //   // "Cool smile",
-        // ]}
         action={
           <Button
             variant="filled"
@@ -72,7 +64,6 @@ export default function Home() {
         <SkillListLayout>
           <SkillList variant="compact">
             {skills.map((skill, i) => (
-              // <ProgressBar key={i} {...skill} />
               <span key={i}>{skill.title}</span>
             ))}
           </SkillList>
