@@ -9,6 +9,7 @@ export const ICONS = [
   "web",
   "sun",
   "moon",
+  "external-link",
 ] as const;
 
 export const SOCIALS = ["telegram", "linkedin", "github", "gmail"] as const;
@@ -355,6 +356,19 @@ const icons: { [key in TIcon | TSocialIcon]: ReactElement } = {
 	L6,22.4l1-3.1L4.4,17.4z M13.4,13.9l4.5-3.3l4.5,3.3l-1.7-5.3l4.5-3.3h-5.6L17.9,0l-1.7,5.3h-5.6l4.5,3.3L13.4,13.9z M14.6,6.6h2.5
 	l0.8-2.4l0.8,2.4h2.5l-2,1.5l0.8,2.4l-2-1.5l-2,1.5l0.8-2.4L14.6,6.6z"
       />
+    </svg>
+  ),
+  "external-link": (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40px"
+      height="40px"
+      viewBox="0 0 40 40"
+      version="1.1"
+    >
+      <g>
+        <path d="M 32 37.300781 L 2.699219 37.300781 L 2.699219 7.300781 L 18.699219 7.300781 L 18.699219 4.699219 L 0 4.699219 L 0 40 L 34.699219 40 L 34.699219 21.300781 L 32 21.300781 Z M 24 0 L 24 2.699219 L 35.398438 2.699219 L 14.398438 23.699219 L 16.300781 25.601562 L 37.300781 4.601562 L 37.300781 16 L 40 16 L 40 0 Z M 24 0 " />
+      </g>
     </svg>
   ),
 };

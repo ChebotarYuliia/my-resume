@@ -52,6 +52,42 @@
     font-size: clamp($font-size, 1.5vw, $font-size-lg);
     font-family: var(--font-family-heading);
     font-weight: 700;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: $spacing-xs;
+
+    @media (min-width: $breakpoint-desktop) {
+      align-items: center;
+      justify-content: unset;
+    }
+
+    svg {
+      inline-size: 1.1em;
+      block-size: auto;
+
+      opacity: 0;
+      transform: translateX(-50%);
+
+      transition: opacity $transition-duration $default-ease,
+        transform $transition-duration $default-ease;
+
+      fill: currentColor;
+
+      @media (max-width: $breakpoint-desktop) {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+
+    .hover & {
+      svg {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
   }
 
   &__text {
