@@ -9,7 +9,7 @@ export const useWindowWidth = () => {
     setIsTablet(window.innerWidth < 1024);
   }
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (window && typeof window !== "undefined") {
       handleWindowSizeChange();
     }
 
