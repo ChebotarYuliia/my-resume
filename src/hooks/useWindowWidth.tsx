@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 export const useWindowWidth = () => {
@@ -9,7 +11,7 @@ export const useWindowWidth = () => {
     setIsTablet(window.innerWidth < 1024);
   }
   useEffect(() => {
-    if (window && typeof window !== "undefined") {
+    if (document && window && typeof window !== "undefined") {
       handleWindowSizeChange();
     }
 
