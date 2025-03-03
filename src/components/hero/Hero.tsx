@@ -23,18 +23,16 @@ type Props = {
   subtitle?: string;
   name: string;
   text: string;
-  titles?: Array<string>;
   action?: React.ReactElement<ButtonProps>;
 };
 
-export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
+export const Hero = ({ name, subtitle, action, text }: Props) => {
   const { uiState, setUIState } = useUiState();
   const [imageLoaded, setImageLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true });
 
   const nameRef = useRef<HTMLSpanElement>(null);
   const cursorContainerRef = useRef<HTMLHeadingElement>(null);
-  // const nameCursorRef = useRef<HTMLSpanElement>(null);
 
   const firstRender = useRef(true);
 
@@ -45,8 +43,6 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
       const mq = gsap.matchMedia();
 
       const nameEl = nameRef.current;
-      // const cursorContainerEl = cursorContainerRef.current;
-      // const nameCursorEl = nameCursorRef.current;
 
       const textTypingOpts = (
         value: string,
@@ -59,24 +55,15 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
           },
           duration: duration ?? 1,
           ease: ease ?? "none",
-          onUpdate: () => {
-            // if (nameCursorEl) {
-            //   cursorContainerEl?.appendChild(nameCursorEl);
-            // }
-          },
         };
       };
 
       if (inView && uiState.openAnimation === "completed" && firstRender) {
-        // const cursorTl = gsap.timeline();
-
         mq.add(`(prefers-reduced-motion: no-preference)`, () => {
           tl.to(nameEl, {
             ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
             onComplete: () => {
               setUIState({ heroEnterAnimation: "completed" });
-              // cursorTl.to(nameCursorEl, { opacity: 0 });
-              // cursorTl.kill();
             },
           });
         });
@@ -116,7 +103,6 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
               ) : (
                 <span className={s.hero__name} ref={nameRef} />
               )}
-              {/* <span ref={nameCursorRef}>|</span> */}
             </h1>
 
             {subtitle && (
@@ -130,20 +116,6 @@ export const Hero = ({ name, titles, subtitle, action, text }: Props) => {
                 <p className={s.hero__text}>{text}</p>
               </div>
             )}
-
-            {titles?.length ? (
-              <ul className={s.hero__list}>
-                {titles.map((title, i) => (
-                  <li
-                    className={s.hero__listItem}
-                    key={i}
-                    style={{ "--i": i } as CSSProperties}
-                  >
-                    <div>{title}</div>
-                  </li>
-                ))}
-              </ul>
-            ) : undefined}
 
             {action && <div className={s.hero__actionWrap}>{action}</div>}
           </div>
