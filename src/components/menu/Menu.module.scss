@@ -58,6 +58,10 @@
 
     justify-content: space-between;
     flex: 1;
+    min-block-size: 100%;
+
+    padding-block-start: $spacing-md;
+    padding-block-end: $spacing-sm;
   }
 
   &__list {
@@ -66,8 +70,6 @@
     align-items: center;
 
     gap: $spacing-sm;
-
-    padding-block-start: $spacing-md;
 
     & > button {
       transform: translateX(15%);
@@ -84,11 +86,8 @@
   &__socials {
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
 
-    max-inline-size: min(100%, 350px);
+    max-inline-size: min(100%, 250px);
     margin-inline: auto;
-
-    padding-block-end: $spacing-sm;
   }
 }

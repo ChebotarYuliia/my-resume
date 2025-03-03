@@ -32,8 +32,11 @@
   svg {
     inline-size: min(90%, 100px);
     fill: currentColor;
-    opacity: 0.8;
 
     transition: transform calc($transition-duration / 2) $default-ease;
+
+    @media (min-width: $breakpoint-tablet) {
+      opacity: 0.8;
+    }
   }
 }
