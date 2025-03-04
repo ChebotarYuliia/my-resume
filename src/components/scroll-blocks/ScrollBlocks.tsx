@@ -18,6 +18,7 @@ export const ScrollBlocks = ({ list }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const textClassName = s.scrollBlocks__text;
   const imgClassName = s.scrollBlocks__img;
+  const DURATION = 0.1; // sec
 
   useGSAP(() => {
     const trigger = ref.current;
@@ -35,11 +36,13 @@ export const ScrollBlocks = ({ list }: Props) => {
         end: "+=300%",
         pin: true,
         scrub: true,
-        markers: true,
+        // markers: true,
         snap: 1 / (texts.length - 1),
         invalidateOnRefresh: true,
       },
     });
+
+    tl.to(trigger, { durarion: DURATION });
 
     imgs.forEach((img, i) => {
       if (imgs[i + 1]) {
@@ -48,6 +51,8 @@ export const ScrollBlocks = ({ list }: Props) => {
           .to(texts, { yPercent: -(100 * (i + 1)), ease: "none" }, "<");
       }
     });
+
+    tl.to(trigger, { durarion: DURATION });
   });
 
   if (!list.length) {
