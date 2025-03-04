@@ -25,7 +25,7 @@ import { ProjectCardContent } from "@/components/project-card/ProjectCardContent
 import { Video } from "@/components/video/Video";
 import { About } from "@/components/about/About";
 import { Text } from "@/components/text/Text";
-import { ScrollList } from "@/components/scroll-list/ScrollList";
+import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
 
 export default function Home() {
   return (
@@ -117,15 +117,11 @@ export default function Home() {
         <SectionTitle>About me</SectionTitle>
         <About
           features={
-            <ScrollList
-              heading="I'm"
-              items={[
-                <span>connoisseur of beauty</span>,
-                <span>traveler</span>,
-                <span>
-                  curator of inspiring
-                  <br /> work desks
-                </span>,
+            <ScrollBlocks
+              list={[
+                "drink coffee with a view",
+                "framing breathtaking moments",
+                "and appreciate the beauty.",
               ]}
             />
           }
@@ -148,7 +144,7 @@ export default function Home() {
             </p>
           </Text>
           <Text>
-            <p>But beyond the code,</p>
+            <p>But beyond the code, I love to</p>
           </Text>
         </About>
       </Section>

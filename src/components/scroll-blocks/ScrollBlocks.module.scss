@@ -1,0 +1,86 @@
+@use "../../styles/config.scss" as *;
+
+.scrollBlocks {
+  &__inner {
+    block-size: 100vh;
+    inline-size: 100%;
+
+    display: flex;
+
+    overflow: hidden;
+  }
+
+  &__leftContent,
+  &__rightContent {
+    position: relative;
+
+    overflow: hidden;
+    @media (min-width: $breakpoint-tablet) {
+      block-size: 100vh;
+      inline-size: 50%;
+    }
+  }
+
+  &__leftContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-inline: $spacing-sm;
+    }
+  }
+
+  &__rightContent {
+    inline-size: 100%;
+    block-size: 100vh;
+
+    max-inline-size: clamp(300px, 45vw, 600px);
+  }
+
+  &__textList,
+  &__imgList {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  &__imgList {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    inline-size: 100%;
+
+    font-size: 1.5em;
+    text-align: center;
+    text-transform: uppercase;
+
+    writing-mode: vertical-rl;
+
+    @media (min-width: $breakpoint-tablet) {
+      block-size: 100vh;
+      writing-mode: unset;
+
+      font-size: 2.5em;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    inline-size: 100%;
+    block-size: 100%;
+    opacity: 0;
+
+    &:first-child {
+      opacity: 1;
+    }
+  }
+}
