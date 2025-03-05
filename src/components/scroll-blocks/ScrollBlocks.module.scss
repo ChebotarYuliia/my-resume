@@ -39,6 +39,8 @@
   &__rightContent {
     block-size: 100vh;
     inline-size: clamp(350px, 50vw, 600px);
+    display: flex;
+    align-items: center;
   }
 
   &__textList,
@@ -51,8 +53,9 @@
     position: relative;
     overflow: hidden;
 
-    display: flex;
-    align-items: center;
+    inline-size: 100%;
+    block-size: initial;
+    aspect-ratio: 3/4;
   }
 
   &__text {
@@ -82,9 +85,6 @@
     inset: 0;
     object-fit: cover;
     inline-size: 100%;
-    aspect-ratio: 3/4;
-
-    align-self: center;
 
     opacity: 0;
 
