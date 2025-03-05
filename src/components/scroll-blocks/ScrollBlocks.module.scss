@@ -17,7 +17,7 @@
     overflow: hidden;
 
     @media (min-width: $breakpoint-tablet) {
-      block-size: 100vh;
+      block-size: 100svh;
     }
   }
 
@@ -37,7 +37,7 @@
 
   // with images
   &__rightContent {
-    block-size: 100vh;
+    block-size: 100svh;
     inline-size: clamp(350px, 50vw, 600px);
     display: flex;
     align-items: center;
@@ -73,7 +73,7 @@
     writing-mode: vertical-rl;
 
     @media (min-width: $breakpoint-tablet) {
-      block-size: 100vh;
+      block-size: 100svh;
       writing-mode: unset;
 
       font-size: clamp(2em, 0.5vw, 2.5em);
