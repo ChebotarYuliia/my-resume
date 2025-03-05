@@ -15,27 +15,30 @@
     position: relative;
 
     overflow: hidden;
+
     @media (min-width: $breakpoint-tablet) {
       block-size: 100vh;
-      inline-size: 50%;
     }
   }
 
+  // with text
   &__leftContent {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    min-inline-size: calc(1.5em * 1.4);
+    flex: 1;
 
     @media (min-width: $breakpoint-tablet) {
       padding-inline: $spacing-sm;
     }
   }
 
+  // with images
   &__rightContent {
-    inline-size: 100%;
     block-size: 100vh;
-
-    max-inline-size: clamp(300px, 45vw, 600px);
+    inline-size: clamp(350px, 50vw, 600px);
   }
 
   &__textList,
@@ -47,6 +50,9 @@
   &__imgList {
     position: relative;
     overflow: hidden;
+
+    display: flex;
+    align-items: center;
   }
 
   &__text {
@@ -67,7 +73,7 @@
       block-size: 100vh;
       writing-mode: unset;
 
-      font-size: 2.5em;
+      font-size: clamp(2em, 0.5vw, 2.5em);
     }
   }
 
@@ -76,11 +82,19 @@
     inset: 0;
     object-fit: cover;
     inline-size: 100%;
-    block-size: 100%;
+    aspect-ratio: 3/4;
+
+    align-self: center;
+
     opacity: 0;
 
     &:first-child {
       opacity: 1;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      block-size: 100%;
+      aspect-ratio: initial;
     }
   }
 }

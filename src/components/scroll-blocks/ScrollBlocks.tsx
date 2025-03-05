@@ -42,10 +42,9 @@ export const ScrollBlocks = ({ list }: Props) => {
       },
     });
 
-    tl.to(trigger, { durarion: DURATION });
-
     imgs.forEach((img, i) => {
       if (imgs[i + 1]) {
+        tl.to(trigger, { durarion: DURATION });
         tl.to(img, { opacity: 0 })
           .to(imgs[i + 1], { opacity: 1 }, "<")
           .to(texts, { yPercent: -(100 * (i + 1)), ease: "none" }, "<");
