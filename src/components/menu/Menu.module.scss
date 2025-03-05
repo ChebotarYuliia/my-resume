@@ -14,7 +14,9 @@
   contain: layout;
 
   inline-size: 100vw;
-  block-size: 100vh;
+  block-size: 100svh;
+  max-block-size: 100svh;
+  overflow: hidden;
 
   transition: opacity $transition-duration $default-ease;
 
@@ -32,7 +34,7 @@
     overflow-x: hidden;
     overflow-y: auto;
 
-    min-block-size: 100%;
+    block-size: 100%;
 
     overscroll-behavior: contain;
 
@@ -58,7 +60,6 @@
 
     justify-content: space-between;
     flex: 1;
-    min-block-size: 100%;
 
     padding-block-start: $spacing-md;
     padding-block-end: $spacing-sm;
