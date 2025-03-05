@@ -123,7 +123,7 @@ export const Hero = ({ name, subtitle, action, text }: Props) => {
 
         <div className={s.hero__imageWrap}>
           <Image
-            src="/temp-hero-img.jpg"
+            src="/hero.jpg"
             width={900}
             height={400}
             alt="Yuliia Chebotar portrait"
