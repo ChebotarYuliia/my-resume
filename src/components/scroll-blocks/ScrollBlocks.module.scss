@@ -1,0 +1,100 @@
+@use "../../styles/config.scss" as *;
+
+.scrollBlocks {
+  &__inner {
+    block-size: 100vh;
+    inline-size: 100%;
+
+    display: flex;
+
+    overflow: hidden;
+  }
+
+  &__leftContent,
+  &__rightContent {
+    position: relative;
+
+    overflow: hidden;
+
+    @media (min-width: $breakpoint-tablet) {
+      block-size: 100svh;
+    }
+  }
+
+  // with text
+  &__leftContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-inline-size: calc(1.5em * 1.4);
+    flex: 1;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-inline: $spacing-sm;
+    }
+  }
+
+  // with images
+  &__rightContent {
+    block-size: 100svh;
+    inline-size: clamp(350px, 50vw, 600px);
+    display: flex;
+    align-items: center;
+  }
+
+  &__textList,
+  &__imgList {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  &__imgList {
+    position: relative;
+    overflow: hidden;
+
+    inline-size: 100%;
+    block-size: initial;
+    aspect-ratio: 3/4;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    inline-size: 100%;
+
+    font-size: 1.5em;
+    text-align: center;
+    text-transform: uppercase;
+
+    writing-mode: vertical-rl;
+
+    @media (min-width: $breakpoint-tablet) {
+      block-size: 100svh;
+      writing-mode: unset;
+
+      font-size: clamp(2em, 0.5vw, 2.5em);
+    }
+  }
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    inline-size: 100%;
+
+    opacity: 0;
+
+    &:first-child {
+      opacity: 1;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      block-size: 100%;
+      aspect-ratio: initial;
+    }
+  }
+}
