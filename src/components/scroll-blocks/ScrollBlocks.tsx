@@ -39,6 +39,7 @@ export const ScrollBlocks = ({ list }: Props) => {
         // markers: true,
         snap: 1 / (texts.length - 1),
         invalidateOnRefresh: true,
+        anticipatePin: 1,
       },
     });
 
