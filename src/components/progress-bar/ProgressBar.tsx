@@ -4,7 +4,6 @@ import React, { CSSProperties } from "react";
 import s from "./ProgressBar.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
-import { useUiState } from "@/hooks/useUiState";
 
 const c = classNames.bind(s);
 
@@ -15,7 +14,6 @@ export type ProgressBarProps = {
 };
 
 export const ProgressBar = ({ percentage, title, style }: ProgressBarProps) => {
-  const { uiState } = useUiState();
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: "-15% 0px",

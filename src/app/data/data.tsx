@@ -2,6 +2,7 @@ import { CardProps } from "@/components/card/Card";
 import { Icon } from "@/components/icon/Icon";
 import { ProgressBarProps } from "@/components/progress-bar/ProgressBar";
 import { WorkCardProps } from "@/components/work-card/WorkCard";
+import { WorkCardContentProps } from "@/components/work-card/WorkCardContent";
 
 export const socials = [
   {
@@ -127,7 +128,10 @@ export const skills: Array<ProgressBarProps> = [
 ];
 
 export const workPlaces: Array<
-  Omit<WorkCardProps, "pills"> & { pills: Array<string> }
+  Omit<WorkCardProps, "children"> &
+    Omit<WorkCardContentProps, "pills"> & {
+      pills: Array<string>;
+    }
 > = [
   {
     period: "Mar 2024 - Present",
@@ -235,4 +239,10 @@ export const projects = [
     ],
     media: "/projects/music_award.webm",
   },
+];
+
+export const aboutList = [
+  "drink coffee with a view",
+  "framing breathtaking moments",
+  "and appreciate the beauty.",
 ];

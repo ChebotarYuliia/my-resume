@@ -12,6 +12,7 @@ import {
   EmailLabel,
   SocialLabel,
 } from "@/components/contact-labels/ContactLabels";
+import { Menu } from "@/components/menu/Menu";
 
 export const metadata: Metadata = {
   title: "Yuliia Chebotar: Resume",
@@ -41,8 +42,6 @@ export default function RootLayout({
       <body id="body">
         <UIStateProvider>
           <Header
-            nav={<NavContainer isMenu />}
-            socials={socialEls}
             action={
               <Button
                 variant="outlined"
@@ -51,6 +50,11 @@ export default function RootLayout({
               >
                 Resume
               </Button>
+            }
+            menu={
+              <Menu socials={socialEls}>
+                <NavContainer isMenu />
+              </Menu>
             }
           >
             <NavContainer />

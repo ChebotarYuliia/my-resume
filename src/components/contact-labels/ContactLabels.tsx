@@ -40,6 +40,8 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   const [copySuccess, setCopySuccess] = useState<string>();
 
+  const tooltipId = "copied-tootlip";
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
     setCopySuccess("Copied!");
@@ -57,6 +59,7 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
             href={`mailto:${email}`}
             onClick={copyToClipboard}
             area-label={"gmail"}
+            aria-describedby={tooltipId}
           >
             {email}
           </Link>
@@ -65,6 +68,7 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
         <span
           className={c(s.contactLabelsCopy, { active: copySuccess })}
           role="tooltip"
+          id={tooltipId}
         >
           {copySuccess ?? ""}
         </span>

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
+import React, { Children, cloneElement, useRef } from "react";
+import { ImageProps } from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,9 +9,10 @@ import s from "./ScrollBlocks.module.scss";
 
 type Props = {
   list: Array<string>;
+  images: Array<React.ReactElement<ImageProps>>;
 };
 
-export const ScrollBlocks = ({ list }: Props) => {
+export const ScrollBlocks = ({ list, images }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const textClassName = s.scrollBlocks__text;
   const imgClassName = s.scrollBlocks__img;
@@ -64,19 +65,11 @@ export const ScrollBlocks = ({ list }: Props) => {
       <div className={s.scrollBlocks__inner} ref={ref}>
         <div className={s.scrollBlocks__rightContent}>
           <div className={s.scrollBlocks__imgList}>
-            {list.map((listItem, i) => {
-              return (
-                <Image
-                  className={imgClassName}
-                  src={`/pictures/${i}.webp`}
-                  alt="Picture of really cool activity"
-                  loading="lazy"
-                  width={600}
-                  height={600}
-                  key={listItem}
-                />
-              );
-            })}
+            {Children.map(images, (image) =>
+              cloneElement(image, {
+                className: imgClassName,
+              })
+            )}
           </div>
         </div>
 

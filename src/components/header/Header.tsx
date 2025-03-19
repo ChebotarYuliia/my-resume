@@ -3,22 +3,19 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import s from "./Header.module.scss";
 import { MenuToggle } from "../menu/MenuToggle";
-import { Menu } from "../menu/Menu";
 import { useUiState } from "@/hooks/useUiState";
 import classNames from "classnames/bind";
 import { ButtonProps } from "../Button/Button";
-import { ContactLinkProps } from "../contacts/ContactLink";
 
 const c = classNames.bind(s);
 
 type Props = {
   children: React.ReactNode;
-  nav: React.ReactNode;
-  socials: Array<React.ReactElement<ContactLinkProps>>;
   action?: React.ReactElement<ButtonProps>;
+  menu: React.ReactElement;
 };
 
-export const Header = ({ children, nav, socials, action }: Props) => {
+export const Header = ({ children, action, menu }: Props) => {
   const { uiState, setUIState } = useUiState();
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
     null
@@ -79,7 +76,7 @@ export const Header = ({ children, nav, socials, action }: Props) => {
         </button>
       </div>
 
-      <Menu socials={socials}>{nav}</Menu>
+      {menu}
     </div>
   );
 };

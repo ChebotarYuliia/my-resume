@@ -1,5 +1,5 @@
 "use client";
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useCallback, useState } from "react";
 import s from "./Button.module.scss";
 import classNames from "classnames/bind";
 import { TransitionLink } from "../transition-link/TransitionLink";
@@ -41,13 +41,9 @@ export const Button = ({
     disabled,
   });
 
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
+  const handleMouseEnter = useCallback(() => setHovered(true), []);
 
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
+  const handleMouseLeave = useCallback(() => setHovered(false), []);
 
   // used for cool interpage transition
   if (to) {

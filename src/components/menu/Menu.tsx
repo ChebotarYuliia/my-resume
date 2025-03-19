@@ -1,3 +1,4 @@
+"use client";
 import React, { Children, cloneElement } from "react";
 import s from "./Menu.module.scss";
 import classNames from "classnames/bind";

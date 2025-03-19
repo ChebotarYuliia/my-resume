@@ -1,6 +1,7 @@
 import { Grid } from "@/components/grid/Grid";
 import { Hero } from "@/components/hero/Hero";
 import {
+  aboutList,
   expertiseCards,
   projects,
   skills,
@@ -26,6 +27,8 @@ import { Video } from "@/components/video/Video";
 import { About } from "@/components/about/About";
 import { Text } from "@/components/text/Text";
 import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
+import Image from "next/image";
+import { WorkCardContent } from "@/components/work-card/WorkCardContent";
 
 export default function Home() {
   return (
@@ -43,6 +46,15 @@ export default function Home() {
           >
             Download my CV
           </Button>
+        }
+        image={
+          <Image
+            src="/hero.jpg"
+            width={900}
+            height={400}
+            alt="Yuliia Chebotar portrait"
+            priority={true}
+          />
         }
       />
 
@@ -74,13 +86,14 @@ export default function Home() {
       <Section id={navLinks.experience.to} theme={"olive"}>
         <SectionTitle>Where I’ve Worked</SectionTitle>
         {workPlaces.map(({ pills, ...props }, i) => (
-          <WorkCard
-            pills={pills.map((pill, i) => (
-              <Pill key={`pill-${i}`}>{pill}</Pill>
-            ))}
-            {...props}
-            key={`${props.title}-${props.period}`}
-          />
+          <WorkCard link={props.link} key={`${props.title}-${props.period}`}>
+            <WorkCardContent
+              pills={pills.map((pill) => (
+                <Pill key={`pill-${props.title}`}>{pill}</Pill>
+              ))}
+              {...props}
+            />
+          </WorkCard>
         ))}
       </Section>
 
@@ -118,11 +131,19 @@ export default function Home() {
         <About
           features={
             <ScrollBlocks
-              list={[
-                "drink coffee with a view",
-                "framing breathtaking moments",
-                "and appreciate the beauty.",
-              ]}
+              list={aboutList}
+              images={aboutList.map((listItem, i) => {
+                return (
+                  <Image
+                    src={`/pictures/${i}.webp`}
+                    alt="Picture of really cool activity"
+                    loading="lazy"
+                    width={600}
+                    height={600}
+                    key={listItem}
+                  />
+                );
+              })}
             />
           }
         >

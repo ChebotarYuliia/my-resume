@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  cloneElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import s from "./Hero.module.scss";
 import { useInView } from "react-intersection-observer";
@@ -8,7 +14,7 @@ import classNames from "classnames/bind";
 import gsap from "gsap";
 import { useUiState } from "@/hooks/useUiState";
 import { TextPlugin } from "gsap/all";
-import Image from "next/image";
+import { ImageProps } from "next/image";
 import { ButtonProps } from "../Button/Button";
 
 const c = classNames.bind(s);
@@ -18,9 +24,10 @@ type Props = {
   name: string;
   text: string;
   action?: React.ReactElement<ButtonProps>;
+  image: React.ReactElement<ImageProps>;
 };
 
-export const Hero = ({ name, subtitle, action, text }: Props) => {
+export const Hero = ({ name, subtitle, action, text, image }: Props) => {
   const { uiState, setUIState } = useUiState();
   const [imageLoaded, setImageLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true });
@@ -116,15 +123,10 @@ export const Hero = ({ name, subtitle, action, text }: Props) => {
         </div>
 
         <div className={s.hero__imageWrap}>
-          <Image
-            src="/hero.jpg"
-            width={900}
-            height={400}
-            alt="Yuliia Chebotar portrait"
-            priority={true}
-            className={s.hero__image}
-            onLoad={() => setImageLoaded(true)}
-          />
+          {cloneElement(image, {
+            onLoad: () => setImageLoaded(true),
+            className: s.hero__image,
+          })}
         </div>
       </div>
     </div>
