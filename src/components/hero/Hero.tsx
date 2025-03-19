@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import s from "./Hero.module.scss";
 import { useInView } from "react-intersection-observer";

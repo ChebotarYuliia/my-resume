@@ -63,8 +63,8 @@ export default function Home() {
         <SectionTitle>Technologies I’ve been working with</SectionTitle>
         <SkillListLayout>
           <SkillList variant="compact">
-            {skills.map((skill, i) => (
-              <span key={i}>{skill.title}</span>
+            {skills.map((skill) => (
+              <span key={skill.title}>{skill.title}</span>
             ))}
           </SkillList>
         </SkillListLayout>
@@ -76,10 +76,10 @@ export default function Home() {
         {workPlaces.map(({ pills, ...props }, i) => (
           <WorkCard
             pills={pills.map((pill, i) => (
-              <Pill key={i}>{pill}</Pill>
+              <Pill key={`pill-${i}`}>{pill}</Pill>
             ))}
             {...props}
-            key={i}
+            key={`${props.title}-${props.period}`}
           />
         ))}
       </Section>
@@ -87,7 +87,7 @@ export default function Home() {
       {/* Projects section */}
       <Section id={navLinks.projects.to} theme="slate">
         <SectionTitle>Some Things I’ve Built</SectionTitle>
-        {projects.map((project, i) => (
+        {projects.map((project) => (
           <ProjectCard
             media={
               <Video
@@ -98,12 +98,12 @@ export default function Home() {
                 loop={true}
               />
             }
-            key={i}
+            key={project.title}
           >
             <ProjectCardContent
               title={project.title}
-              pills={project.pills.map((pill, i) => (
-                <Pill key={i}>{pill}</Pill>
+              pills={project.pills.map((pill) => (
+                <Pill key={pill}>{pill}</Pill>
               ))}
             >
               {project.text}
@@ -152,9 +152,9 @@ export default function Home() {
       {/* Contacts section */}
       <Section theme={"primary"}>
         <ContactsLayout
-          links={socials.map((link, i) => (
+          links={socials.map((link) => (
             <ContactLink
-              key={i}
+              key={link.platform}
               platform={link.platform as TSocialIcon}
               link={link.link}
             />

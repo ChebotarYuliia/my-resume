@@ -19,7 +19,7 @@ export const PageTransition = ({ children }: Props) => {
   return (
     <div className={s.pageTransition}>
       {Array.from({ length: 4 }).map((_, i) => (
-        <div className={s.pageTransition__curtain} key={i} id={`${ID}${i}`} />
+        <div className={s.pageTransition__curtain} key={ID} id={`${ID}${i}`} />
       ))}
       {children}
     </div>

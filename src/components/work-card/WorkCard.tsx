@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
 import { Icon } from "../icon/Icon";
 import { useWindowWidth } from "@/hooks/useWindowWidth";
+import Link from "next/link";
 
 const c = classNames.bind(s);
 
@@ -76,7 +77,7 @@ export const WorkCard = ({
 
   if (link) {
     return (
-      <a
+      <Link
         className={clasNames}
         target="_blank"
         href={link}
@@ -85,7 +86,7 @@ export const WorkCard = ({
         onMouseLeave={handleMouseLeave}
       >
         {content}
-      </a>
+      </Link>
     );
   }
 

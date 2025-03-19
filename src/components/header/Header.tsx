@@ -7,13 +7,14 @@ import { Menu } from "../menu/Menu";
 import { useUiState } from "@/hooks/useUiState";
 import classNames from "classnames/bind";
 import { ButtonProps } from "../Button/Button";
+import { ContactLinkProps } from "../contacts/ContactLink";
 
 const c = classNames.bind(s);
 
 type Props = {
   children: React.ReactNode;
   nav: React.ReactNode;
-  socials: Array<React.ReactElement>;
+  socials: Array<React.ReactElement<ContactLinkProps>>;
   action?: React.ReactElement<ButtonProps>;
 };
 

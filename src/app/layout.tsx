@@ -26,9 +26,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const socialEls = socials.map((link, i) => (
+  const socialEls = socials.map((link) => (
     <ContactLink
-      key={i}
+      key={link.platform}
       platform={link.platform as TSocialIcon}
       link={link.link}
     />

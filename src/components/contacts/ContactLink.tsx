@@ -1,6 +1,6 @@
 "use client";
 
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, HTMLAttributes } from "react";
 import Link from "next/link";
 import { TSocialIcon, Icon } from "../icon/Icon";
 import { useInView } from "react-intersection-observer";
@@ -10,19 +10,19 @@ import s from "./ContactLink.module.scss";
 
 const c = classNames.bind(s);
 
-type Props = {
+export type ContactLinkProps = {
   platform: TSocialIcon;
   link: string;
   style?: CSSProperties;
   active?: boolean;
-};
+} & HTMLAttributes<HTMLAnchorElement>;
 
 export const ContactLink = ({
   platform,
   link,
   style,
   active = false,
-}: Props) => {
+}: ContactLinkProps) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
     <Link
@@ -33,6 +33,7 @@ export const ContactLink = ({
       style={style}
       ref={ref}
       target="_blank"
+      area-label={platform}
     >
       <Icon name={platform} />
     </Link>

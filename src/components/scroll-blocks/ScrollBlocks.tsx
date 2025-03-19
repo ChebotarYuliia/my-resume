@@ -64,16 +64,16 @@ export const ScrollBlocks = ({ list }: Props) => {
       <div className={s.scrollBlocks__inner} ref={ref}>
         <div className={s.scrollBlocks__rightContent}>
           <div className={s.scrollBlocks__imgList}>
-            {list.map((_, i) => {
+            {list.map((listItem, i) => {
               return (
                 <Image
                   className={imgClassName}
                   src={`/pictures/${i}.webp`}
-                  alt="Picture of something really cool"
+                  alt="Picture of really cool activity"
                   loading="lazy"
                   width={600}
                   height={600}
-                  key={i}
+                  key={listItem}
                 />
               );
             })}
@@ -84,7 +84,7 @@ export const ScrollBlocks = ({ list }: Props) => {
           <ul className={s.scrollBlocks__textList}>
             {list.map((text, i) => {
               return (
-                <li className={textClassName} key={i}>
+                <li className={textClassName} key={`scroll-block-${i}`}>
                   {text}
                 </li>
               );

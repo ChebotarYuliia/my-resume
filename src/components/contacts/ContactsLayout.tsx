@@ -6,11 +6,12 @@ import classNames from "classnames/bind";
 
 import s from "./ContactsLayout.module.scss";
 import { useUiState } from "@/hooks/useUiState";
+import { ContactLinkProps } from "./ContactLink";
 
 const c = classNames.bind(s);
 
 type Props = {
-  links: Array<React.ReactElement>;
+  links: Array<React.ReactElement<ContactLinkProps>>;
   title?: string;
   author?: string;
 };
@@ -32,7 +33,7 @@ export const ContactsLayout = ({ links, title, author }: Props) => {
         </div>
         <ul className={s.contactsLayout__list}>
           {links.map((link, i) => (
-            <li style={{ "--i": i } as CSSProperties} key={i}>
+            <li style={{ "--i": i } as CSSProperties} key={link.props.platform}>
               {cloneElement(link, {
                 active: uiState.openAnimation === "completed",
                 tabIndex: 0,

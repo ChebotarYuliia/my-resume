@@ -35,7 +35,7 @@ export const SkillList = ({ children, variant }: SkillListProps) => {
             <li
               className={variant === "compact" ? s.skillList__listItem : ""}
               style={{ "--i": i } as CSSProperties}
-              key={i}
+              key={child.props.title}
             >
               {child}
             </li>

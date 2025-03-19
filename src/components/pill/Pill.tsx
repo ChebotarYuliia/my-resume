@@ -7,13 +7,12 @@ import { useInView } from "react-intersection-observer";
 
 const c = classNames.bind(s);
 
-export const Pill = ({
-  children,
-  style,
-}: {
+export type PillProps = {
   children: string;
   style?: CSSProperties;
-}) => {
+};
+
+export const Pill = ({ children, style }: PillProps) => {
   const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
