@@ -49,7 +49,7 @@ export default function Home() {
         }
         image={
           <Image
-            src="/hero.jpg"
+            src="/hero.webp"
             width={900}
             height={400}
             alt="Yuliia Chebotar portrait"
