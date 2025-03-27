@@ -87,7 +87,7 @@ export default function Home() {
       {/* Work experience section */}
       <Section id={navLinks.experience.to} theme={"olive"}>
         <SectionTitle>Where I’ve Worked</SectionTitle>
-        {workPlaces.map(({ pills, ...props }, i) => (
+        {workPlaces.map(({ pills, ...props }) => (
           <WorkCard link={props.link} key={`${props.title}-${props.period}`}>
             <WorkCardContent
               pills={pills.map((pill) => (
@@ -183,6 +183,23 @@ export default function Home() {
               link={link.link}
             />
           ))}
+          title="Get In Touch"
+          author="Designed & Built by Yuliia Chebotar"
+        ></ContactsLayout>
+      </Section>
+
+      {/* TEST SECTION TO CHECK HOW THE Next.js Bundle Analysis WORKS */}
+      <Section>
+        <ContactsLayout
+          links={[...socials, ...socials, ...socials, ...socials].map(
+            (link) => (
+              <ContactLink
+                key={link.platform}
+                platform={link.platform as TSocialIcon}
+                link={link.link}
+              />
+            )
+          )}
           title="Get In Touch"
           author="Designed & Built by Yuliia Chebotar"
         ></ContactsLayout>

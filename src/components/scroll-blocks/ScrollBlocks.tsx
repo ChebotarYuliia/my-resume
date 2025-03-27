@@ -23,8 +23,10 @@ export const ScrollBlocks = ({ list, images }: Props) => {
 
   useGSAP(() => {
     const trigger = ref.current;
-    let texts: Array<HTMLLIElement> = gsap.utils.toArray(`.${textClassName}`);
-    let imgs: Array<HTMLImageElement> = gsap.utils.toArray(`.${imgClassName}`);
+    const texts: Array<HTMLLIElement> = gsap.utils.toArray(`.${textClassName}`);
+    const imgs: Array<HTMLImageElement> = gsap.utils.toArray(
+      `.${imgClassName}`
+    );
 
     if (!trigger || !texts.length || !imgs.length) {
       return;
