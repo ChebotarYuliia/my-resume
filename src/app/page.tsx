@@ -87,7 +87,7 @@ export default function Home() {
       {/* Work experience section */}
       <Section id={navLinks.experience.to} theme={"olive"}>
         <SectionTitle>Where I’ve Worked</SectionTitle>
-        {workPlaces.map(({ pills, ...props }, i) => (
+        {workPlaces.map(({ pills, ...props }) => (
           <WorkCard link={props.link} key={`${props.title}-${props.period}`}>
             <WorkCardContent
               pills={pills.map((pill) => (
