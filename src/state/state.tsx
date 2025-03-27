@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useCallback, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 export type OpenAnimationState = "active" | "completed";
 export type HeroAnimationState = "initial" | "completed";
@@ -66,14 +72,11 @@ export const UIStateProvider = ({
     preventScroll(uiState.isMenuOpen);
   }, [uiState.isMenuOpen, preventScroll]);
 
+  const state = useMemo(() => {
+    return { uiState, setUIState };
+  }, [uiState, setUIState]);
+
   return (
-    <UIStateContext.Provider
-      value={{
-        uiState,
-        setUIState,
-      }}
-    >
-      {children}
-    </UIStateContext.Provider>
+    <UIStateContext.Provider value={state}>{children}</UIStateContext.Provider>
   );
 };

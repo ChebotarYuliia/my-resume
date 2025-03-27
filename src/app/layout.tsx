@@ -47,6 +47,7 @@ export default function RootLayout({
                 variant="outlined"
                 href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
                 target="_blank"
+                area-label="Download the CV"
               >
                 Resume
               </Button>

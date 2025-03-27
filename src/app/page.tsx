@@ -43,6 +43,7 @@ export default function Home() {
             variant="filled"
             href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
             target="_blank"
+            area-label="Download the CV"
           >
             Download my CV
           </Button>
@@ -54,6 +55,7 @@ export default function Home() {
             height={400}
             alt="Yuliia Chebotar portrait"
             priority={true}
+            placeholder="blur"
           />
         }
       />
@@ -138,6 +140,7 @@ export default function Home() {
                     src={`/pictures/${i}.webp`}
                     alt="Picture of really cool activity"
                     loading="lazy"
+                    placeholder="blur"
                     width={600}
                     height={600}
                     key={listItem}

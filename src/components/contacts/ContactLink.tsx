@@ -34,6 +34,7 @@ export const ContactLink = ({
       ref={ref}
       target="_blank"
       area-label={platform}
+      title={platform}
     >
       <Icon name={platform} />
     </Link>

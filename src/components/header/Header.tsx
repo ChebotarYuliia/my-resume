@@ -53,6 +53,10 @@ export const Header = ({ children, action, menu }: Props) => {
     };
   }, [handleScroll]);
 
+  const handleButtonClick = () => {
+    setUIState({ isMenuOpen: !uiState.isMenuOpen });
+  };
+
   return (
     <div
       className={c(s.header, {
@@ -66,9 +70,7 @@ export const Header = ({ children, action, menu }: Props) => {
         <div className={s.header__action}>{action}</div>
         <button
           className={s.header__menuButton}
-          onClick={() => {
-            setUIState({ isMenuOpen: !uiState.isMenuOpen });
-          }}
+          onClick={handleButtonClick}
           type="button"
           aria-label="menu"
         >
