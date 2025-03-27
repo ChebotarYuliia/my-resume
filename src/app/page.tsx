@@ -187,6 +187,23 @@ export default function Home() {
           author="Designed & Built by Yuliia Chebotar"
         ></ContactsLayout>
       </Section>
+
+      {/* TEST SECTION TO CHECK HOW THE Next.js Bundle Analysis WORKS */}
+      <Section>
+        <ContactsLayout
+          links={[...socials, ...socials, ...socials, ...socials].map(
+            (link) => (
+              <ContactLink
+                key={link.platform}
+                platform={link.platform as TSocialIcon}
+                link={link.link}
+              />
+            )
+          )}
+          title="Get In Touch"
+          author="Designed & Built by Yuliia Chebotar"
+        ></ContactsLayout>
+      </Section>
     </>
   );
 }
