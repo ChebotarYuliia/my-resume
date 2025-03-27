@@ -198,14 +198,6 @@ components. Maintained admin panel in Payload CMS.`,
       "Photoshop",
     ],
   },
-  // {
-  //   period: "",
-  //   children: "",
-  //   title: "",
-  //   company: "",
-  //   link: "",
-  //   pills: [""],
-  // },
 ];
 
 export const projects = [

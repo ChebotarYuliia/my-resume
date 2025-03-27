@@ -95,10 +95,3 @@ $color-border: $color-secondary;
 $border-radius: 20px;
 
 $button-height: 40px;
-
-:export {
-  fontDefault: $color-font;
-  backgroundDefault: $color-background;
-  backgroundSecondaryDefault: $color-background-secondary;
-  accentDefault: $color-teal-500;
-}

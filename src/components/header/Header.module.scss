@@ -53,16 +53,6 @@
     }
   }
 
-  &__switcher {
-    margin-inline-end: auto;
-
-    @media (min-width: $breakpoint-desktop) {
-      position: relative;
-      inset-inline-end: calc($viewport-container-gutter * -1 + #{$spacing-md});
-      margin-inline-end: 0;
-    }
-  }
-
   &__menuButton,
   &__action {
     display: block;

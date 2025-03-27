@@ -19,8 +19,4 @@ export const navLinks: { [key: string]: { [key: string]: string } } = {
     label: "About me",
     to: "#about",
   },
-  // contact: {
-  //   label: "Contact me",
-  //   to: "#contacts",
-  // },
 };

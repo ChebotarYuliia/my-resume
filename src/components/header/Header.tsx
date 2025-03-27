@@ -66,7 +66,6 @@ export const Header = ({ children, action, menu }: Props) => {
     >
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
-        {/* <ThemeSwitcher className={s.header__switcher} /> */}
         <div className={s.header__action}>{action}</div>
         <button
           className={s.header__menuButton}
