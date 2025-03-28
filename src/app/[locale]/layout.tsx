@@ -15,6 +15,7 @@ import { Menu } from "@/components/menu/Menu";
 import { Locale } from "@/i18n/i18n";
 import { Providers } from "../providers";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { Author } from "next/dist/lib/metadata/types/metadata-types";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: Server.meta_title,
     description: Server.meta_description,
-    authors: Server.meta_authors,
+    authors: Server.meta_authors as Author,
     keywords: Server.meta_keywords,
   };
 }
@@ -57,6 +58,7 @@ export default async function RootLayout({ children, params }: Props) {
       <body id="body">
         <Providers locale={locale} messages={{ Client }}>
           <Header
+            locale={locale}
             action={
               <Button
                 variant="outlined"
