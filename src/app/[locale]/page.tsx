@@ -29,23 +29,31 @@ import { Text } from "@/components/text/Text";
 import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
 import Image from "next/image";
 import { WorkCardContent } from "@/components/work-card/WorkCardContent";
+import { getMessages } from "next-intl/server";
+import { Locale } from "@/i18n/i18n";
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const { Client } = await getMessages({ locale });
   return (
     <>
       <Theme />
       <Hero
-        name="Yuliia Chebotar"
-        subtitle="I build things for the web."
-        text="I'm a developer with a passion for building accessible, pixel-perfect user interfaces that seamlessly combine thoughtful design with solid engineering."
+        name={Client.hero_name}
+        subtitle={Client.hero_subtitle}
+        text={Client.hero_text}
         action={
           <Button
             variant="filled"
             href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
             target="_blank"
-            area-label="Download the CV"
+            area-label={Client.hero_cv_button}
           >
-            Download my CV
+            {Client.hero_cv_button}
           </Button>
         }
         image={
@@ -53,7 +61,7 @@ export default function Home() {
             src="/hero.webp"
             width={900}
             height={400}
-            alt="Yuliia Chebotar portrait"
+            alt={Client.hero_portrait_alt}
             priority={true}
           />
         }
@@ -61,11 +69,11 @@ export default function Home() {
 
       {/* Expertise section */}
       <Section id={navLinks.expertise.to}>
-        <SectionTitle>Expertise</SectionTitle>
+        <SectionTitle>{Client.section_expertise}</SectionTitle>
         <Grid>
           {expertiseCards.map(({ children, ...rest }, id) => (
             <Card key={id} {...rest}>
-              {children}
+              {Client[`${children}`]}
             </Card>
           ))}
         </Grid>
@@ -73,7 +81,7 @@ export default function Home() {
 
       {/* Skills section */}
       <Section fullHeight id={navLinks.skills.to}>
-        <SectionTitle>Technologies I’ve been working with</SectionTitle>
+        <SectionTitle>{Client.section_technologies}</SectionTitle>
         <SkillListLayout>
           <SkillList variant="compact">
             {skills.map((skill) => (
@@ -85,10 +93,11 @@ export default function Home() {
 
       {/* Work experience section */}
       <Section id={navLinks.experience.to} theme={"olive"}>
-        <SectionTitle>Where I’ve Worked</SectionTitle>
+        <SectionTitle>{Client.section_experience}</SectionTitle>
         {workPlaces.map(({ pills, ...props }) => (
           <WorkCard link={props.link} key={`${props.title}-${props.period}`}>
             <WorkCardContent
+              locale={locale}
               pills={pills.map((pill) => (
                 <Pill key={`pill-${props.title}`}>{pill}</Pill>
               ))}
@@ -100,7 +109,7 @@ export default function Home() {
 
       {/* Projects section */}
       <Section id={navLinks.projects.to} theme="slate">
-        <SectionTitle>Some Things I’ve Built</SectionTitle>
+        <SectionTitle>{Client.section_projects}</SectionTitle>
         {projects.map((project) => (
           <ProjectCard
             media={
@@ -115,12 +124,12 @@ export default function Home() {
             key={project.title}
           >
             <ProjectCardContent
-              title={project.title}
+              title={Client[project.title]}
               pills={project.pills.map((pill) => (
                 <Pill key={pill}>{pill}</Pill>
               ))}
             >
-              {project.text}
+              {Client[project.text]}
             </ProjectCardContent>
           </ProjectCard>
         ))}
@@ -128,7 +137,7 @@ export default function Home() {
 
       {/* About me section */}
       <Section fullHeight id={navLinks.about.to} theme={"primary"}>
-        <SectionTitle>About me</SectionTitle>
+        <SectionTitle>{Client.section_about}</SectionTitle>
         <About
           features={
             <ScrollBlocks
@@ -137,7 +146,7 @@ export default function Home() {
                 return (
                   <Image
                     src={`/pictures/${i}.webp`}
-                    alt="Picture of really cool activity"
+                    alt={Client.about_picture_alt}
                     loading="lazy"
                     width={600}
                     height={600}
@@ -149,24 +158,17 @@ export default function Home() {
           }
         >
           <Text>
-            <p>
-              Hi there! <br /> You’ve probably figured out by now that I’m a Web
-              Developer who’s passionate about crafting{" "}
-              <b>smooth, responsive, and visually engaging web experiences</b>.{" "}
-              I love blending creativity with code, making sure every pixel is
-              in its place while keeping performance top-notch. I’ve been doing
-              this for almost <b>3 years</b> now, and it never gets old.
-            </p>
+            <p dangerouslySetInnerHTML={{ __html: Client.about_main_text }} />
           </Text>
           <Text>
-            <p>
-              One of the projects I had the chance to contribute to even earned
-              an <b>Honorable Mention on Awwwards</b>&mdash;which was a pretty
-              cool moment!
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: Client.about_honorable_mention,
+              }}
+            />
           </Text>
           <Text>
-            <p>But beyond the code, I love to</p>
+            <p dangerouslySetInnerHTML={{ __html: Client.about_beyond_code }} />
           </Text>
         </About>
       </Section>
@@ -181,8 +183,8 @@ export default function Home() {
               link={link.link}
             />
           ))}
-          title="Get In Touch"
-          author="Designed & Built by Yuliia Chebotar"
+          title={Client.section_contact}
+          author={Client.build_by}
         ></ContactsLayout>
       </Section>
     </>

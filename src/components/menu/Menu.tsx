@@ -4,6 +4,7 @@ import s from "./Menu.module.scss";
 import classNames from "classnames/bind";
 import { useUiState } from "@/hooks/useUiState";
 import { ContactLinkProps } from "../contacts/ContactLink";
+import { useTranslations } from "next-intl";
 
 const c = classNames.bind(s);
 
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const Menu = ({ children, socials }: Props) => {
+  const t = useTranslations("Client");
   const { uiState } = useUiState();
 
   const childArray = Children.toArray(children);
@@ -21,7 +23,7 @@ export const Menu = ({ children, socials }: Props) => {
   return (
     <nav
       className={c(s.menu, { active: uiState.isMenuOpen })}
-      aria-label="menu"
+      aria-label={t("menu")}
     >
       <div className={s.menu__inner}>
         <div className={s.menu__content}>

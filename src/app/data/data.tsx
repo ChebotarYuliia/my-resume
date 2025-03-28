@@ -25,45 +25,39 @@ export const socials = [
 
 export const expertiseCards: Array<CardProps> = [
   {
-    title: "Web Development",
-    subtitle: "Efficient, modular, and scalable applications",
-    children:
-      "Crafting interactive and dynamic user interfaces with React, ensuring clean, maintainable, and well-organized code.",
+    title: "expertise_web_title",
+    subtitle: "expertise_web_subtitle",
+    children: "expertise_web_text",
     icon: <Icon name="web" />,
   },
   {
-    title: "UI/UX",
-    subtitle: "User-focused design for enhanced experiences",
-    children:
-      "Crafting visually engaging, user-centered interfaces for seamless, accessible experiences.",
+    title: "expertise_ui_title",
+    subtitle: "expertise_ui_subtitle",
+    children: "expertise_ui_text",
     icon: <Icon name="sparkle" />,
   },
   {
-    title: "Animation & Microinteractions",
-    subtitle: "Adding depth through smooth transitions and animations",
-    children:
-      "Bringing interfaces to life with engaging animations and transitions.",
+    title: "expertise_animation_title",
+    subtitle: "expertise_animation_subtitle",
+    children: "expertise_animation_text",
     icon: <Icon name="slow-motion" />,
   },
   {
-    title: "Responsive & Mobile-First Design",
-    subtitle: "Optimized for any device",
-    children:
-      "Building layouts and components that look and perform beautifully on mobile, tablet, and desktop devices.",
+    title: "expertise_responsive_title",
+    subtitle: "expertise_responsive_subtitle",
+    children: "expertise_responsive_text",
     icon: <Icon name="pixel" />,
   },
   {
-    title: "API Integration",
-    subtitle: "Connecting data and services",
-    children:
-      "Experience in integrating REST and GraphQL APIs, ensuring seamless data fetching and management.",
+    title: "expertise_api_title",
+    subtitle: "expertise_api_subtitle",
+    children: "expertise_api_text",
     icon: <Icon name="view" />,
   },
   {
-    title: "Team Collaboration",
-    subtitle: "Effective and supportive team player",
-    children:
-      "Collaborating with cross-functional teams to deliver cohesive, high-quality projects.",
+    title: "expertise_collaboration_title",
+    subtitle: "expertise_collaboration_subtitle",
+    children: "expertise_collaboration_text",
     icon: <Icon name="idea" />,
   },
 ];
@@ -134,12 +128,10 @@ export const workPlaces: Array<
     }
 > = [
   {
-    period: "Mar 2024 - Present",
-    children: `Planned and built the front-end part completely from scratch. 
-    Implemented smooth transitions and animation of 
-components. Maintained admin panel in Payload CMS.`,
-    title: "Web developer",
-    company: "Freelance",
+    period: "work_freelance_period",
+    children: "work_freelance_text",
+    title: "work_freelance_title",
+    company: "work_freelance_company",
     pills: [
       "JavaScript",
       "TypeScript",
@@ -154,14 +146,10 @@ components. Maintained admin panel in Payload CMS.`,
     ],
   },
   {
-    period: "Aug 2022 - Mar 2024",
-    children: `Contributed to the development of the fintech app, helping users achieve financial goals through features like a 
-      sleek, intuitive Wishlist tool for budgeting and planning. Worked on a paragliding social network, building key interfaces 
-      and features such as User Profiles, Reviews, and Complaints & Suggestions, 
-      while ensuring a user-friendly experience with real-time weather 
-      updates and event tracking.`,
-    title: "Fullstack Developer",
-    company: "ElifTech",
+    period: "work_eliftech_period",
+    children: "work_eliftech_text",
+    title: "work_eliftech_title",
+    company: "work_eliftech_company",
     link: "https://www.eliftech.com",
     pills: [
       "JavaScript",
@@ -174,20 +162,18 @@ components. Maintained admin panel in Payload CMS.`,
     ],
   },
   {
-    period: "Feb 2019 - Dec 2019",
-    children:
-      "Developed, maintained, and shipped production code for client websites primarily using Vue, HTML, CSS, Sass, JavaScript, and jQuery",
-    title: "Front-end Engineer",
-    company: "Custom4Web",
+    period: "work_custom4web_period",
+    children: "work_custom4web_text",
+    title: "work_custom4web_title",
+    company: "work_custom4web_company",
     link: "https://www.custom4web.com",
     pills: ["JavaScript", "Vue", "HTML & Scss", "jQuery", "WordPress"],
   },
   {
-    period: "Apr 2018 - Feb 2019",
-    children:
-      "Developed, maintained, and shipped production code for client websites primarily using HTML, CSS, Sass, JavaScript, and jQuery",
-    title: "Front-end Engineer",
-    company: "Triplefork IT",
+    period: "work_triplefork_period",
+    children: "work_triplefork_text",
+    title: "work_triplefork_title",
+    company: "work_triplefork_company",
     link: "https://tripleforkit.com",
     pills: [
       "JavaScript",
@@ -202,10 +188,8 @@ components. Maintained admin panel in Payload CMS.`,
 
 export const projects = [
   {
-    title: "Art center",
-    text: `Portal with articles, events, and new releases 
-    within the art space. Implemented smooth transitions 
-    and animation of components.`,
+    title: "project_art_center_title",
+    text: "project_art_center_text",
     pills: [
       "Awwwards",
       "Honorable Mention",
@@ -217,10 +201,8 @@ export const projects = [
     media: "/projects/art_center.webm",
   },
   {
-    title: "Music Award",
-    text: `The Icelandic Music Awards are a harvest festival for the Icelandic 
-    music industry, where what is done well is celebrated and respected. Built majority of screens and components.
-    Transfered FE to the headless CMS Prismic.`,
+    title: "project_music_award_title",
+    text: "project_music_award_text",
     pills: [
       "Next.js",
       "SCSS",
@@ -234,7 +216,7 @@ export const projects = [
 ];
 
 export const aboutList = [
-  "drink coffee with a view",
-  "framing breathtaking moments",
-  "and appreciate the beauty.",
+  "drink_coffee",
+  "breathtaking_moments",
+  "appreciate_beauty",
 ];

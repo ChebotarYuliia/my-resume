@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function NotFound() {
+export default async function NotFound() {
   return (
     <html lang="en">
       <body>

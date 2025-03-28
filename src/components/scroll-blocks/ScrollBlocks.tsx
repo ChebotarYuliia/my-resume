@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import s from "./ScrollBlocks.module.scss";
+import { useTranslations } from "next-intl";
 
 type Props = {
   list: Array<string>;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export const ScrollBlocks = ({ list, images }: Props) => {
+  const t = useTranslations("Client");
   const ref = useRef<HTMLDivElement>(null);
   const textClassName = s.scrollBlocks__text;
   const imgClassName = s.scrollBlocks__img;
@@ -80,7 +82,7 @@ export const ScrollBlocks = ({ list, images }: Props) => {
             {list.map((text, i) => {
               return (
                 <li className={textClassName} key={`scroll-block-${i}`}>
-                  {text}
+                  {t(text)}
                 </li>
               );
             })}

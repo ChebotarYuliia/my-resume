@@ -6,6 +6,7 @@ import { MenuToggle } from "../menu/MenuToggle";
 import { useUiState } from "@/hooks/useUiState";
 import classNames from "classnames/bind";
 import { ButtonProps } from "../Button/Button";
+import { useTranslations } from "use-intl";
 
 const c = classNames.bind(s);
 
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export const Header = ({ children, action, menu }: Props) => {
+  const t = useTranslations("Client");
   const { uiState, setUIState } = useUiState();
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
     null
@@ -71,7 +73,7 @@ export const Header = ({ children, action, menu }: Props) => {
           className={s.header__menuButton}
           onClick={handleButtonClick}
           type="button"
-          aria-label="menu"
+          aria-label={t("menu")}
         >
           <MenuToggle />
         </button>
