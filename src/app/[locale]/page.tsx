@@ -7,14 +7,14 @@ import {
   skills,
   socials,
   workPlaces,
-} from "./data/data";
+} from "../data/data";
 import { Card } from "@/components/card/Card";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
 import { SkillList } from "@/components/skill-list/SkillList";
 import { ContactsLayout } from "@/components/contacts/ContactsLayout";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
-import { navLinks } from "./data/nav";
+import { navLinks } from "../data/nav";
 import { Section } from "@/components/section/Section";
 import { Theme } from "@/components/theme/Theme";
 import { SectionTitle } from "@/components/section-title/SectionTitle";
@@ -55,7 +55,6 @@ export default function Home() {
             height={400}
             alt="Yuliia Chebotar portrait"
             priority={true}
-            placeholder="blur"
           />
         }
       />
@@ -140,7 +139,6 @@ export default function Home() {
                     src={`/pictures/${i}.webp`}
                     alt="Picture of really cool activity"
                     loading="lazy"
-                    placeholder="blur"
                     width={600}
                     height={600}
                     key={listItem}
@@ -183,23 +181,6 @@ export default function Home() {
               link={link.link}
             />
           ))}
-          title="Get In Touch"
-          author="Designed & Built by Yuliia Chebotar"
-        ></ContactsLayout>
-      </Section>
-
-      {/* TEST SECTION TO CHECK HOW THE Next.js Bundle Analysis WORKS */}
-      <Section>
-        <ContactsLayout
-          links={[...socials, ...socials, ...socials, ...socials].map(
-            (link) => (
-              <ContactLink
-                key={link.platform}
-                platform={link.platform as TSocialIcon}
-                link={link.link}
-              />
-            )
-          )}
           title="Get In Touch"
           author="Designed & Built by Yuliia Chebotar"
         ></ContactsLayout>

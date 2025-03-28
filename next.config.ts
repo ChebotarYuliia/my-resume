@@ -1,9 +1,9 @@
+import withBundleAnalyzer from "@next/bundle-analyzer";
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-  openAnalyzer: false,
-});
+// for localized routing
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -12,4 +12,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+if (process.env.ANALYZE === "true") {
+  module.exports = withBundleAnalyzer({ enabled: true })(
+    withNextIntl(nextConfig)
+  );
+} else {
+  module.exports = withNextIntl(nextConfig);
+}
