@@ -2,5 +2,11 @@
   "Client": {
     "resume": "Резюме",
     "download_cv": "Завантажити CV"
+  },
+  "Server": {
+    "meta_title": "Юля Чеботарь: Резюме",
+    "meta_description": "Юля Чеботарь - Веб Розробниця. React, TypeScript, Next, SCSS, gsap",
+    "meta_authors": "Юля Чеботарь",
+    "meta_keywords": ["Веб Розробниця", "Frontend developer", "React", "Nextjs"]
   }
 }

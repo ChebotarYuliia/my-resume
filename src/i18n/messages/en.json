@@ -2,5 +2,11 @@
   "Client": {
     "resume": "Resume",
     "download_cv": "Download the CV"
+  },
+  "Server": {
+    "meta_title": "Yuliia Chebotar: Resume",
+    "meta_description": "Yuliia Chebotar -Web developer. React, TypeScript, Next, SCSS, gsap",
+    "meta_authors": "Yuliia Chebotar",
+    "meta_keywords": ["Web developer", "Frontend developer", "React", "Nextjs"]
   }
 }

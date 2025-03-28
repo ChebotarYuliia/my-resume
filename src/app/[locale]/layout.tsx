@@ -16,13 +16,17 @@ import { Locale } from "@/i18n/i18n";
 import { Providers } from "../providers";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Yuliia Chebotar: Resume",
-  description:
-    "Yuliia Chebotar -Web developer. React, TypeScript, Next, SCSS, gsap",
-  authors: { name: "Yuliia Chebotar" },
-  keywords: ["Web developer", "Frontend developer", "React", "Nextjs"],
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const { Server } = await getMessages({ locale });
+
+  return {
+    title: Server.meta_title,
+    description: Server.meta_description,
+    authors: Server.meta_authors,
+    keywords: Server.meta_keywords,
+  };
+}
 
 type Props = {
   children: React.ReactNode;
@@ -31,7 +35,6 @@ type Props = {
 
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
-  console.log("locale", locale);
   const { Client } = await getMessages({ locale });
 
   const socialEls = socials.map((link) => (
