@@ -1,22 +1,22 @@
 export const navLinks: { [key: string]: { [key: string]: string } } = {
   expertise: {
-    label: "Expertise",
+    label: "nav_expertise",
     to: "#expertise",
   },
   skills: {
-    label: "Skills",
+    label: "nav_skills",
     to: "#skills",
   },
   experience: {
-    label: "Work experience",
+    label: "nav_experience",
     to: "#experience",
   },
   projects: {
-    label: "Projects",
+    label: "nav_projects",
     to: "#projects",
   },
   about: {
-    label: "About me",
+    label: "nav_about",
     to: "#about",
   },
 };
