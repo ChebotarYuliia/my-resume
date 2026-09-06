@@ -6,6 +6,7 @@ import {
   useEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from "react";
 
 export type OpenAnimationState = "active" | "completed";
@@ -39,12 +40,29 @@ export const UIStateContext = createContext<UIStateContext>({
 
   setUIState: () => null,
 });
+
+const subscribeToReducedMotionChange = (callback: () => void) => {
+  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mediaQuery.addEventListener("change", callback);
+  return () => mediaQuery.removeEventListener("change", callback);
+};
+
+const getReducedMotionSnapshot = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const getReducedMotionServerSnapshot = () => false;
+
 export const UIStateProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
   const [uiState, updateUiState] = useState<UIStateProps>(uiStateDefaults);
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeToReducedMotionChange,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
 
   const setUIState = useCallback((state: Partial<UIStateProps>) => {
     updateUiState((prevState) => ({
@@ -52,14 +70,6 @@ export const UIStateProvider = ({
       ...state,
     }));
   }, []);
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    setUIState({ prefersReducedMotion: reducedMotion });
-  }, [setUIState]);
 
   const preventScroll = useCallback((prevent: boolean) => {
     const htmlClassName = "scroll-disabled";
@@ -73,8 +83,8 @@ export const UIStateProvider = ({
   }, [uiState.isMenuOpen, preventScroll]);
 
   const state = useMemo(() => {
-    return { uiState, setUIState };
-  }, [uiState, setUIState]);
+    return { uiState: { ...uiState, prefersReducedMotion }, setUIState };
+  }, [uiState, prefersReducedMotion, setUIState]);
 
   return (
     <UIStateContext.Provider value={state}>{children}</UIStateContext.Provider>

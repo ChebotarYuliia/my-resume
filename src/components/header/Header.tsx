@@ -19,13 +19,16 @@ type Props = {
   locale: Locale;
 };
 
+const getInitialScrollY = () =>
+  typeof window === "undefined" ? 0 : window.scrollY;
+
 export const Header = ({ children, action, menu, locale }: Props) => {
   const t = useTranslations("Client");
   const { uiState, setUIState } = useUiState();
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
-    null
+    () => (getInitialScrollY() <= 100 ? null : "down")
   );
-  const storedScrollY = useRef(0);
+  const storedScrollY = useRef(getInitialScrollY());
   const nextLocale = locale === "en" ? "ua" : "en";
 
   useEffect(() => {
@@ -51,8 +54,6 @@ export const Header = ({ children, action, menu, locale }: Props) => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
