@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yuliia Chebotar — Resume Site
 
-## Getting Started
+Personal resume/portfolio site for Yuliia Chebotar, built with the Next.js App Router.
 
-First, run the development server:
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router) + React, TypeScript (strict)
+- SCSS modules for styling, [GSAP](https://gsap.com) for scroll/entrance animations
+- [next-intl](https://next-intl.dev) for `en`/`ua` locale routing (`src/app/[locale]`)
+- [Storybook](https://storybook.js.org) for isolated component development
+
+## Getting started
+
+Requires **Node 24+** (see `.nvmrc` — run `nvm use` to pick it up automatically). This project pins its package manager to **yarn**, so use it rather than npm/pnpm for a reproducible install.
 
 ```bash
-npm run dev
-# or
+nvm use
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `yarn dev` | Start the local dev server |
+| `yarn build` | Production build |
+| `yarn start` | Serve a production build |
+| `yarn lint` | Run ESLint over the project |
+| `yarn storybook` | Start Storybook locally |
+| `yarn build-storybook` | Build a static Storybook |
+| `yarn analyze` | Production build with the bundle analyzer enabled |
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No deploy config (e.g. `vercel.json`) is checked into this repo — deployment is presumed to go through Vercel's git-integration dashboard rather than an in-repo pipeline. Confirm with the project owner if you're setting up a new deployment target.

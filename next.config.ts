@@ -6,16 +6,11 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
   sassOptions: {
     silenceDeprecations: ["legacy-js-api"],
   },
 };
 
-if (process.env.ANALYZE === "true") {
-  module.exports = withBundleAnalyzer({ enabled: true })(
-    withNextIntl(nextConfig)
-  );
-} else {
-  module.exports = withNextIntl(nextConfig);
-}
+export default process.env.ANALYZE === "true"
+  ? withBundleAnalyzer({ enabled: true })(withNextIntl(nextConfig))
+  : withNextIntl(nextConfig);
