@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../../styles/global.scss";
 import { geistFont, geistMonoFont } from "../../assets/fonts/config";
-import { NavContainer } from "@/containers/nav/NavContainer";
 import { Header } from "@/components/header/Header";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
@@ -17,6 +16,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { Author } from "next/dist/lib/metadata/types/metadata-types";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
+import { NavContainer } from "@/containers/nav/NavContainer";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale } = await params;
