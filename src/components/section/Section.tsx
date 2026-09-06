@@ -6,7 +6,7 @@ import { useUiState } from "@/hooks/useUiState";
 import { TSectionTheme } from "@/state/state";
 import classNames from "classnames/bind";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
 gsap.registerPlugin(useGSAP); // register the hook to avoid React version discrepancies

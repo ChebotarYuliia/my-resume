@@ -17,34 +17,6 @@ export const getCurtains = () => {
   }
 };
 
-export const usePageAnimationIn = () => {
-  const { uiState, setUIState } = useUiState();
-
-  const animate = () => {
-    if (!uiState.prefersReducedMotion) {
-      const [curtainOne, curtainTwo, curtainThree, curtainFour] = getCurtains();
-
-      if (curtainOne && curtainTwo && curtainThree && curtainFour) {
-        const tl = gsap.timeline();
-
-        tl.set([curtainOne, curtainTwo, curtainThree, curtainFour], {
-          yPercent: 0,
-        }).to([curtainOne, curtainTwo, curtainThree, curtainFour], {
-          yPercent: 100,
-          stagger: 0.1,
-          onComplete: () => {
-            setUIState({ openAnimation: "completed" });
-          },
-        });
-      }
-    } else {
-      setUIState({ openAnimation: "completed" });
-    }
-  };
-
-  return animate;
-};
-
 export const usePageAnimationOut = () => {
   const { uiState, setUIState } = useUiState();
   const [curtainOne, curtainTwo, curtainThree, curtainFour] = getCurtains();

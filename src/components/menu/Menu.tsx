@@ -11,7 +11,6 @@ const c = classNames.bind(s);
 type Props = {
   children: React.ReactNode;
   socials: Array<React.ReactElement<ContactLinkProps>>;
-  onClose?: () => void;
 };
 
 export const Menu = ({ children, socials }: Props) => {
