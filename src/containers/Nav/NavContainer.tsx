@@ -5,26 +5,24 @@ import { Button } from "@/components/Button/Button";
 import { Nav } from "@/components/nav/Nav";
 import { useUiState } from "@/hooks/useUiState";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+
+// Throttle function to limit the rate of function calls
+const throttle = (func: () => void, limit: number) => {
+  let inThrottle: boolean;
+  return () => {
+    if (!inThrottle) {
+      func();
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
 
 export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
   const { setUIState } = useUiState();
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const t = useTranslations("Client");
-
-  const navLinksLocation: { [key: string]: number | null } = {};
-
-  // Throttle function to limit the rate of function calls
-  const throttle = (func: () => void, limit: number) => {
-    let inThrottle: boolean;
-    return () => {
-      if (!inThrottle) {
-        func();
-        inThrottle = true;
-        setTimeout(() => (inThrottle = false), limit);
-      }
-    };
-  };
 
   /*
    * Determine which section the user is viewing, based on their scroll-depth
@@ -32,39 +30,26 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
    * item is currently active
    */
   // Throttle scroll event handler to limit updates to every 200ms
-  const handleScroll = throttle(() => {
-    const scrollY = window.scrollY;
-    Object.keys(navLinks).forEach((section) => {
-      const el = document.getElementById(navLinks[section].to);
-      const sectionHeight = el!.offsetHeight;
-      const sectionTop = el!.offsetTop - 100;
-      const screenHeight = screen.availHeight;
+  const handleScroll = useMemo(
+    () =>
+      throttle(() => {
+        const scrollY = window.scrollY;
+        Object.keys(navLinks).forEach((section) => {
+          const el = document.getElementById(navLinks[section].to);
+          const sectionHeight = el!.offsetHeight;
+          const sectionTop = el!.offsetTop - 100;
+          const screenHeight = screen.availHeight;
 
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        setActiveItem(section);
-      }
-      if (scrollY < screenHeight * 0.9) {
-        setActiveItem(null);
-      }
-    });
-  }, 200);
-
-  /*
-   * Determine where to set AnchorPoints for our Nav
-   */
-  const getAnchorPoints = () => {
-    if (typeof document !== "undefined") {
-      const curScroll = window.scrollY - 50;
-
-      for (const link of Object.keys(navLinks)) {
-        const el = document.getElementById(navLinks[link].to);
-        navLinksLocation[link] = el
-          ? el.getBoundingClientRect().top + curScroll
-          : null;
-      }
-      handleScroll();
-    }
-  };
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            setActiveItem(section);
+          }
+          if (scrollY < screenHeight * 0.9) {
+            setActiveItem(null);
+          }
+        });
+      }, 200),
+    []
+  );
 
   /*
    * We listen to the scroll event in order to update based
@@ -72,12 +57,11 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
    */
   useEffect(() => {
     if (typeof window !== "undefined") {
-      getAnchorPoints();
+      handleScroll();
       window.addEventListener("scrollend", handleScroll);
     }
     return () => window.removeEventListener("scrollend", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [handleScroll]);
 
   const handleClick = (
     event: React.MouseEvent<Element, MouseEvent>,
@@ -97,7 +81,7 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
     <Button
       active={activeItem === key}
       aria-current={activeItem === key ? true : undefined}
-      area-label={`Scroll to ${navLinks[key].label}`}
+      aria-label={`Scroll to ${navLinks[key].label}`}
       onClick={(e) => handleClick(e, key, navLinks[key].to)}
       style={{ "--i": id } as React.CSSProperties}
       tabIndex={0}
