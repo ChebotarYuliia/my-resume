@@ -53,7 +53,7 @@ export default async function Home({
         action={
           <Button
             variant="filled"
-            href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
+            href="/cv/Yuliia_Chebotar_CV_fullstack.pdf"
             target="_blank"
             aria-label={Client.hero_cv_button}
           >
@@ -62,7 +62,7 @@ export default async function Home({
         }
         image={
           <Image
-            src="/hero.webp"
+            src="/hero.jpeg"
             width={900}
             height={400}
             alt={Client.hero_portrait_alt}
@@ -183,7 +183,7 @@ export default async function Home({
         <ContactsLayout
           links={socials.map((link) => (
             <ContactLink
-              key={link.platform}
+              key={`${link.platform}-${link.link}`}
               platform={link.platform as TSocialIcon}
               link={link.link}
             />

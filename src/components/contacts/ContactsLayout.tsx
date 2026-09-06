@@ -24,7 +24,10 @@ export const ContactsLayout = ({ links, title, author }: Props) => {
         </div>
         <ul className={s.contactsLayout__list}>
           {links.map((link, i) => (
-            <li style={{ "--i": i } as CSSProperties} key={link.props.platform}>
+            <li
+              style={{ "--i": i } as CSSProperties}
+              key={`${link.props.platform}-${link.props.link}`}
+            >
               {cloneElement(link, {
                 active: uiState.openAnimation === "completed",
                 tabIndex: 0,

@@ -47,7 +47,7 @@ export default async function RootLayout({ children, params }: Props) {
 
   const socialEls = socials.map((link) => (
     <ContactLink
-      key={link.platform}
+      key={`${link.platform}-${link.link}`}
       platform={link.platform as TSocialIcon}
       link={link.link}
     />
@@ -69,7 +69,7 @@ export default async function RootLayout({ children, params }: Props) {
             action={
               <Button
                 variant="outlined"
-                href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
+                href="/cv/Yuliia_Chebotar_CV_fullstack.pdf"
                 target="_blank"
                 aria-label={Client.download_cv}
               >

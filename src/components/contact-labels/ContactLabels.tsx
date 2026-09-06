@@ -18,7 +18,7 @@ export const SocialLabel = ({ socials }: SocialLabelProps) => {
     <InView className={c(s.contactLabels, "socials")} inClassName={s.inView}>
       <ul className={s.contactLabels__socialsList}>
         {Children.map(socials, (link, i) => (
-          <li key={`social-${link.props.platform}`}>
+          <li key={`social-${link.props.platform}-${link.props.link}`}>
             {cloneElement(link, {
               style: { "--i": i } as CSSProperties,
               tabIndex: 0,

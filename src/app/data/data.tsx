@@ -10,6 +10,10 @@ export const socials = [
     link: "https://github.com/ChebotarYuliia",
   },
   {
+    platform: "github",
+    link: "https://github.com/julezberry",
+  },
+  {
     platform: "linkedin",
     link: "https://www.linkedin.com/in/yuliia-c-421340169/",
   },
@@ -23,10 +27,9 @@ export const socials = [
   },
 ];
 
-export const email = socials.find((s) => s.platform === "gmail")!.link.replace(
-  "mailto:",
-  ""
-);
+export const email = socials
+  .find((s) => s.platform === "gmail")!
+  .link.replace("mailto:", "");
 
 export const expertiseCards: Array<CardProps> = [
   {
@@ -34,6 +37,18 @@ export const expertiseCards: Array<CardProps> = [
     subtitle: "expertise_web_subtitle",
     children: "expertise_web_text",
     icon: <Icon name="web" />,
+  },
+  {
+    title: "expertise_backend_title",
+    subtitle: "expertise_backend_subtitle",
+    children: "expertise_backend_text",
+    icon: <Icon name="idea" />,
+  },
+  {
+    title: "expertise_api_title",
+    subtitle: "expertise_api_subtitle",
+    children: "expertise_api_text",
+    icon: <Icon name="view" />,
   },
   {
     title: "expertise_ui_title",
@@ -53,39 +68,23 @@ export const expertiseCards: Array<CardProps> = [
     children: "expertise_responsive_text",
     icon: <Icon name="pixel" />,
   },
-  {
-    title: "expertise_api_title",
-    subtitle: "expertise_api_subtitle",
-    children: "expertise_api_text",
-    icon: <Icon name="view" />,
-  },
-  {
-    title: "expertise_collaboration_title",
-    subtitle: "expertise_collaboration_subtitle",
-    children: "expertise_collaboration_text",
-    icon: <Icon name="idea" />,
-  },
 ];
 
 export const skills: Array<ProgressBarProps> = [
-  {
-    title: "JavaScript",
-    percentage: 85,
-  },
-  {
-    title: "HTML5",
-    percentage: 90,
-  },
-  {
-    title: "CSS, SASS/SCSS, LESS, CSS Modules",
-    percentage: 90,
-  },
+  // {
+  //   title: "JavaScript",
+  //   percentage: 85,
+  // },
+  // {
+  //   title: "HTML5",
+  //   percentage: 90,
+  // },
   {
     title: "TypeScript",
     percentage: 70,
   },
   {
-    title: "SQL/PostgreSQL",
+    title: "MongoDB / SQL / PostgreSQL",
     percentage: 50,
   },
   {
@@ -97,7 +96,23 @@ export const skills: Array<ProgressBarProps> = [
     percentage: 80,
   },
   {
+    title: "REST APIs: Integration & Development",
+    percentage: 80,
+  },
+  {
+    title: "GraphQL",
+    percentage: 80,
+  },
+  {
+    title: "CSS, SASS/SCSS, LESS, CSS Modules",
+    percentage: 80,
+  },
+  {
     title: "CMS: Prismic, Payload",
+    percentage: 75,
+  },
+  {
+    title: "Third-party Libraries & Services",
     percentage: 75,
   },
   {
@@ -105,11 +120,7 @@ export const skills: Array<ProgressBarProps> = [
     percentage: 84,
   },
   {
-    title: "Webflow",
-    percentage: 50,
-  },
-  {
-    title: "Pagespeed optimization",
+    title: "Pagespeed Optimization",
     percentage: 69,
   },
   {
@@ -121,7 +132,15 @@ export const skills: Array<ProgressBarProps> = [
     percentage: 70,
   },
   {
-    title: "React Native",
+    title: "Vercel",
+    percentage: 75,
+  },
+  {
+    title: "Webflow (basics)",
+    percentage: 50,
+  },
+  {
+    title: "React Native (basics)",
     percentage: 35,
   },
 ];
@@ -133,10 +152,11 @@ export const workPlaces: Array<
     }
 > = [
   {
-    period: "work_freelance_period",
-    children: "work_freelance_text",
-    title: "work_freelance_title",
-    company: "work_freelance_company",
+    period: "work_hxm_period",
+    children: "work_hxm_text",
+    title: "work_hxm_title",
+    company: "work_hxm_company",
+    link: "https://www.hugsmidjan.is/",
     pills: [
       "JavaScript",
       "TypeScript",

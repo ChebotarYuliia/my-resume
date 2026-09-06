@@ -33,8 +33,8 @@ export const Menu = ({ children, socials }: Props) => {
                 cloneElement(social, {
                   active: uiState.isMenuOpen,
                   tabIndex: 0,
-                  key: social.props.platform,
-                })
+                  key: `${social.props.platform}-${social.props.link}`,
+                }),
               )}
             </div>
           )}
