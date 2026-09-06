@@ -4,11 +4,14 @@ import { navLinks } from "@/app/data/nav";
 import { Button } from "@/components/Button/Button";
 import { Nav } from "@/components/nav/Nav";
 import { useUiState } from "@/hooks/useUiState";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 
 export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
   const { setUIState } = useUiState();
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const t = useTranslations("Client");
+
   const navLinksLocation: { [key: string]: number | null } = {};
 
   // Throttle function to limit the rate of function calls
@@ -100,7 +103,7 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
       tabIndex={0}
       key={id}
     >
-      {navLinks[key].label}
+      {t(navLinks[key].label)}
     </Button>
   ));
 

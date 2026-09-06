@@ -8,6 +8,8 @@
 
   overflow: hidden;
 
+  text-transform: capitalize;
+
   @media (min-width: $breakpoint-tablet) {
     padding-block-end: $spacing-md;
     margin-block-end: $spacing-md;

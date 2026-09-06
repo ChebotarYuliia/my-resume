@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 import { ContactLinkProps } from "../contacts/ContactLink";
+import { useTranslations } from "next-intl";
 const c = classNames.bind(s);
 
 type SocialLabelProps = {
@@ -39,12 +40,12 @@ type EmailLabelProps = {
 export const EmailLabel = ({ email }: EmailLabelProps) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   const [copySuccess, setCopySuccess] = useState<string>();
-
+  const t = useTranslations("Client");
   const tooltipId = "copied-tootlip";
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
-    setCopySuccess("Copied!");
+    setCopySuccess(t("copied"));
 
     setTimeout(() => {
       setCopySuccess(undefined);

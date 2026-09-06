@@ -6,6 +6,9 @@ import { MenuToggle } from "../menu/MenuToggle";
 import { useUiState } from "@/hooks/useUiState";
 import classNames from "classnames/bind";
 import { ButtonProps } from "../Button/Button";
+import { useTranslations } from "use-intl";
+import { Locale } from "@/i18n/i18n";
+import Link from "next/link";
 
 const c = classNames.bind(s);
 
@@ -13,14 +16,17 @@ type Props = {
   children: React.ReactNode;
   action?: React.ReactElement<ButtonProps>;
   menu: React.ReactElement;
+  locale: Locale;
 };
 
-export const Header = ({ children, action, menu }: Props) => {
+export const Header = ({ children, action, menu, locale }: Props) => {
+  const t = useTranslations("Client");
   const { uiState, setUIState } = useUiState();
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
     null
   );
   const storedScrollY = useRef(0);
+  const nextLocale = locale === "en" ? "ua" : "en";
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -67,16 +73,18 @@ export const Header = ({ children, action, menu }: Props) => {
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
         <div className={s.header__action}>{action}</div>
+        <Link className={s.header__locale} href={`/${nextLocale}`}>
+          {nextLocale}
+        </Link>
         <button
           className={s.header__menuButton}
           onClick={handleButtonClick}
           type="button"
-          aria-label="menu"
+          aria-label={t("menu")}
         >
           <MenuToggle />
         </button>
       </div>
-
       {menu}
     </div>
   );

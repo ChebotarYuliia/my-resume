@@ -4,6 +4,7 @@ import React, { CSSProperties, ReactNode } from "react";
 import s from "./Card.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
+import { useTranslations } from "next-intl";
 
 const c = classNames.bind(s);
 
@@ -16,6 +17,7 @@ export type CardProps = {
 };
 
 export const Card = ({ icon, title, subtitle, children }: CardProps) => {
+  const t = useTranslations("Client");
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: "-50px 0px",
@@ -31,8 +33,8 @@ export const Card = ({ icon, title, subtitle, children }: CardProps) => {
       <div className={s.card__inner}>
         {icon && <div className={s.card__icon}>{icon}</div>}
         <div className={s.card__content}>
-          <h3 className={s.card__title}>{title}</h3>
-          {subtitle && <p className={s.card__subtitle}>{subtitle}</p>}
+          <h3 className={s.card__title}>{t(`${title}`)}</h3>
+          {subtitle && <p className={s.card__subtitle}>{t(`${subtitle}`)}</p>}
           {children && <p className={s.card__text}>{children}</p>}
         </div>
       </div>
