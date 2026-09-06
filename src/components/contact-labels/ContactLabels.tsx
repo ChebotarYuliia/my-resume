@@ -3,7 +3,7 @@
 import React, { Children, cloneElement, CSSProperties, useState } from "react";
 import s from "./ContactLabels.module.scss";
 import classNames from "classnames/bind";
-import { useInView } from "react-intersection-observer";
+import { InView } from "@/components/in-view/InView";
 import Link from "next/link";
 import { ContactLinkProps } from "../contacts/ContactLink";
 import { useTranslations } from "next-intl";
@@ -14,10 +14,8 @@ type SocialLabelProps = {
 };
 
 export const SocialLabel = ({ socials }: SocialLabelProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
-
   return (
-    <div className={c(s.contactLabels, "socials", { inView })} ref={ref}>
+    <InView className={c(s.contactLabels, "socials")} inClassName={s.inView}>
       <ul className={s.contactLabels__socialsList}>
         {Children.map(socials, (link, i) => (
           <li key={`social-${link.props.platform}`}>
@@ -29,7 +27,7 @@ export const SocialLabel = ({ socials }: SocialLabelProps) => {
           </li>
         ))}
       </ul>
-    </div>
+    </InView>
   );
 };
 
@@ -38,7 +36,6 @@ type EmailLabelProps = {
 };
 
 export const EmailLabel = ({ email }: EmailLabelProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
   const [copySuccess, setCopySuccess] = useState<string>();
   const t = useTranslations("Client");
   const tooltipId = "copied-tootlip";
@@ -53,27 +50,25 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
   };
 
   return (
-    <>
-      <div className={c(s.contactLabels, "email", { inView })} ref={ref}>
-        <div className={s.contactLabels__emailInner}>
-          <Link
-            href={`mailto:${email}`}
-            onClick={copyToClipboard}
-            area-label={"gmail"}
-            aria-describedby={tooltipId}
-          >
-            {email}
-          </Link>
-        </div>
-
-        <span
-          className={c(s.contactLabelsCopy, { active: copySuccess })}
-          role="tooltip"
-          id={tooltipId}
+    <InView className={c(s.contactLabels, "email")} inClassName={s.inView}>
+      <div className={s.contactLabels__emailInner}>
+        <Link
+          href={`mailto:${email}`}
+          onClick={copyToClipboard}
+          aria-label={"gmail"}
+          aria-describedby={tooltipId}
         >
-          {copySuccess ?? ""}
-        </span>
+          {email}
+        </Link>
       </div>
-    </>
+
+      <span
+        className={c(s.contactLabelsCopy, { active: copySuccess })}
+        role="tooltip"
+        id={tooltipId}
+      >
+        {copySuccess ?? ""}
+      </span>
+    </InView>
   );
 };

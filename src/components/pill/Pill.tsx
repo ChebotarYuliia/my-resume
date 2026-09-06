@@ -2,10 +2,7 @@
 
 import React, { CSSProperties } from "react";
 import s from "./Pill.module.scss";
-import classNames from "classnames/bind";
-import { useInView } from "react-intersection-observer";
-
-const c = classNames.bind(s);
+import { InView } from "@/components/in-view/InView";
 
 export type PillProps = {
   children: string;
@@ -13,11 +10,9 @@ export type PillProps = {
 };
 
 export const Pill = ({ children, style }: PillProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
-
   return (
-    <span className={c(s.pill, { inView })} style={style} ref={ref}>
+    <InView as="span" className={s.pill} inClassName={s.inView} style={style}>
       {children}
-    </span>
+    </InView>
   );
 };

@@ -1,14 +1,11 @@
 "use client";
 
 import React, { cloneElement, CSSProperties } from "react";
-import { useInView } from "react-intersection-observer";
-import classNames from "classnames/bind";
+import { InView } from "@/components/in-view/InView";
 
 import s from "./ContactsLayout.module.scss";
 import { useUiState } from "@/hooks/useUiState";
 import { ContactLinkProps } from "./ContactLink";
-
-const c = classNames.bind(s);
 
 type Props = {
   links: Array<React.ReactElement<ContactLinkProps>>;
@@ -18,15 +15,9 @@ type Props = {
 
 export const ContactsLayout = ({ links, title, author }: Props) => {
   const { uiState } = useUiState();
-  const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
-    <div
-      className={c(s.contactsLayout, {
-        inView,
-      })}
-      ref={ref}
-    >
+    <InView className={s.contactsLayout} inClassName={s.inView}>
       <div className={s.contactsLayout__inner}>
         <div className={s.contactsLayout__titleWrapper}>
           <h2 className={s.contactsLayout__title}>{title}</h2>
@@ -43,6 +34,6 @@ export const ContactsLayout = ({ links, title, author }: Props) => {
         </ul>
         <p className={s.contactsLayout__author}>{author}</p>
       </div>
-    </div>
+    </InView>
   );
 };

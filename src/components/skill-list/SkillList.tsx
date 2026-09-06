@@ -3,7 +3,7 @@
 import React, { Children, CSSProperties } from "react";
 import s from "./SkillList.module.scss";
 import classNames from "classnames/bind";
-import { useInView } from "react-intersection-observer";
+import { InView } from "@/components/in-view/InView";
 import { ProgressBarProps } from "../progress-bar/ProgressBar";
 
 const c = classNames.bind(s);
@@ -17,17 +17,11 @@ export type SkillListProps = {
 };
 
 export const SkillList = ({ children, variant }: SkillListProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "-15% 0px",
-  });
-
   return (
-    <div
-      className={c(s.skillList, `variant-${variant}`, {
-        inView,
-      })}
-      ref={ref}
+    <InView
+      className={c(s.skillList, `variant-${variant}`)}
+      inClassName={s.inView}
+      rootMargin="-15% 0px"
     >
       <div className={s.skillList__inner}>
         <ul className={s.skillList__list}>
@@ -42,6 +36,6 @@ export const SkillList = ({ children, variant }: SkillListProps) => {
           ))}
         </ul>
       </div>
-    </div>
+    </InView>
   );
 };

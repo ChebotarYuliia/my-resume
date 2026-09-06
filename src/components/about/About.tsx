@@ -1,11 +1,6 @@
-"use client";
-
 import React from "react";
 import s from "./About.module.scss";
-import classNames from "classnames/bind";
-import { useInView } from "react-intersection-observer";
-
-const c = classNames.bind(s);
+import { InView } from "@/components/in-view/InView";
 
 type Props = {
   children: React.ReactNode;
@@ -13,15 +8,10 @@ type Props = {
 };
 
 export const About = ({ children, features }: Props) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "-20px 0px",
-  });
-
   return (
-    <div className={c(s.about, { inView })} ref={ref}>
+    <InView className={s.about} inClassName={s.inView} rootMargin="-20px 0px">
       {children}
       <div className={s.about__features}>{features}</div>
-    </div>
+    </InView>
   );
 };

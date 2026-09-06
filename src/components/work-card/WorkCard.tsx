@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import s from "./WorkCard.module.scss";
 import classNames from "classnames/bind";
-import { useInView } from "react-intersection-observer";
+import { InView } from "@/components/in-view/InView";
 import { useWindowWidth } from "@/hooks/useWindowWidth";
 import Link from "next/link";
 import { WorkCardContentProps } from "./WorkCardContent";
@@ -16,14 +16,10 @@ export type WorkCardProps = {
 };
 
 export const WorkCard = ({ link, children }: WorkCardProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "-20px 0px",
-  });
   const [hover, setHover] = useState(false);
   const { isTablet } = useWindowWidth();
 
-  const clasNames = c(s.workCard, { inView, link, hover: !isTablet && hover });
+  const rootClassName = c(s.workCard, { link, hover: !isTablet && hover });
 
   const handleMouseEnter = () => {
     setHover(true);
@@ -35,22 +31,24 @@ export const WorkCard = ({ link, children }: WorkCardProps) => {
 
   if (link) {
     return (
-      <Link
-        className={clasNames}
+      <InView
+        as={Link}
+        className={rootClassName}
+        inClassName={s.inView}
+        rootMargin="-20px 0px"
         target="_blank"
         href={link}
-        ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {children}
-      </Link>
+      </InView>
     );
   }
 
   return (
-    <div className={clasNames} ref={ref}>
+    <InView className={rootClassName} inClassName={s.inView} rootMargin="-20px 0px">
       {children}
-    </div>
+    </InView>
   );
 };

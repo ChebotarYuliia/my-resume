@@ -3,12 +3,9 @@
 import React, { CSSProperties, HTMLAttributes } from "react";
 import Link from "next/link";
 import { TSocialIcon, Icon } from "../icon/Icon";
-import { useInView } from "react-intersection-observer";
-import classNames from "classnames/bind";
+import { InView } from "@/components/in-view/InView";
 
 import s from "./ContactLink.module.scss";
-
-const c = classNames.bind(s);
 
 export type ContactLinkProps = {
   platform: TSocialIcon;
@@ -23,20 +20,19 @@ export const ContactLink = ({
   style,
   active = false,
 }: ContactLinkProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
   return (
-    <Link
+    <InView
+      as={Link}
+      className={s.contactLink}
+      inClassName={s.inView}
+      active={active}
       href={link}
-      className={c(s.contactLink, {
-        inView: inView && active,
-      })}
       style={style}
-      ref={ref}
       target="_blank"
-      area-label={platform}
+      aria-label={platform}
       title={platform}
     >
       <Icon name={platform} />
-    </Link>
+    </InView>
   );
 };
