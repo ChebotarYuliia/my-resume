@@ -1,3 +1,5 @@
+@forward "breakpoints.generated";
+
 // LAYOUT
 $grid-column-count: 12;
 $gap-space: 16px;
@@ -33,11 +35,7 @@ $zindex-header: 100;
 $zindex-menu: $zindex-header + 1;
 $zindex-menu-btn: $zindex-header + 2;
 
-// BREAKPOINTS
-$breakpoint-mobile: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
-$breakpoint-wide: 1300px;
+// BREAKPOINTS — see src/styles/breakpoints.ts (single source of truth)
 
 $container-width-narrow: 800px;
 
@@ -76,9 +74,9 @@ $color-olive-500: #7d8f6a; // accent
 $color-olive-300: #f1f3ed; // bg
 // font contrast white
 
-$color-slate-800: #4b4f3f; // font
+$color-slate-800: #263238; // font
 $color-slate-700: #37474f; // bg-contrast
-$color-slate-600: #37474f; // font
+$color-slate-600: #546e7a; // font
 $color-slate-500: #607d8b; // accent
 $color-slate-300: #eceff1; //bg
 // font contrast white

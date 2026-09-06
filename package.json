@@ -9,13 +9,19 @@
     "node": ">=24"
   },
   "scripts": {
+    "generate:breakpoints": "node scripts/generate-breakpoints-scss.mjs",
+    "predev": "yarn generate:breakpoints",
     "dev": "next dev",
+    "prebuild": "yarn generate:breakpoints",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "prestorybook": "yarn generate:breakpoints",
     "storybook": "storybook dev -p 6006",
+    "prebuild-storybook": "yarn generate:breakpoints",
     "build-storybook": "storybook build",
-    "analyze": "cross-env ANALYZE=true next build"
+    "analyze": "cross-env ANALYZE=true next build",
+    "postinstall": "yarn generate:breakpoints"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",

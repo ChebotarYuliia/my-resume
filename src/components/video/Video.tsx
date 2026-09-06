@@ -10,6 +10,7 @@ const c = classNames.bind(s);
 
 type Props = {
   src: string;
+  fallbackSrc?: string;
   width?: number;
   height?: number;
   autoplay?: boolean;
@@ -20,6 +21,7 @@ type Props = {
 
 export const Video = ({
   src,
+  fallbackSrc,
   autoplay,
   poster,
   width,
@@ -86,7 +88,6 @@ export const Video = ({
   return (
     <div className={c(s.video, { isPlaying, paused, inView })} ref={ref}>
       <video
-        src={src}
         autoPlay={autoplay}
         onPause={() => setPaused(true)}
         onPlaying={() => {
@@ -101,7 +102,10 @@ export const Video = ({
         ref={videoRef}
         playsInline={true}
         controls={isTablet ? true : false}
-      />
+      >
+        <source src={src} type="video/webm" />
+        {fallbackSrc && <source src={fallbackSrc} type="video/mp4" />}
+      </video>
       <div
         className={s.video__buttonContainer}
         onClick={handleClick}

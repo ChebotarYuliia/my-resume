@@ -48,7 +48,7 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
           }
         });
       }, 200),
-    []
+    [],
   );
 
   /*
@@ -66,7 +66,7 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
   const handleClick = (
     event: React.MouseEvent<Element, MouseEvent>,
     key: string,
-    id: string
+    id: string,
   ) => {
     event.preventDefault();
     setUIState({ isMenuOpen: false });
