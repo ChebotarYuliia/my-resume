@@ -1,5 +1,5 @@
 import { Icon, SOCIALS, ICONS } from "@/components/icon/Icon";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta = {
   title: "Icon",

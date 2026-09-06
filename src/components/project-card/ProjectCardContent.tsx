@@ -18,8 +18,8 @@ export const ProjectCardContent = ({ title, children, pills }: Props) => {
         </div>
         <div className={s.projectCardContent__pills}>
           {Children.map(pills, (pill, i) =>
-            cloneElement(pill as React.ReactElement, {
-              style: { "--i": i },
+            cloneElement(pill as React.ReactElement<PillProps>, {
+              style: { "--i": i } as React.CSSProperties,
               key: pill?.props.children,
             })
           )}

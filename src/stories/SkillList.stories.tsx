@@ -2,7 +2,7 @@ import { ProgressBar } from "@/components/progress-bar/ProgressBar";
 import { Section } from "@/components/section/Section";
 import { SkillList, SkillListVariant } from "@/components/skill-list/SkillList";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta = {
   title: "SkillList",

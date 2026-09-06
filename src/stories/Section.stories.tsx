@@ -6,7 +6,7 @@ import { Section } from "@/components/section/Section";
 import { Text } from "@/components/text/Text";
 import { Theme } from "@/components/theme/Theme";
 import { SectionTheme, UIStateProvider } from "@/state/state";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta = {
   title: "Section",

@@ -23,6 +23,11 @@ export const socials = [
   },
 ];
 
+export const email = socials.find((s) => s.platform === "gmail")!.link.replace(
+  "mailto:",
+  ""
+);
+
 export const expertiseCards: Array<CardProps> = [
   {
     title: "expertise_web_title",
@@ -199,6 +204,7 @@ export const projects = [
       "Google Map API",
     ],
     media: "/projects/art_center.webm",
+    mediaFallback: "/projects/art_center_mp4.mp4",
   },
   {
     title: "project_music_award_title",
@@ -212,6 +218,7 @@ export const projects = [
       "Spotify API",
     ],
     media: "/projects/music_award.webm",
+    mediaFallback: "/projects/music_award_mp4.mp4",
   },
 ];
 

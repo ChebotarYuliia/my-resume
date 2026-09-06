@@ -16,9 +16,12 @@ export const Nav = ({ children }: Props) => {
     <nav className={s.nav}>
       <div className={s.nav__inner}>
         {childArray.map((item, i) =>
-          cloneElement(item as React.ReactElement, {
-            style: { "--i": i },
-          })
+          cloneElement(
+            item as React.ReactElement<{ style?: React.CSSProperties }>,
+            {
+              style: { "--i": i } as React.CSSProperties,
+            }
+          )
         )}
       </div>
     </nav>

@@ -1,24 +1,28 @@
 import type { Metadata } from "next";
 import "../../styles/global.scss";
 import { geistFont, geistMonoFont } from "../../assets/fonts/config";
-import { NavContainer } from "@/containers/Nav/Nav";
+import { NavContainer } from "@/containers/nav/NavContainer";
 import { Header } from "@/components/header/Header";
 import { ContactLink } from "@/components/contacts/ContactLink";
 import { TSocialIcon } from "@/components/icon/Icon";
-import { socials } from "../data/data";
+import { email, socials } from "../data/data";
 import { Button } from "@/components/Button/Button";
 import {
   EmailLabel,
   SocialLabel,
 } from "@/components/contact-labels/ContactLabels";
 import { Menu } from "@/components/menu/Menu";
-import { Locale } from "@/i18n/i18n";
 import { Providers } from "../providers";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Author } from "next/dist/lib/metadata/types/metadata-types";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale = hasLocale(routing.locales, rawLocale)
+    ? rawLocale
+    : routing.defaultLocale;
   const { Server } = await getMessages({ locale });
 
   return {
@@ -31,11 +35,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export default async function RootLayout({ children, params }: Props) {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale = hasLocale(routing.locales, rawLocale)
+    ? rawLocale
+    : routing.defaultLocale;
   const { Client } = await getMessages({ locale });
 
   const socialEls = socials.map((link) => (
@@ -64,7 +71,7 @@ export default async function RootLayout({ children, params }: Props) {
                 variant="outlined"
                 href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
                 target="_blank"
-                area-label={Client.download_cv}
+                aria-label={Client.download_cv}
               >
                 {Client.resume}
               </Button>
@@ -78,7 +85,7 @@ export default async function RootLayout({ children, params }: Props) {
             <NavContainer />
           </Header>
           <SocialLabel socials={socialEls} />
-          <EmailLabel email={"chebotar609@gmail.com"} />
+          <EmailLabel email={email} />
 
           {children}
         </Providers>

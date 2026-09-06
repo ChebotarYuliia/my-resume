@@ -30,14 +30,18 @@ import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
 import Image from "next/image";
 import { WorkCardContent } from "@/components/work-card/WorkCardContent";
 import { getMessages } from "next-intl/server";
-import { Locale } from "@/i18n/i18n";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 
 export default async function Home({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale = hasLocale(routing.locales, rawLocale)
+    ? rawLocale
+    : routing.defaultLocale;
   const { Client } = await getMessages({ locale });
   return (
     <>
@@ -51,7 +55,7 @@ export default async function Home({
             variant="filled"
             href="/cv/Yuliia_Chebotar_CV_web-dev.pdf"
             target="_blank"
-            area-label={Client.hero_cv_button}
+            aria-label={Client.hero_cv_button}
           >
             {Client.hero_cv_button}
           </Button>
@@ -115,6 +119,7 @@ export default async function Home({
             media={
               <Video
                 src={project.media}
+                fallbackSrc={project.mediaFallback}
                 width={600}
                 height={400}
                 autoplay={false}
