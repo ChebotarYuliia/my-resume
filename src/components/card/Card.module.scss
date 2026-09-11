@@ -7,16 +7,6 @@
 
   z-index: 0;
 
-  @include enterAnimation(
-    $parent: true,
-    $transform: true,
-    $delay: #{calc(var(--i, 0) * #{$animation-delay * 0.5})}
-  );
-
-  @media (prefers-reduced-motion: no-preference) {
-    transform: translateY(15%);
-  }
-
   &::after {
     content: "";
     position: absolute;
@@ -25,6 +15,7 @@
     inset: 1px;
 
     background-color: var(--color-background-secondary);
+    opacity: 0.05;
   }
 
   &__icon {
@@ -43,7 +34,7 @@
     }
 
     @media (min-width: $breakpoint-desktop) {
-      opacity: 0.5;
+      opacity: 1;
     }
   }
 

@@ -8,10 +8,18 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 export type OpenAnimationState = "active" | "completed";
 export type HeroAnimationState = "initial" | "completed";
-export const SectionTheme = ["default", "primary", "slate", "olive"] as const;
+export const SectionTheme = [
+  "default",
+  "primary",
+  "slate",
+  "olive",
+  "teal",
+  "clay",
+] as const;
 export type TSectionTheme = (typeof SectionTheme)[number];
 
 type UIStateProps = {
@@ -76,6 +84,7 @@ export const UIStateProvider = ({
     document.documentElement.classList[prevent ? "add" : "remove"](
       htmlClassName
     );
+    ScrollSmoother.get()?.paused(prevent);
   }, []);
 
   useEffect(() => {

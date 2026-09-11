@@ -48,7 +48,7 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
       const textTypingOpts = (
         value: string,
         duration?: number,
-        ease?: string
+        ease?: string,
       ) => {
         return {
           text: {
@@ -70,7 +70,7 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
         });
       }
     },
-    [inView, name, uiState, setUIState]
+    [inView, name, uiState, setUIState],
   );
 
   useEffect(() => {
@@ -122,7 +122,7 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
           </div>
         </div>
 
-        <div className={s.hero__imageWrap}>
+        <div className={s.hero__imageWrap} data-speed="0.9">
           {cloneElement(image, {
             onLoad: () => setImageLoaded(true),
             className: s.hero__image,

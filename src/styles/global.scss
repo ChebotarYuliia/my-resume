@@ -38,8 +38,6 @@
   --container-width-narrow: #{$container-width-narrow};
 
   // THEMES
-  --color-teal-500: #{$color-teal-500};
-
   --color-primary-700: #{$color-primary-700};
   --color-primary-600: #{$color-primary-600};
   --color-primary-500: #{$color-primary-500};
@@ -56,6 +54,16 @@
   --color-slate-600: #{$color-slate-600};
   --color-slate-500: #{$color-slate-500};
   --color-slate-300: #{$color-slate-300};
+
+  --color-teal-800: #{$color-teal-800};
+  --color-teal-700: #{$color-teal-700};
+  --color-teal-500: #{$color-teal-500};
+  --color-teal-300: #{$color-teal-300};
+
+  --color-clay-800: #{$color-clay-800};
+  --color-clay-700: #{$color-clay-700};
+  --color-clay-500: #{$color-clay-500};
+  --color-clay-300: #{$color-clay-300};
 
   body[data-theme="dark"] {
     --color-primary: #{$color-tertiary};
@@ -82,7 +90,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-gutter: stable;
 
   @mixin html-overflow-hidden {
@@ -113,22 +120,16 @@ body {
 
   transition: background-color 0.3s ease, color 0.3s ease;
 
-  .cursor-sparkle {
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: -4px;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 1;
+}
 
-    &:after {
-      content: "";
-      position: absolute;
-      left: -4px;
-      top: 5px;
-      width: 0;
-      height: 0;
-    }
-  }
+// GSAP ScrollSmoother's required wrapper structure — see src/hooks/useScrollSmoother.ts
+#smooth-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+#smooth-content {
+  overflow: visible;
+  inline-size: 100%;
 }

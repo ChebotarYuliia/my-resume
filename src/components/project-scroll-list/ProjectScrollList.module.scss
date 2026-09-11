@@ -1,0 +1,128 @@
+@use "../../styles/config.scss" as *;
+
+.projectScrollList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+    align-items: stretch;
+    gap: $spacing-lg;
+
+    max-block-size: calc(var(--viewport-height) - var(--header-height));
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex: 1;
+      min-inline-size: 0;
+
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+
+  &__item {
+    @include enterAnimation($transform: true, $parent: true);
+
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    padding-block: $spacing-sm;
+    border-block-start: 1px solid var(--color-border);
+
+    &:last-child {
+      border-block-end: 1px solid var(--color-border);
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      @include enterAnimation($transform: true, $opacityTo: 0.5, $parent: true);
+
+      &.isActive {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+
+    color: var(--color-accent);
+  }
+
+  &__mediaMobile {
+    inline-size: 100%;
+    aspect-ratio: 570/250;
+
+    overflow: hidden;
+
+    @media (min-width: $breakpoint-tablet) {
+      display: none;
+    }
+  }
+
+  &__textWrap {
+    padding: $spacing-sm;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-background-secondary);
+    }
+  }
+
+  &__text {
+    font-size: 0.9em;
+    color: var(--color-font-contrast);
+  }
+
+  &__pills {
+    --pill-color: var(--color-font-contrast);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xxs;
+  }
+
+  &__mediaPanel {
+    display: none;
+
+    @media (min-width: $breakpoint-tablet) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      flex: 1;
+      min-inline-size: 0;
+
+      aspect-ratio: 570/250;
+      align-self: center;
+      background-color: var(--color-background);
+    }
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    transition: opacity $duration-base $default-ease;
+
+    &.isActive {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+}

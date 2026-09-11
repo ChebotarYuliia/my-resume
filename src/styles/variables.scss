@@ -58,10 +58,7 @@ $color-tertiary: #f8f8f8;
 
 $color-paper: #f2efea;
 
-// TODO work on it
 // THEMES
-$color-teal-500: #5a8f7b;
-
 $color-primary-700: #1a1c20; // bg
 $color-primary-600: #2e3440; // bg-contrast
 $color-primary-500: #5e81ac; // accent
@@ -81,6 +78,18 @@ $color-slate-500: #607d8b; // accent
 $color-slate-300: #eceff1; //bg
 // font contrast white
 
+$color-teal-800: #1f2e28; // font
+$color-teal-700: #2c3f37; // bg-contrast
+$color-teal-500: #5a8f7b; // accent
+$color-teal-300: #eef3f0; // bg
+// font contrast white
+
+$color-clay-800: #4a2e22; // font
+$color-clay-700: #6b4433; // bg-contrast
+$color-clay-500: #c1694f; // accent
+$color-clay-300: #f5e9e2; // bg
+// font contrast white
+
 $color-white: #fff;
 $color-black: #000;
 
@@ -93,3 +102,11 @@ $color-border: $color-secondary;
 $border-radius: 20px;
 
 $button-height: 40px;
+
+// MOTION
+$ease-out: cubic-bezier(0.25, 1, 0.5, 1); // ~ GSAP power4.out
+$ease-inOut: cubic-bezier(0.65, 0, 0.35, 1); // ~ GSAP power3.inOut
+
+$duration-fast: 300ms;
+$duration-base: 600ms;
+$duration-slow: 1000ms;

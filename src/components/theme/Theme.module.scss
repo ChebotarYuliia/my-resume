@@ -34,6 +34,14 @@
       --__color-background: var(--color-slate-300);
     }
 
+    &:where(.teal) {
+      --__color-background: var(--color-teal-300);
+    }
+
+    &:where(.clay) {
+      --__color-background: var(--color-clay-300);
+    }
+
     &.active {
       // z-index: 1;
       opacity: 1;

@@ -36,6 +36,16 @@ export const Theme = () => {
         color = "var(--color-slate-600)";
         bgSecondary = "var(--color-slate-700)";
         break;
+      case "teal":
+        accent = "var(--color-teal-500)";
+        color = "var(--color-teal-800)";
+        bgSecondary = "var(--color-teal-700)";
+        break;
+      case "clay":
+        accent = "var(--color-clay-500)";
+        color = "var(--color-clay-800)";
+        bgSecondary = "var(--color-clay-700)";
+        break;
     }
 
     return { color, colorContrast, accent, bgSecondary };
