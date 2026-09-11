@@ -1,86 +1,62 @@
 "use client";
 
-import { useEffect } from "react";
-
-// current section theme accent color;
-const randomColor = () => {
-  return "var(--section-color-accent)";
-};
-
-// 50 = spread of particles
-// 5 = size of particles
-const styleSparkle = (
-  elem: HTMLDivElement,
-  e: MouseEvent,
-  i: number
-): HTMLDivElement => {
-  const j = (1 - i) * 50;
-  const size = Math.ceil(Math.random() * 5 * i) + "px";
-
-  // 2 = effevescence
-  elem.style.top = e.pageY + Math.round(Math.random() * j - j / 2) + "px";
-  elem.style.left = e.pageX + Math.round(Math.random() * j - j / 2) + "px";
-
-  elem.style.width = size;
-  elem.style.height = size;
-  elem.style.borderRadius = size;
-
-  // colour of particles
-  elem.style.backgroundColor = randomColor();
-
-  return elem;
-};
-
-const trailAnimation = (
-  e: MouseEvent,
-  i: number,
-  callbackFn?: (el: HTMLDivElement) => HTMLDivElement
-) => {
-  let elem = document.createElement("div");
-
-  elem = styleSparkle(elem, e, i);
-
-  if (typeof callbackFn == "function") {
-    elem = callbackFn(elem);
-  }
-
-  elem.classList.add("cursor-sparkle");
-
-  document.body.appendChild(elem);
-
-  // 500 = lifespan of particles
-  const lifespan = Math.round(Math.random() * i * 500);
-
-  setTimeout(function () {
-    document.body.removeChild(elem);
-  }, lifespan);
-};
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useUiState } from "@/hooks/useUiState";
+import s from "@/components/cursor/Cursor.module.scss";
 
 export const useCursor = () => {
-  // bubbles in array
-  const trailArr = [1, 0.5];
-
-  const mouseMoveHandler = (e: MouseEvent) => {
-    trailArr.forEach((i) => {
-      trailAnimation(e, i);
-    });
-
-    trailArr.forEach((i) => {
-      trailAnimation(e, i, (elem) => {
-        elem.style.animation = "fallingCursorSparkles 1s";
-
-        return elem;
-      });
-    });
-  };
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const { uiState } = useUiState();
+  const { prefersReducedMotion } = uiState;
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("mousemove", mouseMoveHandler);
+    const cursor = cursorRef.current;
+
+    if (!cursor || prefersReducedMotion) {
+      return;
     }
-    return () => {
-      window.removeEventListener("mousemove", mouseMoveHandler);
+
+    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+
+    const quickX = gsap.quickTo(cursor, "x", {
+      duration: 0.5,
+      ease: "power3",
+    });
+    const quickY = gsap.quickTo(cursor, "y", {
+      duration: 0.5,
+      ease: "power3",
+    });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      quickX(e.clientX);
+      quickY(e.clientY);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    // matches [data-cursor-hover] on Button/ContactLink/hoverable list items —
+    // same $transition-duration/$default-ease Button's own hover fill uses
+    const handleMouseOver = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).closest("[data-cursor-hover]")) {
+        cursor.classList.add(s.isHovering);
+      }
+    };
+
+    const handleMouseOut = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).closest("[data-cursor-hover]")) {
+        cursor.classList.remove(s.isHovering);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseout", handleMouseOut);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mouseout", handleMouseOut);
+    };
+  }, [prefersReducedMotion]);
+
+  return cursorRef;
 };

@@ -1,23 +1,16 @@
-$default-ease: ease;
-$transition-duration: 300ms;
-$animation-duration: 500ms;
-$animation-delay: 100ms;
+@use "variables" as *;
 
-@keyframes fallingCursorSparkles {
-  from {
-    transform: translateY(0);
-  }
-  /* 50 = falling distance */
-  to {
-    transform: translateY(50px);
-  }
-}
+$default-ease: #{$ease-out};
+$transition-duration: #{$duration-fast};
+$animation-duration: #{$duration-base};
+$animation-delay: 100ms;
 
 @mixin enterAnimation(
   $className: ".inView",
   $parent: false,
   $transform: true,
-  $delay: ""
+  $delay: "",
+  $opacityTo: 1
 ) {
   opacity: 0;
   transition: opacity $transition-duration $default-ease;
@@ -28,7 +21,7 @@ $animation-delay: 100ms;
 
   @if $parent {
     &#{$className} {
-      opacity: 1;
+      opacity: #{$opacityTo};
       transition-delay: #{$delay};
 
       @if $transform {
@@ -37,7 +30,7 @@ $animation-delay: 100ms;
     }
   } @else {
     #{$className} & {
-      opacity: 1;
+      opacity: #{$opacityTo};
       transition-delay: #{$delay};
 
       @if $transform {

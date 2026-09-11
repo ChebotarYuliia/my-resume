@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import s from "./Header.module.scss";
 import { MenuToggle } from "../menu/MenuToggle";
 import { useUiState } from "@/hooks/useUiState";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 import classNames from "classnames/bind";
 import { ButtonProps } from "../Button/Button";
 import { useTranslations } from "use-intl";
@@ -19,16 +20,10 @@ type Props = {
   locale: Locale;
 };
 
-const getInitialScrollY = () =>
-  typeof window === "undefined" ? 0 : window.scrollY;
-
 export const Header = ({ children, action, menu, locale }: Props) => {
   const t = useTranslations("Client");
   const { uiState, setUIState } = useUiState();
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
-    () => (getInitialScrollY() <= 100 ? null : "down")
-  );
-  const storedScrollY = useRef(getInitialScrollY());
+  const scrollDirection = useScrollDirection();
   const nextLocale = locale === "en" ? "ua" : "en";
 
   useEffect(() => {
@@ -39,26 +34,6 @@ export const Header = ({ children, action, menu, locale }: Props) => {
       );
     }
   }, [uiState.isMenuOpen]);
-
-  const handleScroll = useCallback(() => {
-    const position = window.scrollY;
-
-    if (position <= 100) {
-      setScrollDirection(null);
-    } else {
-      setScrollDirection(storedScrollY.current >= position ? "up" : "down");
-    }
-
-    storedScrollY.current = position;
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
 
   const handleButtonClick = () => {
     setUIState({ isMenuOpen: !uiState.isMenuOpen });

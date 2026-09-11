@@ -29,7 +29,9 @@
   }
 
   &.scrollingDown {
-    transform: translateY(-100%);
+    @media (min-width: $breakpoint-tablet) {
+      transform: translateY(-100%);
+    }
   }
 
   &__inner {

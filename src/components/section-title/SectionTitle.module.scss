@@ -1,6 +1,9 @@
 @use "../../styles/config.scss" as *;
 
 .sectionTitle {
+  position: relative;
+  z-index: 0;
+
   font-size: clamp($font-size-min, 6vw, $font-size-lg * 1.5);
   font-weight: 700;
   font-family: var(--font-family-heading);

@@ -31,6 +31,7 @@ export const ContactLink = ({
       target="_blank"
       aria-label={platform}
       title={platform}
+      data-cursor-hover=""
     >
       <Icon name={platform} />
     </InView>

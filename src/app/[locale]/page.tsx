@@ -21,9 +21,7 @@ import { SectionTitle } from "@/components/section-title/SectionTitle";
 import { Button } from "@/components/Button/Button";
 import { WorkCard } from "@/components/work-card/WorkCard";
 import { Pill } from "@/components/pill/Pill";
-import { ProjectCard } from "@/components/project-card/ProjectCard";
-import { ProjectCardContent } from "@/components/project-card/ProjectCardContent";
-import { Video } from "@/components/video/Video";
+import { ProjectScrollList } from "@/components/project-scroll-list/ProjectScrollList";
 import { About } from "@/components/about/About";
 import { Text } from "@/components/text/Text";
 import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
@@ -72,7 +70,7 @@ export default async function Home({
       />
 
       {/* Expertise section */}
-      <Section id={navLinks.expertise.to}>
+      <Section id={navLinks.expertise.to} theme="teal">
         <SectionTitle>{Client.section_expertise}</SectionTitle>
         <Grid>
           {expertiseCards.map(({ children, ...rest }, id) => (
@@ -84,7 +82,7 @@ export default async function Home({
       </Section>
 
       {/* Skills section */}
-      <Section fullHeight id={navLinks.skills.to}>
+      <Section fullHeight id={navLinks.skills.to} theme="clay">
         <SectionTitle>{Client.section_technologies}</SectionTitle>
         <SkillListLayout>
           <SkillList variant="compact">
@@ -101,12 +99,16 @@ export default async function Home({
         {workPlaces.map(({ pills, ...props }) => (
           <WorkCard link={props.link} key={`${props.title}-${props.period}`}>
             <WorkCardContent
-              locale={locale}
               pills={pills.map((pill) => (
                 <Pill key={`pill-${props.title}`}>{pill}</Pill>
               ))}
-              {...props}
-            />
+              period={Client[props.period]}
+              title={Client[props.title]}
+              company={Client[props.company]}
+              link={props.link}
+            >
+              {Client[`${props.children}`]}
+            </WorkCardContent>
           </WorkCard>
         ))}
       </Section>
@@ -114,30 +116,15 @@ export default async function Home({
       {/* Projects section */}
       <Section id={navLinks.projects.to} theme="slate">
         <SectionTitle>{Client.section_projects}</SectionTitle>
-        {projects.map((project) => (
-          <ProjectCard
-            media={
-              <Video
-                src={project.media}
-                fallbackSrc={project.mediaFallback}
-                width={600}
-                height={400}
-                autoplay={false}
-                loop={true}
-              />
-            }
-            key={project.title}
-          >
-            <ProjectCardContent
-              title={Client[project.title]}
-              pills={project.pills.map((pill) => (
-                <Pill key={pill}>{pill}</Pill>
-              ))}
-            >
-              {Client[project.text]}
-            </ProjectCardContent>
-          </ProjectCard>
-        ))}
+        <ProjectScrollList
+          items={projects.map((project) => ({
+            title: Client[project.title],
+            text: Client[project.text],
+            pills: project.pills.map((pill) => <Pill key={pill}>{pill}</Pill>),
+            media: project.media,
+            mediaFallback: project.mediaFallback,
+          }))}
+        />
       </Section>
 
       {/* About me section */}

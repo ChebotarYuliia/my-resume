@@ -17,6 +17,7 @@ import { Author } from "next/dist/lib/metadata/types/metadata-types";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { NavContainer } from "@/containers/nav/NavContainer";
+import { Cursor } from "@/components/cursor/Cursor";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale } = await params;
@@ -64,6 +65,7 @@ export default async function RootLayout({ children, params }: Props) {
     >
       <body id="body">
         <Providers locale={locale} messages={{ Client }}>
+          <Cursor />
           <Header
             locale={locale}
             action={

@@ -1,7 +1,7 @@
 "use client";
 
-import { useCursor } from "@/hooks/useCursor";
 import { useUiState } from "@/hooks/useUiState";
+import { useScrollSmoother } from "@/hooks/useScrollSmoother";
 import { useEffect } from "react";
 
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -11,7 +11,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
     setUIState({ openAnimation: "completed" });
   }, [setUIState]);
 
-  useCursor();
+  useScrollSmoother();
 
-  return children;
+  return (
+    <div id="smooth-wrapper">
+      <div id="smooth-content">{children}</div>
+    </div>
+  );
 }

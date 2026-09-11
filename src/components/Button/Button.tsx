@@ -1,8 +1,8 @@
 "use client";
-import React, { MouseEvent, useCallback, useState } from "react";
+import React, { MouseEvent, useCallback, useRef, useState } from "react";
 import s from "./Button.module.scss";
 import classNames from "classnames/bind";
-import { TransitionLink } from "../transition-link/TransitionLink";
+import { useMagnetic } from "@/hooks/useMagnetic";
 
 const c = classNames.bind(s);
 
@@ -11,7 +11,6 @@ export type ButtonVariantType = (typeof ButtonVariant)[number];
 
 export type ButtonProps = {
   children: React.ReactNode;
-  to?: string;
   onClick?: (e: MouseEvent) => void;
   className?: string;
   animated?: boolean;
@@ -24,7 +23,6 @@ export const Button = ({
   children,
   className,
   onClick,
-  to,
   animated,
   active,
   disabled,
@@ -33,6 +31,11 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const [hovered, setHovered] = useState(false);
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useMagnetic(linkRef);
+  useMagnetic(buttonRef);
 
   const classNames = c(s.button, className, `variant-${variant}`, {
     hovered,
@@ -45,20 +48,6 @@ export const Button = ({
 
   const handleMouseLeave = useCallback(() => setHovered(false), []);
 
-  // used for cool interpage transition
-  if (to) {
-    return (
-      <TransitionLink
-        to={to}
-        className={classNames}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-      >
-        {children}
-      </TransitionLink>
-    );
-  }
   if (href) {
     return (
       <a
@@ -66,6 +55,10 @@ export const Button = ({
         type="button"
         aria-disabled={disabled}
         href={href}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={linkRef}
+        data-cursor-hover=""
         {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
@@ -81,6 +74,8 @@ export const Button = ({
       type="button"
       disabled={disabled}
       aria-disabled={disabled}
+      ref={buttonRef}
+      data-cursor-hover=""
       {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
