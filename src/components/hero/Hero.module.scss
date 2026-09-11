@@ -14,7 +14,12 @@
   }
 
   &.animationCompleted {
-    @include enterAnimation($parent: true, $transform: true);
+    @include enterAnimation(
+      $parent: true,
+      $transform: true,
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
 
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(10%);
@@ -100,10 +105,12 @@
       $parent: false,
       $className: ".animationCompleted",
       $delay: #{$animation-delay},
-      $transform: true
+      $transform: true,
+      $ease: $ease-playful,
+      $duration: $duration-base
     );
     @media (prefers-reduced-motion: no-preference) {
-      transform: translateY(10%);
+      transform: translateY(10%) rotate(-1deg);
     }
   }
 
@@ -123,11 +130,13 @@
       $parent: false,
       $transform: true,
       $className: ".animationCompleted",
-      $delay: #{calc(2 * $animation-delay)}
+      $delay: #{calc(2 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
     );
 
     @media (prefers-reduced-motion: no-preference) {
-      transform: translateY(100%);
+      transform: translateY(40%);
     }
   }
 
@@ -138,11 +147,13 @@
       $parent: false,
       $transform: true,
       $className: ".animationCompleted",
-      $delay: #{calc(3 * $animation-delay)}
+      $delay: #{calc(3 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
     );
 
     @media (prefers-reduced-motion: no-preference) {
-      transform: translateY(100%);
+      transform: translateY(40%) scale(0.9);
     }
   }
 
@@ -161,8 +172,14 @@
     @include enterAnimation(
       $parent: false,
       $className: ".imageLoaded",
-      $delay: #{$animation-delay}
+      $delay: #{$animation-delay},
+      $ease: $ease-playful,
+      $duration: $duration-base
     );
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(0.9) rotate(-3deg);
+    }
 
     object-fit: cover;
     inline-size: 100%;

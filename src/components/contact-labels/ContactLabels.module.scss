@@ -4,7 +4,6 @@
   --color: var(--section-color-font);
   --stick-height: 120px;
 
-  @include enterAnimation($parent: true, $transform: true);
   transform: translateY(50%);
 
   position: fixed;
@@ -18,10 +17,26 @@
   }
 
   &.socials {
+    @include enterAnimation(
+      $parent: true,
+      $transform: true,
+      $delay: #{calc(4 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
     inset-inline-start: 35px;
   }
 
   &.email {
+    @include enterAnimation(
+      $parent: true,
+      $transform: true,
+      $delay: #{calc(5 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
     inset-inline-end: 0;
     inset-block-end: auto;
     inset-block-start: 35px;

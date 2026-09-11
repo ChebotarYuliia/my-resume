@@ -106,6 +106,7 @@ $button-height: 40px;
 // MOTION
 $ease-out: cubic-bezier(0.25, 1, 0.5, 1); // ~ GSAP power4.out
 $ease-inOut: cubic-bezier(0.65, 0, 0.35, 1); // ~ GSAP power3.inOut
+$ease-playful: cubic-bezier(0.34, 1.56, 0.64, 1); // ~ GSAP back.out(1.7)
 
 $duration-fast: 300ms;
 $duration-base: 600ms;

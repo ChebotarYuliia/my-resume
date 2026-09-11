@@ -10,10 +10,12 @@ $animation-delay: 100ms;
   $parent: false,
   $transform: true,
   $delay: "",
-  $opacityTo: 1
+  $opacityTo: 1,
+  $ease: $default-ease,
+  $duration: $transition-duration
 ) {
   opacity: 0;
-  transition: opacity $transition-duration $default-ease;
+  transition: opacity $duration $ease;
 
   @if $transform {
     transition-property: opacity, transform;

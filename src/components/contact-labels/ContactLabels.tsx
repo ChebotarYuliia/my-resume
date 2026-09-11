@@ -7,6 +7,7 @@ import { InView } from "@/components/in-view/InView";
 import Link from "next/link";
 import { ContactLinkProps } from "../contacts/ContactLink";
 import { useTranslations } from "next-intl";
+import { useUiState } from "@/hooks/useUiState";
 const c = classNames.bind(s);
 
 type SocialLabelProps = {
@@ -14,15 +15,22 @@ type SocialLabelProps = {
 };
 
 export const SocialLabel = ({ socials }: SocialLabelProps) => {
+  const { uiState } = useUiState();
+  const heroReady = uiState.heroEnterAnimation === "completed";
+
   return (
-    <InView className={c(s.contactLabels, "socials")} inClassName={s.inView}>
+    <InView
+      className={c(s.contactLabels, "socials")}
+      inClassName={s.inView}
+      active={heroReady}
+    >
       <ul className={s.contactLabels__socialsList}>
         {Children.map(socials, (link, i) => (
           <li key={`social-${link.props.platform}-${link.props.link}`}>
             {cloneElement(link, {
               style: { "--i": i } as CSSProperties,
               tabIndex: 0,
-              active: true,
+              active: heroReady,
             })}
           </li>
         ))}
@@ -39,6 +47,8 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
   const [copySuccess, setCopySuccess] = useState<string>();
   const t = useTranslations("Client");
   const tooltipId = "copied-tootlip";
+  const { uiState } = useUiState();
+  const heroReady = uiState.heroEnterAnimation === "completed";
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
@@ -50,7 +60,11 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
   };
 
   return (
-    <InView className={c(s.contactLabels, "email")} inClassName={s.inView}>
+    <InView
+      className={c(s.contactLabels, "email")}
+      inClassName={s.inView}
+      active={heroReady}
+    >
       <div className={s.contactLabels__emailInner}>
         <Link
           href={`mailto:${email}`}

@@ -16,5 +16,18 @@
     flex-wrap: wrap;
 
     gap: clamp($spacing-xs, 2vw, $spacing-sm);
+
+    > * {
+      @include enterAnimation(
+        $className: ".heroReady",
+        $delay: #{calc((6 * $animation-delay) + (var(--i, 0) * $animation-delay))},
+        $ease: $ease-playful,
+        $duration: $duration-base
+      );
+
+      @media (prefers-reduced-motion: no-preference) {
+        transform: translateY(-50%) scale(0.9);
+      }
+    }
   }
 }

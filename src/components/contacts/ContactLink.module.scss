@@ -13,8 +13,10 @@
   @include enterAnimation(
     $parent: true,
     $transform: true,
-    $delay: #{calc(var(--i, 0) * #{$animation-delay})}
+    $delay: #{calc(var(--i, 0) * (#{$animation-delay * 1.5}))}
   );
+
+  transform: scale(0.5);
 
   @media (prefers-reduced-motion: no-preference) {
     transform: scale(0);
