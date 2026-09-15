@@ -22,8 +22,11 @@
     "section_experience": "Де мені вдалося попрацювати",
     "section_projects": "Дещо, що я побудувала",
     "section_about": "І ще трохи про мене",
-    "section_contact": "Будемо на зв’язку",
+    "section_contact": "Контакти",
     "build_by": "Спроектовано & Зроблено Юлією Чеботарь",
+
+    "footer_socials_title": "Соцмережі",
+    "footer_title": "the end",
 
     "expertise_web_title": "Веб-розробка",
     "expertise_web_subtitle": "Сучасні вебзастосунки від архітектури до production",
@@ -77,7 +80,9 @@
 
     "drink_coffee": "пити каву з чудовим видом",
     "breathtaking_moments": "закарбовувати неймовірні миті",
-    "appreciate_beauty": "та цінувати красу."
+    "appreciate_beauty": "та цінувати красу.",
+
+    "get_to_know_me": "Давай знайомитися ближче"
 
   },
   "Server": {

@@ -243,7 +243,12 @@ export const projects = [
 ];
 
 export const aboutList = [
-  "drink_coffee",
-  "breathtaking_moments",
-  "appreciate_beauty",
+  // { src: "drink_coffee", width: 960, height: 1280 },
+  { src: "breathtaking_moments", width: 960, height: 1280 },
+  { src: "take_pics", width: 3360, height: 2240 },
+  { src: "appreciate_beauty", width: 960, height: 1280 },
+  { src: "eat_with_a_view", width: 1536, height: 2048 },
+  { src: "plant_parent", width: 666, height: 1182 },
+  { src: "discover_things", width: 3213, height: 5712 },
+  { src: "play_music", width: 1002, height: 1326 },
 ];

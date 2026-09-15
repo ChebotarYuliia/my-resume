@@ -10,6 +10,7 @@ import {
   EmailLabel,
   SocialLabel,
 } from "@/components/contact-labels/ContactLabels";
+import { Footer } from "@/components/footer/Footer";
 import { Menu } from "@/components/menu/Menu";
 import { Providers } from "../providers";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -88,6 +89,7 @@ export default async function RootLayout({ children, params }: Props) {
           </Header>
           <SocialLabel socials={socialEls} />
           <EmailLabel email={email} />
+          <Footer socials={socials} email={email} />
 
           {children}
         </Providers>

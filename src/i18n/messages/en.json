@@ -22,8 +22,11 @@
     "section_experience": "Where I’ve Worked",
     "section_projects": "Some Things I’ve Built",
     "section_about": "About me",
-    "section_contact": "Get In Touch",
+    "section_contact": "Contact",
     "build_by": "Designed & Built by Yuliia Chebotar",
+
+    "footer_socials_title": "Socials",
+    "footer_title": "the end",
 
     "expertise_web_title": "Web Development",
     "expertise_web_subtitle": "Modern web applications from architecture to production",
@@ -77,7 +80,9 @@
 
     "drink_coffee": "drink coffee with a view",
     "breathtaking_moments": "framing breathtaking moments",
-    "appreciate_beauty": "and appreciate the beauty."
+    "appreciate_beauty": "and appreciate the beauty.",
+
+    "get_to_know_me": "Get to know me"
   },
   "Server": {
     "meta_title": "Yuliia Chebotar: Resume",

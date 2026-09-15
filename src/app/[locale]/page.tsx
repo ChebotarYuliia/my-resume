@@ -5,15 +5,11 @@ import {
   expertiseCards,
   projects,
   skills,
-  socials,
   workPlaces,
 } from "../data/data";
 import { Card } from "@/components/card/Card";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
 import { SkillList } from "@/components/skill-list/SkillList";
-import { ContactsLayout } from "@/components/contacts/ContactsLayout";
-import { ContactLink } from "@/components/contacts/ContactLink";
-import { TSocialIcon } from "@/components/icon/Icon";
 import { navLinks } from "../data/nav";
 import { Section } from "@/components/section/Section";
 import { Theme } from "@/components/theme/Theme";
@@ -24,7 +20,7 @@ import { Pill } from "@/components/pill/Pill";
 import { ProjectScrollList } from "@/components/project-scroll-list/ProjectScrollList";
 import { About } from "@/components/about/About";
 import { Text } from "@/components/text/Text";
-import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
+import { CardsTrail } from "@/components/cards-trail/CardsTrail";
 import Image from "next/image";
 import { WorkCardContent } from "@/components/work-card/WorkCardContent";
 import { getMessages } from "next-intl/server";
@@ -130,7 +126,7 @@ export default async function Home({
       {/* About me section */}
       <Section fullHeight id={navLinks.about.to} theme={"primary"}>
         <SectionTitle>{Client.section_about}</SectionTitle>
-        <About
+        {/* <About
           features={
             <ScrollBlocks
               list={aboutList}
@@ -162,22 +158,16 @@ export default async function Home({
           <Text>
             <p dangerouslySetInnerHTML={{ __html: Client.about_beyond_code }} />
           </Text>
-        </About>
-      </Section>
+        </About> */}
+        <Text>
+          <p dangerouslySetInnerHTML={{ __html: Client.about_main_text }} />
+        </Text>
 
-      {/* Contacts section */}
-      <Section theme={"primary"}>
-        <ContactsLayout
-          links={socials.map((link) => (
-            <ContactLink
-              key={`${link.platform}-${link.link}`}
-              platform={link.platform as TSocialIcon}
-              link={link.link}
-            />
-          ))}
-          title={Client.section_contact}
-          author={Client.build_by}
-        ></ContactsLayout>
+        <CardsTrail
+          title={Client.get_to_know_me}
+          items={aboutList}
+          alt={Client.about_picture_alt}
+        />
       </Section>
     </>
   );
