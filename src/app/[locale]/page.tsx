@@ -18,7 +18,6 @@ import { Button } from "@/components/Button/Button";
 import { WorkCard } from "@/components/work-card/WorkCard";
 import { Pill } from "@/components/pill/Pill";
 import { ProjectScrollList } from "@/components/project-scroll-list/ProjectScrollList";
-import { About } from "@/components/about/About";
 import { Text } from "@/components/text/Text";
 import { CardsTrail } from "@/components/cards-trail/CardsTrail";
 import Image from "next/image";
@@ -159,7 +158,7 @@ export default async function Home({
             <p dangerouslySetInnerHTML={{ __html: Client.about_beyond_code }} />
           </Text>
         </About> */}
-        <Text>
+        <Text featured>
           <p dangerouslySetInnerHTML={{ __html: Client.about_main_text }} />
         </Text>
 

@@ -10,6 +10,10 @@
   flex-direction: column;
   gap: $spacing;
 
+  @media (max-width: $breakpoint-desktop) {
+    padding-block-start: $section-block-spacing-min;
+  }
+
   @media (hover: hover) and (pointer: fine) {
     min-block-size: var(--viewport-height);
 
