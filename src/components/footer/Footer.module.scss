@@ -92,13 +92,10 @@
 
   &__linkList a,
   &__email {
-    color: currentColor;
+    @include underlineHover;
 
-    &:hover {
-      @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-        text-decoration: underline;
-      }
-    }
+    color: currentColor;
+    text-decoration: none;
   }
 
   &__titleWrapper {

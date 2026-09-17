@@ -70,7 +70,8 @@
       opacity: 0;
       transform: translateX(-50%);
 
-      transition: opacity $transition-duration $default-ease,
+      transition:
+        opacity $transition-duration $default-ease,
         transform $transition-duration $default-ease;
 
       fill: currentColor;

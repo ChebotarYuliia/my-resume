@@ -5,6 +5,23 @@ $transition-duration: #{$duration-fast};
 $animation-duration: #{$duration-base};
 $animation-delay: 100ms;
 
+// Animated underline for text links (background-gradient technique, safe for
+// wrapping inline anchors).
+@mixin underlineHover($color: currentColor, $thickness: 1px) {
+  background-image: linear-gradient(#{$color}, #{$color});
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% #{$thickness};
+
+  transition: background-size $transition-duration $default-ease;
+
+  &:hover {
+    @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      background-size: 100% #{$thickness};
+    }
+  }
+}
+
 @mixin enterAnimation(
   $className: ".inView",
   $parent: false,

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { CSSProperties, HTMLAttributes } from "react";
+import React, { CSSProperties, HTMLAttributes, useRef } from "react";
 import Link from "next/link";
 import { TSocialIcon, Icon } from "../icon/Icon";
 import { InView } from "@/components/in-view/InView";
+import { useMagnetic } from "@/hooks/useMagnetic";
 
 import s from "./ContactLink.module.scss";
 
@@ -21,6 +22,10 @@ export const ContactLink = ({
   style,
   active = false,
 }: ContactLinkProps) => {
+  const linkRef = useRef<HTMLAnchorElement>(null);
+
+  useMagnetic(linkRef);
+
   return (
     <InView
       as={Link}
@@ -33,6 +38,7 @@ export const ContactLink = ({
       aria-label={platform}
       title={platform}
       data-cursor-hover=""
+      elementRef={linkRef}
     >
       <Icon name={platform} />
     </InView>

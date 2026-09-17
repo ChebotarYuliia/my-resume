@@ -1,12 +1,19 @@
 "use client";
 
-import React, { Children, cloneElement, CSSProperties, useState } from "react";
+import React, {
+  Children,
+  cloneElement,
+  CSSProperties,
+  useRef,
+  useState,
+} from "react";
 import s from "./ContactLabels.module.scss";
 import classNames from "classnames/bind";
 import { InView } from "@/components/in-view/InView";
 import Link from "next/link";
 import { ContactLinkProps } from "../contacts/ContactLink";
 import { useTranslations } from "next-intl";
+import { useMagnetic } from "@/hooks/useMagnetic";
 
 const c = classNames.bind(s);
 
@@ -39,7 +46,10 @@ type EmailLabelProps = {
 export const EmailLabel = ({ email }: EmailLabelProps) => {
   const [copySuccess, setCopySuccess] = useState<string>();
   const t = useTranslations("Client");
+  const linkRef = useRef<HTMLAnchorElement>(null);
   const tooltipId = "copied-tootlip";
+
+  useMagnetic(linkRef);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
@@ -58,6 +68,7 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
           onClick={copyToClipboard}
           aria-label={"gmail"}
           aria-describedby={tooltipId}
+          ref={linkRef}
         >
           {email}
         </Link>

@@ -49,8 +49,6 @@
     justify-content: center;
     align-items: center;
 
-    gap: $spacing-xs;
-
     &::after {
       content: "";
       inline-size: 2px;
@@ -60,13 +58,9 @@
     }
 
     li {
-      --contact-link-padding: 0;
-
-      inline-size: 25px;
-      aspect-ratio: 1/1;
-
       svg {
-        color: var(--color);
+        --contact-list-svg-width: 24px;
+        --contact-list-svg-color: var(--color);
       }
     }
   }
@@ -89,6 +83,8 @@
       text-decoration: none;
       color: var(--color);
       font-size: 0.8em;
+
+      padding-block: 1em;
     }
   }
 }
