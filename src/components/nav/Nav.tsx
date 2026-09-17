@@ -1,15 +1,13 @@
 import React, { Children, cloneElement } from "react";
 import s from "./Nav.module.scss";
-import classNames from "classnames/bind";
 
-const c = classNames.bind(s);
+import { InView } from "@/components/in-view/InView";
 
 type Props = {
   children: React.ReactNode;
-  heroReady?: boolean;
 };
 
-export const Nav = ({ children, heroReady }: Props) => {
+export const Nav = ({ children }: Props) => {
   const childArray = Children.toArray(children);
 
   if (!childArray.length) {
@@ -17,17 +15,17 @@ export const Nav = ({ children, heroReady }: Props) => {
   }
 
   return (
-    <nav className={c(s.nav, { heroReady })}>
+    <InView as="nav" className={s.nav} inClassName={s.inView}>
       <div className={s.nav__inner}>
         {childArray.map((item, i) =>
           cloneElement(
             item as React.ReactElement<{ style?: React.CSSProperties }>,
             {
               style: { "--i": i } as React.CSSProperties,
-            }
-          )
+            },
+          ),
         )}
       </div>
-    </nav>
+    </InView>
   );
 };

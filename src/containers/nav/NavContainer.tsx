@@ -21,7 +21,7 @@ const throttle = (func: () => void, limit: number) => {
 };
 
 export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
-  const { uiState, setUIState } = useUiState();
+  const { setUIState } = useUiState();
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const t = useTranslations("Client");
 
@@ -101,7 +101,5 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
   if (isMenu) {
     return links;
   }
-  return (
-    <Nav heroReady={uiState.heroEnterAnimation === "completed"}>{links}</Nav>
-  );
+  return <Nav>{links}</Nav>;
 };
