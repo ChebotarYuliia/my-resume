@@ -12,6 +12,8 @@
 
   display: none;
 
+  transition: opacity $transition-duration $default-ease;
+
   @media (min-width: $breakpoint-desktop) {
     display: block;
   }
@@ -26,6 +28,11 @@
     );
 
     inset-inline-start: 35px;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   &.email {
@@ -41,6 +48,11 @@
     inset-block-end: auto;
     inset-block-start: 35px;
     writing-mode: vertical-rl;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   &__socialsList {

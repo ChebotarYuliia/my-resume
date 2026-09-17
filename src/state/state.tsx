@@ -71,7 +71,7 @@ export const UIStateProvider = ({
   const prefersReducedMotion = useSyncExternalStore(
     subscribeToReducedMotionChange,
     getReducedMotionSnapshot,
-    getReducedMotionServerSnapshot
+    getReducedMotionServerSnapshot,
   );
 
   const setUIState = useCallback((state: Partial<UIStateProps>) => {
@@ -84,7 +84,7 @@ export const UIStateProvider = ({
   const preventScroll = useCallback((prevent: boolean) => {
     const htmlClassName = "scroll-disabled";
     document.documentElement.classList[prevent ? "add" : "remove"](
-      htmlClassName
+      htmlClassName,
     );
     ScrollSmoother.get()?.paused(prevent);
   }, []);
