@@ -3,11 +3,16 @@
 
 :root {
   --viewport-height: 100vh;
+  --footer-height: 0px;
   --container-gutter: clamp(
     #{$container-inline-spacing-min},
     6vw,
     #{$container-inline-spacing}
   );
+
+  --bleed-width: #{calc(
+      (100vw - min(100% - (var(--container-gutter) * 2), #{$page-width})) / 2
+    )};
 
   --header-height: #{$header-height};
 
@@ -108,6 +113,8 @@ html {
 }
 
 body {
+  position: relative;
+  z-index: 0;
   overflow: hidden;
   min-block-size: var(--viewport-height);
 
@@ -116,20 +123,40 @@ body {
   line-height: $line-height;
 
   color: var(--color-font);
-  background-color: var(--color-background);
 
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
 
+main {
+  .main-content {
+    position: relative;
+    z-index: 0;
+
+    background-color: var(--color-background);
+    pointer-events: auto;
+
+    section:last-of-type {
+      box-shadow: 1px 20px 15px -8px rgba(0, 0, 0, 0.21);
+    }
+  }
 }
 
 // GSAP ScrollSmoother's required wrapper structure — see src/hooks/useScrollSmoother.ts
 #smooth-wrapper {
   position: fixed;
+  z-index: 0;
   inset: 0;
   overflow: hidden;
+  // Structural wrapper only — let clicks fall through to Footer behind it.
+  pointer-events: none;
 }
 
 #smooth-content {
   overflow: visible;
   inline-size: 100%;
+  // Padding (not margin) so ScrollSmoother's clientHeight-based scroll range
+  // actually includes this gap, and stays transparent so Footer shows through.
+  padding-block-end: var(--footer-height, 0px);
 }

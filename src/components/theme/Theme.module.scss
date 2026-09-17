@@ -2,7 +2,11 @@
 
 .theme {
   position: fixed;
-  inset: 0;
+  inset-block-start: 0;
+  inset-inline: 0;
+  // Stop short of the footer reveal gap at the end of #smooth-content so its
+  // background doesn't paint over the transparent area Footer shows through.
+  inset-block-end: var(--footer-height, 0px);
   z-index: 0;
 
   pointer-events: none;

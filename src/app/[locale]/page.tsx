@@ -36,8 +36,9 @@ export default async function Home({
     ? rawLocale
     : routing.defaultLocale;
   const { Client } = await getMessages({ locale });
+
   return (
-    <>
+    <div className="main-content">
       <Theme />
       <Hero
         name={Client.hero_name}
@@ -108,8 +109,9 @@ export default async function Home({
         ))}
       </Section>
 
-      {/* Projects section */}
-      <Section id={navLinks.projects.to} theme="slate">
+      {/* Projects section slate theme before */}
+      {/* TODO add another dark primary-like theme for less harsh transition between Projects and About sections */}
+      <Section id={navLinks.projects.to} theme="primary">
         <SectionTitle>{Client.section_projects}</SectionTitle>
         <ProjectScrollList
           items={projects.map((project) => ({
@@ -123,7 +125,7 @@ export default async function Home({
       </Section>
 
       {/* About me section */}
-      <Section fullHeight id={navLinks.about.to} theme={"primary"}>
+      <Section fullHeight id={navLinks.about.to} theme={"primary"} noSpacing>
         <SectionTitle>{Client.section_about}</SectionTitle>
         {/* <About
           features={
@@ -168,6 +170,6 @@ export default async function Home({
           alt={Client.about_picture_alt}
         />
       </Section>
-    </>
+    </div>
   );
 }

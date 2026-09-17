@@ -28,6 +28,7 @@ type UIStateProps = {
   heroEnterAnimation: HeroAnimationState;
   prefersReducedMotion: boolean;
   sectionTheme: TSectionTheme;
+  footerRevealed: boolean;
 };
 
 type UIStateContext = {
@@ -41,6 +42,7 @@ const uiStateDefaults = {
   heroEnterAnimation: "initial" as HeroAnimationState,
   prefersReducedMotion: false,
   sectionTheme: "default" as TSectionTheme,
+  footerRevealed: false,
 };
 
 export const UIStateContext = createContext<UIStateContext>({

@@ -12,6 +12,7 @@ export type ContactLinkProps = {
   link: string;
   style?: CSSProperties;
   active?: boolean;
+  label?: string;
 } & HTMLAttributes<HTMLAnchorElement>;
 
 export const ContactLink = ({

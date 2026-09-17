@@ -35,6 +35,9 @@ $zindex-header: 100;
 $zindex-menu: $zindex-header + 1;
 $zindex-menu-btn: $zindex-header + 2;
 
+// Footer sits behind the scrollable content; ScrollSmoother's #smooth-wrapper is z-index: 0.
+$zindex-footer: -1;
+
 // BREAKPOINTS — see src/styles/breakpoints.ts (single source of truth)
 
 $container-width-narrow: 800px;

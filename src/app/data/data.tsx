@@ -1,16 +1,19 @@
 import { CardProps } from "@/components/card/Card";
+import { ContactLinkProps } from "@/components/contacts/ContactLink";
 import { Icon } from "@/components/icon/Icon";
 import { ProgressBarProps } from "@/components/progress-bar/ProgressBar";
 import { WorkCardProps } from "@/components/work-card/WorkCard";
 import { WorkCardContentProps } from "@/components/work-card/WorkCardContent";
 
-export const socials = [
+export const socials: Array<ContactLinkProps> = [
   {
     platform: "github",
+    label: "github_personal",
     link: "https://github.com/ChebotarYuliia",
   },
   {
     platform: "github",
+    label: "github_work",
     link: "https://github.com/julezberry",
   },
   {

@@ -89,9 +89,10 @@ export default async function RootLayout({ children, params }: Props) {
           </Header>
           <SocialLabel socials={socialEls} />
           <EmailLabel email={email} />
-          <Footer socials={socials} email={email} />
 
-          {children}
+          <main className="main">{children}</main>
+
+          <Footer socials={socials} email={email} />
         </Providers>
       </body>
     </html>

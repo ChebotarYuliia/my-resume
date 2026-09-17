@@ -10,6 +10,8 @@
   flex-direction: column;
   gap: $spacing;
 
+  padding-block-end: $section-block-spacing-min;
+
   @media (max-width: $breakpoint-desktop) {
     padding-block-start: $section-block-spacing-min;
   }
