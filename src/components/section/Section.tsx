@@ -19,6 +19,7 @@ type Props = {
   id?: string;
   theme?: TSectionTheme;
   fullHeight?: boolean;
+  noSpacing?: boolean;
 };
 
 export const Section = ({
@@ -26,6 +27,7 @@ export const Section = ({
   id,
   theme = "default",
   fullHeight = false,
+  noSpacing = false,
 }: Props) => {
   const { uiState, setUIState } = useUiState();
   const ref = useRef<HTMLDivElement>(null);
@@ -63,14 +65,14 @@ export const Section = ({
   }, []);
 
   return (
-    <div
-      className={c(s.section, theme, { fullHeight })}
+    <section
+      className={c(s.section, theme, { fullHeight, noSpacing })}
       data-theme={theme}
       id={id}
       ref={ref}
     >
       <div className={s.section__trigger} ref={triggerRef} />
       <div className={s.section__inner}>{children}</div>
-    </div>
+    </section>
   );
 };

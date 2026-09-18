@@ -1,0 +1,117 @@
+@use "../../styles/config.scss" as *;
+
+.cardsTrail {
+  position: relative;
+  z-index: 0;
+
+  inline-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+
+  padding-block-end: $section-block-spacing-min;
+
+  @media (max-width: $breakpoint-desktop) {
+    padding-block-start: $section-block-spacing-min;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    min-block-size: var(--viewport-height);
+
+    overflow: hidden;
+
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: $breakpoint-desktop) {
+      margin-inline-start: calc(var(--bleed-width) * -1);
+      inline-size: calc(100% + var(--bleed-width) * 2);
+    }
+  }
+
+  h3 {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(30px, 4vw, 50px);
+
+    mix-blend-mode: difference;
+
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: none;
+
+    @media (hover: hover) and (pointer: fine) {
+      display: block;
+
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    li {
+      position: absolute;
+      inset: auto;
+
+      width: 140px;
+      height: 180px;
+
+      opacity: 0;
+
+      border-radius: $border-radius;
+      overflow: hidden;
+
+      pointer-events: none;
+
+      will-change: transform, opacity;
+
+      img {
+        object-fit: cover;
+        inline-size: 100%;
+        block-size: 100%;
+      }
+    }
+  }
+
+  &__slider {
+    display: flex;
+    gap: $spacing-sm;
+
+    margin-inline: calc($viewport-container-gutter * -1);
+    padding-inline: $viewport-container-gutter;
+
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: $viewport-container-gutter;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      display: none;
+    }
+  }
+
+  &__slide {
+    flex: 0 0 auto;
+    block-size: min(70vh, 400px);
+    inline-size: auto;
+
+    border-radius: $border-radius;
+    overflow: hidden;
+    scroll-snap-align: center;
+
+    img {
+      object-fit: cover;
+      inline-size: 100%;
+      block-size: 100%;
+    }
+  }
+}

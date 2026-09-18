@@ -4,6 +4,7 @@
   @include enterAnimation(
     $parent: true,
     $transform: true,
+    $ease: $ease-playful,
     $delay: #{calc(var(--i, 0) * #{$animation-delay * 0.5})}
   );
 

@@ -3,11 +3,16 @@
 
 :root {
   --viewport-height: 100vh;
+  --footer-height: 0px;
   --container-gutter: clamp(
     #{$container-inline-spacing-min},
     6vw,
     #{$container-inline-spacing}
   );
+
+  --bleed-width: #{calc(
+      (100vw - min(100% - (var(--container-gutter) * 2), #{$page-width})) / 2
+    )};
 
   --header-height: #{$header-height};
 
@@ -38,8 +43,6 @@
   --container-width-narrow: #{$container-width-narrow};
 
   // THEMES
-  --color-teal-500: #{$color-teal-500};
-
   --color-primary-700: #{$color-primary-700};
   --color-primary-600: #{$color-primary-600};
   --color-primary-500: #{$color-primary-500};
@@ -56,6 +59,16 @@
   --color-slate-600: #{$color-slate-600};
   --color-slate-500: #{$color-slate-500};
   --color-slate-300: #{$color-slate-300};
+
+  --color-teal-800: #{$color-teal-800};
+  --color-teal-700: #{$color-teal-700};
+  --color-teal-500: #{$color-teal-500};
+  --color-teal-300: #{$color-teal-300};
+
+  --color-clay-800: #{$color-clay-800};
+  --color-clay-700: #{$color-clay-700};
+  --color-clay-500: #{$color-clay-500};
+  --color-clay-300: #{$color-clay-300};
 
   body[data-theme="dark"] {
     --color-primary: #{$color-tertiary};
@@ -82,7 +95,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-gutter: stable;
 
   @mixin html-overflow-hidden {
@@ -101,6 +113,8 @@ html {
 }
 
 body {
+  position: relative;
+  z-index: 0;
   overflow: hidden;
   min-block-size: var(--viewport-height);
 
@@ -109,26 +123,40 @@ body {
   line-height: $line-height;
 
   color: var(--color-font);
-  background-color: var(--color-background);
 
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
 
-  .cursor-sparkle {
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: -4px;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 1;
+main {
+  .main-content {
+    position: relative;
+    z-index: 0;
 
-    &:after {
-      content: "";
-      position: absolute;
-      left: -4px;
-      top: 5px;
-      width: 0;
-      height: 0;
+    background-color: var(--color-background);
+    pointer-events: auto;
+
+    section:last-of-type {
+      box-shadow: 1px 20px 15px -8px rgba(0, 0, 0, 0.21);
     }
   }
+}
+
+// GSAP ScrollSmoother's required wrapper structure — see src/hooks/useScrollSmoother.ts
+#smooth-wrapper {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  // Structural wrapper only — let clicks fall through to Footer behind it.
+  pointer-events: none;
+}
+
+#smooth-content {
+  overflow: visible;
+  inline-size: 100%;
+  // Padding (not margin) so ScrollSmoother's clientHeight-based scroll range
+  // actually includes this gap, and stays transparent so Footer shows through.
+  padding-block-end: var(--footer-height, 0px);
 }

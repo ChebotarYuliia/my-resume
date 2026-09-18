@@ -1,15 +1,24 @@
-$default-ease: ease;
-$transition-duration: 300ms;
-$animation-duration: 500ms;
+@use "variables" as *;
+
+$default-ease: #{$ease-out};
+$transition-duration: #{$duration-fast};
+$animation-duration: #{$duration-base};
 $animation-delay: 100ms;
 
-@keyframes fallingCursorSparkles {
-  from {
-    transform: translateY(0);
-  }
-  /* 50 = falling distance */
-  to {
-    transform: translateY(50px);
+// Animated underline for text links (background-gradient technique, safe for
+// wrapping inline anchors).
+@mixin underlineHover($color: currentColor, $thickness: 1px) {
+  background-image: linear-gradient(#{$color}, #{$color});
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% #{$thickness};
+
+  transition: background-size $transition-duration $default-ease;
+
+  &:hover {
+    @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      background-size: 100% #{$thickness};
+    }
   }
 }
 
@@ -17,10 +26,13 @@ $animation-delay: 100ms;
   $className: ".inView",
   $parent: false,
   $transform: true,
-  $delay: ""
+  $delay: "",
+  $opacityTo: 1,
+  $ease: $default-ease,
+  $duration: $transition-duration
 ) {
   opacity: 0;
-  transition: opacity $transition-duration $default-ease;
+  transition: opacity $duration $ease;
 
   @if $transform {
     transition-property: opacity, transform;
@@ -28,7 +40,7 @@ $animation-delay: 100ms;
 
   @if $parent {
     &#{$className} {
-      opacity: 1;
+      opacity: #{$opacityTo};
       transition-delay: #{$delay};
 
       @if $transform {
@@ -37,7 +49,7 @@ $animation-delay: 100ms;
     }
   } @else {
     #{$className} & {
-      opacity: 1;
+      opacity: #{$opacityTo};
       transition-delay: #{$delay};
 
       @if $transform {

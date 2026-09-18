@@ -4,7 +4,6 @@
   --color: var(--section-color-font);
   --stick-height: 120px;
 
-  @include enterAnimation($parent: true, $transform: true);
   transform: translateY(50%);
 
   position: fixed;
@@ -13,19 +12,47 @@
 
   display: none;
 
+  transition: opacity $transition-duration $default-ease;
+
   @media (min-width: $breakpoint-desktop) {
     display: block;
   }
 
   &.socials {
+    @include enterAnimation(
+      $parent: true,
+      $transform: true,
+      $delay: #{calc(4 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
     inset-inline-start: 35px;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   &.email {
+    @include enterAnimation(
+      $parent: true,
+      $transform: true,
+      $delay: #{calc(5 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
     inset-inline-end: 0;
     inset-block-end: auto;
     inset-block-start: 35px;
     writing-mode: vertical-rl;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   &__socialsList {
@@ -33,8 +60,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    gap: $spacing-xs;
 
     &::after {
       content: "";
@@ -45,13 +70,9 @@
     }
 
     li {
-      --contact-link-padding: 0;
-
-      inline-size: 25px;
-      aspect-ratio: 1/1;
-
       svg {
-        color: var(--color);
+        --contact-list-svg-width: 24px;
+        --contact-list-svg-color: var(--color);
       }
     }
   }
@@ -74,6 +95,8 @@
       text-decoration: none;
       color: var(--color);
       font-size: 0.8em;
+
+      padding-block: 1em;
     }
   }
 }
