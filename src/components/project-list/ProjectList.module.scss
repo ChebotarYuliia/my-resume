@@ -1,0 +1,14 @@
+@use "../../styles/config.scss" as *;
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    border-block-start: 1px solid var(--color-border);
+
+    &:last-child {
+      border-block-end: 1px solid var(--color-border);
+    }
+  }
+}

@@ -84,54 +84,54 @@ export const skills: Array<ProgressBarProps> = [
   // },
   {
     title: "TypeScript",
-    percentage: 70,
+    percentage: 88,
   },
   {
-    title: "MongoDB / SQL / PostgreSQL",
-    percentage: 50,
+    title: "React.js & Next.js",
+    percentage: 90,
   },
   {
-    title: "React.js + Redux",
-    percentage: 87,
+    title: "Payload CMS (multi-tenant, live preview)",
+    percentage: 85,
   },
   {
-    title: "Next.js",
-    percentage: 80,
+    title: "REST & GraphQL API Integration",
+    percentage: 82,
   },
   {
-    title: "REST APIs: Integration & Development",
-    percentage: 80,
+    title: "Search Integration (Algolia, Cludo)",
+    percentage: 78,
   },
   {
-    title: "GraphQL",
-    percentage: 80,
+    title: "GSAP & Motion Design",
+    percentage: 78,
   },
   {
-    title: "CSS, SASS/SCSS, LESS, CSS Modules",
-    percentage: 80,
-  },
-  {
-    title: "CMS: Prismic, Payload",
+    title: "next-intl / i18n Architecture",
     percentage: 75,
   },
   {
-    title: "Third-party Libraries & Services",
-    percentage: 75,
+    title: "SCSS / CSS Modules",
+    percentage: 82,
   },
   {
     title: "UI/UX",
     percentage: 84,
   },
   {
-    title: "Pagespeed Optimization",
-    percentage: 69,
+    title: "Zod & Type-safe Validation",
+    percentage: 72,
+  },
+  {
+    title: "Turborepo / pnpm Monorepos",
+    percentage: 72,
+  },
+  {
+    title: "SEO & Pagespeed Optimization",
+    percentage: 72,
   },
   {
     title: "Figma",
-    percentage: 70,
-  },
-  {
-    title: "SEO",
     percentage: 70,
   },
   {
@@ -139,12 +139,8 @@ export const skills: Array<ProgressBarProps> = [
     percentage: 75,
   },
   {
-    title: "Webflow (basics)",
-    percentage: 50,
-  },
-  {
-    title: "React Native (basics)",
-    percentage: 35,
+    title: "PostgreSQL / MongoDB",
+    percentage: 55,
   },
 ];
 
@@ -216,18 +212,69 @@ export const workPlaces: Array<
 
 export const projects = [
   {
-    title: "project_art_center_title",
-    text: "project_art_center_text",
+    title: "project_si_title",
+    text: "project_si_text",
     pills: [
-      "Awwwards",
-      "Honorable Mention",
-      "Public website of the year",
       "Next.js",
-      "SCSS",
-      "Google Map API",
+      "Payload CMS (multi-tenant)",
+      "External API integration",
+      "Legacy system migration",
+      "TypeScript",
     ],
-    media: "/projects/art_center.webm",
-    mediaFallback: "/projects/art_center_mp4.mp4",
+    liveSince: "project_si_since",
+    liveUrl: "https://www.si.is/",
+    blocks: [
+      {
+        text: "project_si_block1_text",
+        image: "/projects/si.png",
+        imageAlt: "project_si_block_alt",
+      },
+    ],
+  },
+  {
+    title: "project_viska_title",
+    text: "project_viska_text",
+    pills: ["Cludo AI search", "React", "Next.js", "TypeScript", "GSAP"],
+    liveSince: "project_viska_since",
+    liveUrl: "https://www.viska.is/",
+    blocks: [
+      {
+        text: "project_viska_block1_text",
+        image: "/projects/viska.png",
+        imageAlt: "project_viska_block1_alt",
+      },
+      {
+        text: "project_viska_block2_text",
+        image: "/projects/viska_2.png",
+        imageAlt: "project_viska_block2_alt",
+      },
+      {
+        text: "project_viska_block3_text",
+        image: "/projects/viska_mobile.png",
+        imageAlt: "project_viska_block3_alt",
+        portrait: true,
+      },
+    ],
+  },
+  {
+    title: "project_nattura_title",
+    text: "project_nattura_text",
+    pills: [
+      "Next.js",
+      "Payload CMS",
+      "next-intl",
+      "Custom interactive map",
+      "TypeScript",
+    ],
+    liveSince: "project_nattura_since",
+    liveUrl: "https://www.nattura.is/",
+    blocks: [
+      {
+        text: "project_nattura_block1_text",
+        image: "/projects/nattura.png",
+        imageAlt: "project_nattura_block_alt",
+      },
+    ],
   },
   {
     title: "project_music_award_title",
@@ -240,8 +287,36 @@ export const projects = [
       "Google Sheets API",
       "Spotify API",
     ],
-    media: "/projects/music_award.webm",
-    mediaFallback: "/projects/music_award_mp4.mp4",
+    liveSince: "project_music_award_since",
+    liveUrl: "https://www.iston.is/",
+    blocks: [
+      {
+        text: "project_music_award_detail",
+        image: "/projects/music_award.png",
+        imageAlt: "project_music_award_block1_alt",
+      },
+    ],
+  },
+  {
+    title: "project_art_center_title",
+    text: "project_art_center_text",
+    pills: [
+      "Awwwards",
+      "Honorable Mention",
+      "Public website of the year",
+      "Next.js",
+      "SCSS",
+      "Google Map API",
+    ],
+    liveSince: "project_art_center_since",
+    liveUrl: "https://www.icelandicartcenter.is/",
+    blocks: [
+      {
+        text: "project_art_center_detail",
+        image: "/projects/art_center.png",
+        imageAlt: "project_art_center_block1_alt",
+      },
+    ],
   },
 ];
 

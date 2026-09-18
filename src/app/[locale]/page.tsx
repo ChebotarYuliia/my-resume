@@ -17,7 +17,7 @@ import { SectionTitle } from "@/components/section-title/SectionTitle";
 import { Button } from "@/components/Button/Button";
 import { WorkCard } from "@/components/work-card/WorkCard";
 import { Pill } from "@/components/pill/Pill";
-import { ProjectScrollList } from "@/components/project-scroll-list/ProjectScrollList";
+import { ProjectList } from "@/components/project-list/ProjectList";
 import { Text } from "@/components/text/Text";
 import { CardsTrail } from "@/components/cards-trail/CardsTrail";
 import Image from "next/image";
@@ -25,6 +25,10 @@ import { WorkCardContent } from "@/components/work-card/WorkCardContent";
 import { getMessages } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
+import {
+  ProjectListContent,
+  ProjectListItem,
+} from "@/components/project-list/ProjectListItem";
 
 export default async function Home({
   params,
@@ -109,23 +113,54 @@ export default async function Home({
         ))}
       </Section>
 
-      {/* Projects section slate theme before */}
-      {/* TODO add another dark primary-like theme for less harsh transition between Projects and About sections */}
+      {/* Projects section */}
       <Section id={navLinks.projects.to} theme="primary">
         <SectionTitle>{Client.section_projects}</SectionTitle>
-        <ProjectScrollList
-          items={projects.map((project) => ({
-            title: Client[project.title],
-            text: Client[project.text],
-            pills: project.pills.map((pill) => <Pill key={pill}>{pill}</Pill>),
-            media: project.media,
-            mediaFallback: project.mediaFallback,
-          }))}
-        />
+        <ProjectList>
+          {projects.map((project) => (
+            <ProjectListItem
+              key={project.title}
+              title={Client[project.title]}
+              text={Client[project.text]}
+              pills={project.pills.map((pill) => (
+                <Pill key={pill}>{pill}</Pill>
+              ))}
+              kicker={Client[project.liveSince]}
+              action={
+                project.liveUrl ? (
+                  <Button
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                  >
+                    {Client.project_visit_site}
+                  </Button>
+                ) : undefined
+              }
+              blocks={project.blocks.map((block, i) => (
+                <ProjectListContent
+                  key={i}
+                  image={
+                    block.image
+                      ? {
+                          src: block.image,
+                          alt: Client[block.imageAlt],
+                          portrait: block.portrait,
+                        }
+                      : undefined
+                  }
+                >
+                  <p>{Client[block.text]}</p>
+                </ProjectListContent>
+              ))}
+            />
+          ))}
+        </ProjectList>
       </Section>
 
       {/* About me section */}
-      <Section fullHeight id={navLinks.about.to} theme={"primary"} noSpacing>
+      <Section fullHeight id={navLinks.about.to} noSpacing theme="primary">
         <SectionTitle>{Client.section_about}</SectionTitle>
         {/* <About
           features={
