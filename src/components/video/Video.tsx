@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import s from "./Video.module.scss";
 import classNames from "classnames/bind";
 import { useInView } from "react-intersection-observer";
@@ -17,6 +17,8 @@ type Props = {
   loop?: boolean;
   poster?: string;
   muted?: boolean;
+  // when set, play/pause is driven externally instead of hover/click
+  active?: boolean;
 };
 
 export const Video = ({
@@ -28,6 +30,7 @@ export const Video = ({
   height,
   loop,
   muted = true,
+  active,
 }: Props) => {
   const { isTablet } = useWindowWidth();
   const { ref, inView } = useInView();
@@ -80,6 +83,17 @@ export const Video = ({
       pause();
     }
   }, [inView, isPlaying]);
+
+  useEffect(() => {
+    if (active === undefined) {
+      return;
+    }
+    if (active && inView) {
+      play();
+    } else {
+      pause();
+    }
+  }, [active, inView]);
 
   if (!src) {
     return null;

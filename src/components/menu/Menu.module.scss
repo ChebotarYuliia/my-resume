@@ -14,11 +14,11 @@
   contain: layout;
 
   inline-size: 100vw;
-  block-size: 100svh;
-  max-block-size: 100svh;
+  block-size: 100vh;
+  max-block-size: 100vh;
   overflow: hidden;
 
-  transition: opacity $transition-duration $default-ease;
+  transition: opacity $duration-base $default-ease;
 
   @media (min-width: $breakpoint-tablet) {
     display: none;
@@ -45,7 +45,7 @@
     padding-block-start: calc(var(--header-height) * 1.2);
 
     transform: translate3d(105%, 0, 0);
-    transition: transform $transition-duration $default-ease;
+    transition: transform $duration-base $default-ease;
 
     .active & {
       transform: none;
@@ -62,7 +62,7 @@
     flex: 1;
 
     padding-block-start: $spacing-md;
-    padding-block-end: $spacing-sm;
+    padding-block-end: $spacing-lg;
   }
 
   &__list {
@@ -79,7 +79,9 @@
         $parent: false,
         $transform: true,
         $className: ".active",
-        $delay: #{calc(var(--i, 0) * #{$animation-delay})}
+        $delay: #{calc(var(--i, 0) * #{$animation-delay})},
+        $ease: $default-ease,
+        $duration: $duration-base
       );
     }
   }

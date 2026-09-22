@@ -12,6 +12,12 @@
   }
 
   &__inner {
+    @include enterAnimation(
+      $delay: #{calc($animation-delay * 2)},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
     display: flex;
     flex-wrap: wrap;
 

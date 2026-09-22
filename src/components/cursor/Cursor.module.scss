@@ -1,0 +1,27 @@
+@use "../../styles/config.scss" as *;
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  inline-size: 12px;
+  block-size: 12px;
+
+  border-radius: 50%;
+  background-color: var(--section-color-accent, var(--color-primary));
+  mix-blend-mode: difference;
+
+  pointer-events: none;
+  z-index: $zindex-menu-btn + 1;
+  will-change: transform;
+
+  transition: scale $transition-duration $default-ease;
+
+  &.isHovering {
+    scale: 2.2;
+  }
+
+  @media (pointer: coarse) {
+    display: none;
+  }
+}

@@ -10,7 +10,11 @@ type Props = {
 
 export const SectionTitle = ({ children }: Props) => {
   return (
-    <InView className={s.sectionTitle} inClassName={s.inView} rootMargin="-15% 0px">
+    <InView
+      className={s.sectionTitle}
+      inClassName={s.inView}
+      rootMargin="-15% 0px"
+    >
       <h2 className={s.sectionTitle__title}>{children}</h2>
     </InView>
   );

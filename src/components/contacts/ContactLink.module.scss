@@ -5,35 +5,16 @@
   align-items: center;
   justify-content: center;
 
-  padding: var(--contact-link-padding, #{$spacing-xs});
+  padding: var(--contact-link-padding, #{$spacing-xxs});
   flex: 1;
 
   background-color: transparent;
 
-  @include enterAnimation(
-    $parent: true,
-    $transform: true,
-    $delay: #{calc(var(--i, 0) * #{$animation-delay})}
-  );
-
-  @media (prefers-reduced-motion: no-preference) {
-    transform: scale(0);
-  }
-
-  &:hover {
-    @media (prefers-reduced-motion: no-preference) {
-      svg {
-        transform: scale(1.1);
-        opacity: 1;
-      }
-    }
-  }
-
   svg {
-    inline-size: min(90%, 100px);
-    fill: currentColor;
+    inline-size: var(--contact-list-svg-width, #{min(90%, 100px)});
+    block-size: auto;
 
-    transition: transform calc($transition-duration / 2) $default-ease;
+    fill: var(--contact-list-svg-color, currentColor);
 
     @media (min-width: $breakpoint-tablet) {
       opacity: 0.8;

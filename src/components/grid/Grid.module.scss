@@ -18,7 +18,7 @@
 
   &__item {
     @media (min-width: $breakpoint-desktop) {
-      min-block-size: 35vh;
+      min-block-size: clamp(300px, 35vh, 450px);
 
       > div {
         block-size: 100%;

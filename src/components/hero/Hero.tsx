@@ -13,6 +13,7 @@ import { useInView } from "react-intersection-observer";
 import classNames from "classnames/bind";
 import gsap from "gsap";
 import { useUiState } from "@/hooks/useUiState";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 import { TextPlugin } from "gsap/all";
 import { ImageProps } from "next/image";
 import { ButtonProps } from "../Button/Button";
@@ -29,6 +30,7 @@ type Props = {
 
 export const Hero = ({ name, subtitle, action, text, image }: Props) => {
   const { uiState, setUIState } = useUiState();
+  const { isTablet } = useWindowWidth();
   const [imageLoaded, setImageLoaded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true });
 
@@ -48,7 +50,7 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
       const textTypingOpts = (
         value: string,
         duration?: number,
-        ease?: string
+        ease?: string,
       ) => {
         return {
           text: {
@@ -70,7 +72,7 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
         });
       }
     },
-    [inView, name, uiState, setUIState]
+    [inView, name, uiState, setUIState],
   );
 
   useEffect(() => {
@@ -122,7 +124,10 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
           </div>
         </div>
 
-        <div className={s.hero__imageWrap}>
+        <div
+          className={s.hero__imageWrap}
+          {...(!isTablet && { "data-speed": "0.9" })}
+        >
           {cloneElement(image, {
             onLoad: () => setImageLoaded(true),
             className: s.hero__image,

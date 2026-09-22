@@ -1,7 +1,6 @@
 @use "../../styles/config.scss" as *;
 
 .theme {
-  position: fixed;
   inset: 0;
   z-index: 0;
 
@@ -32,6 +31,14 @@
 
     &:where(.slate) {
       --__color-background: var(--color-slate-300);
+    }
+
+    &:where(.teal) {
+      --__color-background: var(--color-teal-300);
+    }
+
+    &:where(.clay) {
+      --__color-background: var(--color-clay-300);
     }
 
     &.active {

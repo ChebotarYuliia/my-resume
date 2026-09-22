@@ -5,15 +5,11 @@ import {
   expertiseCards,
   projects,
   skills,
-  socials,
   workPlaces,
 } from "../data/data";
 import { Card } from "@/components/card/Card";
 import { SkillListLayout } from "@/components/skill-list/SkillListLayout";
 import { SkillList } from "@/components/skill-list/SkillList";
-import { ContactsLayout } from "@/components/contacts/ContactsLayout";
-import { ContactLink } from "@/components/contacts/ContactLink";
-import { TSocialIcon } from "@/components/icon/Icon";
 import { navLinks } from "../data/nav";
 import { Section } from "@/components/section/Section";
 import { Theme } from "@/components/theme/Theme";
@@ -21,17 +17,18 @@ import { SectionTitle } from "@/components/section-title/SectionTitle";
 import { Button } from "@/components/Button/Button";
 import { WorkCard } from "@/components/work-card/WorkCard";
 import { Pill } from "@/components/pill/Pill";
-import { ProjectCard } from "@/components/project-card/ProjectCard";
-import { ProjectCardContent } from "@/components/project-card/ProjectCardContent";
-import { Video } from "@/components/video/Video";
-import { About } from "@/components/about/About";
+import { ProjectList } from "@/components/project-list/ProjectList";
 import { Text } from "@/components/text/Text";
-import { ScrollBlocks } from "@/components/scroll-blocks/ScrollBlocks";
+import { CardsTrail } from "@/components/cards-trail/CardsTrail";
 import Image from "next/image";
 import { WorkCardContent } from "@/components/work-card/WorkCardContent";
 import { getMessages } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
+import {
+  ProjectListContent,
+  ProjectListItem,
+} from "@/components/project-list/ProjectListItem";
 
 export default async function Home({
   params,
@@ -43,8 +40,9 @@ export default async function Home({
     ? rawLocale
     : routing.defaultLocale;
   const { Client } = await getMessages({ locale });
+
   return (
-    <>
+    <div className="main-content">
       <Theme />
       <Hero
         name={Client.hero_name}
@@ -72,7 +70,7 @@ export default async function Home({
       />
 
       {/* Expertise section */}
-      <Section id={navLinks.expertise.to}>
+      <Section id={navLinks.expertise.to} theme="teal">
         <SectionTitle>{Client.section_expertise}</SectionTitle>
         <Grid>
           {expertiseCards.map(({ children, ...rest }, id) => (
@@ -84,7 +82,7 @@ export default async function Home({
       </Section>
 
       {/* Skills section */}
-      <Section fullHeight id={navLinks.skills.to}>
+      <Section fullHeight id={navLinks.skills.to} theme="clay">
         <SectionTitle>{Client.section_technologies}</SectionTitle>
         <SkillListLayout>
           <SkillList variant="compact">
@@ -101,49 +99,70 @@ export default async function Home({
         {workPlaces.map(({ pills, ...props }) => (
           <WorkCard link={props.link} key={`${props.title}-${props.period}`}>
             <WorkCardContent
-              locale={locale}
               pills={pills.map((pill) => (
                 <Pill key={`pill-${props.title}`}>{pill}</Pill>
               ))}
-              {...props}
-            />
+              period={Client[props.period]}
+              title={Client[props.title]}
+              company={Client[props.company]}
+              link={props.link}
+            >
+              {Client[`${props.children}`]}
+            </WorkCardContent>
           </WorkCard>
         ))}
       </Section>
 
       {/* Projects section */}
-      <Section id={navLinks.projects.to} theme="slate">
+      <Section id={navLinks.projects.to} theme="primary">
         <SectionTitle>{Client.section_projects}</SectionTitle>
-        {projects.map((project) => (
-          <ProjectCard
-            media={
-              <Video
-                src={project.media}
-                fallbackSrc={project.mediaFallback}
-                width={600}
-                height={400}
-                autoplay={false}
-                loop={true}
-              />
-            }
-            key={project.title}
-          >
-            <ProjectCardContent
+        <ProjectList>
+          {projects.map((project) => (
+            <ProjectListItem
+              key={project.title}
               title={Client[project.title]}
+              text={Client[project.text]}
               pills={project.pills.map((pill) => (
                 <Pill key={pill}>{pill}</Pill>
               ))}
-            >
-              {Client[project.text]}
-            </ProjectCardContent>
-          </ProjectCard>
-        ))}
+              kicker={Client[project.liveSince]}
+              action={
+                project.liveUrl ? (
+                  <Button
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                  >
+                    {Client.project_visit_site}
+                  </Button>
+                ) : undefined
+              }
+              blocks={project.blocks.map((block, i) => (
+                <ProjectListContent
+                  key={i}
+                  image={
+                    block.image
+                      ? {
+                          src: block.image,
+                          alt: Client[block.imageAlt],
+                          portrait: block.portrait,
+                        }
+                      : undefined
+                  }
+                >
+                  <p>{Client[block.text]}</p>
+                </ProjectListContent>
+              ))}
+            />
+          ))}
+        </ProjectList>
       </Section>
 
       {/* About me section */}
-      <Section fullHeight id={navLinks.about.to} theme={"primary"}>
+      <Section fullHeight id={navLinks.about.to} noSpacing theme="primary">
         <SectionTitle>{Client.section_about}</SectionTitle>
-        <About
+        {/* <About
           features={
             <ScrollBlocks
               list={aboutList}
@@ -175,23 +194,17 @@ export default async function Home({
           <Text>
             <p dangerouslySetInnerHTML={{ __html: Client.about_beyond_code }} />
           </Text>
-        </About>
-      </Section>
+        </About> */}
+        <Text featured>
+          <p dangerouslySetInnerHTML={{ __html: Client.about_main_text }} />
+        </Text>
 
-      {/* Contacts section */}
-      <Section theme={"primary"}>
-        <ContactsLayout
-          links={socials.map((link) => (
-            <ContactLink
-              key={`${link.platform}-${link.link}`}
-              platform={link.platform as TSocialIcon}
-              link={link.link}
-            />
-          ))}
-          title={Client.section_contact}
-          author={Client.build_by}
-        ></ContactsLayout>
+        <CardsTrail
+          title={Client.get_to_know_me}
+          items={aboutList}
+          alt={Client.about_picture_alt}
+        />
       </Section>
-    </>
+    </div>
   );
 }

@@ -8,10 +8,18 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 export type OpenAnimationState = "active" | "completed";
 export type HeroAnimationState = "initial" | "completed";
-export const SectionTheme = ["default", "primary", "slate", "olive"] as const;
+export const SectionTheme = [
+  "default",
+  "primary",
+  "slate",
+  "olive",
+  "teal",
+  "clay",
+] as const;
 export type TSectionTheme = (typeof SectionTheme)[number];
 
 type UIStateProps = {
@@ -20,6 +28,7 @@ type UIStateProps = {
   heroEnterAnimation: HeroAnimationState;
   prefersReducedMotion: boolean;
   sectionTheme: TSectionTheme;
+  footerRevealed: boolean;
 };
 
 type UIStateContext = {
@@ -33,6 +42,7 @@ const uiStateDefaults = {
   heroEnterAnimation: "initial" as HeroAnimationState,
   prefersReducedMotion: false,
   sectionTheme: "default" as TSectionTheme,
+  footerRevealed: false,
 };
 
 export const UIStateContext = createContext<UIStateContext>({
@@ -61,7 +71,7 @@ export const UIStateProvider = ({
   const prefersReducedMotion = useSyncExternalStore(
     subscribeToReducedMotionChange,
     getReducedMotionSnapshot,
-    getReducedMotionServerSnapshot
+    getReducedMotionServerSnapshot,
   );
 
   const setUIState = useCallback((state: Partial<UIStateProps>) => {
@@ -74,8 +84,9 @@ export const UIStateProvider = ({
   const preventScroll = useCallback((prevent: boolean) => {
     const htmlClassName = "scroll-disabled";
     document.documentElement.classList[prevent ? "add" : "remove"](
-      htmlClassName
+      htmlClassName,
     );
+    ScrollSmoother.get()?.paused(prevent);
   }, []);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import { Nav } from "@/components/nav/Nav";
 import { useUiState } from "@/hooks/useUiState";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useMemo, useState } from "react";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 // Throttle function to limit the rate of function calls
 const throttle = (func: () => void, limit: number) => {
@@ -70,9 +71,15 @@ export const NavContainer = ({ isMenu = false }: { isMenu?: boolean }) => {
   ) => {
     event.preventDefault();
     setUIState({ isMenuOpen: false });
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const target = document.getElementById(id);
+    const smoother = ScrollSmoother.get();
+
+    if (smoother && target) {
+      smoother.scrollTo(target, true, "top top");
+    } else {
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 
     setActiveItem(key);
   };

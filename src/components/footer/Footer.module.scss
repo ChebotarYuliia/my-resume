@@ -1,0 +1,127 @@
+@use "../../styles/config.scss" as *;
+
+.footer {
+  position: fixed;
+  z-index: $zindex-footer;
+  inset-inline: 0;
+  inset-block-end: 0;
+
+  color: $color-black;
+  background-color: $color-white;
+
+  &__inner {
+    @include container();
+
+    display: flex;
+    flex-direction: column;
+    gap: calc($spacing-lg * 2);
+
+    padding-block-start: $section-block-spacing-min;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-block-start: $section-block-spacing;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: $spacing;
+    }
+  }
+
+  &__actionWrap {
+    @include enterAnimation(
+      $parent: false,
+      $transform: true,
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(20%) scale(0.9);
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      order: -1;
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    @include enterAnimation(
+      $parent: false,
+      $transform: true,
+      $delay: #{$animation-delay},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(20%);
+    }
+  }
+
+  &__columnTitle {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: $font-size-xs-min;
+    opacity: 0.6;
+  }
+
+  &__linkList {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xxs;
+
+    text-transform: capitalize;
+  }
+
+  &__email {
+    text-decoration: none;
+  }
+
+  &__linkList a,
+  &__email {
+    @include underlineHover;
+
+    color: currentColor;
+    text-decoration: none;
+  }
+
+  &__titleWrapper {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  &__title {
+    font-size: clamp($font-size-lg-min, 12vw, $font-size-lg * 5);
+    font-weight: 700;
+    font-family: var(--font-family-heading);
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1;
+
+    @include enterAnimation(
+      $parent: false,
+      $transform: true,
+      $delay: #{calc(2 * $animation-delay)},
+      $ease: $ease-playful,
+      $duration: $duration-base
+    );
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(100%);
+    }
+  }
+}
