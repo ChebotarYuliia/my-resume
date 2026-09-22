@@ -1,6 +1,8 @@
+"use client";
 import React, { Children, CSSProperties } from "react";
 import s from "./WorkCard.module.scss";
 import { Icon } from "../icon/Icon";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 
 export type WorkCardContentProps = {
   period: string;
@@ -19,9 +21,14 @@ export const WorkCardContent = ({
   pills,
   link,
 }: WorkCardContentProps) => {
+  const { isTablet } = useWindowWidth();
+
   return (
     <div className={s.workCard__inner}>
-      <p className={s.workCard__period} data-speed={0.95}>
+      <p
+        className={s.workCard__period}
+        {...(!isTablet && { "data-speed": "0.96" })}
+      >
         {period}
       </p>
 

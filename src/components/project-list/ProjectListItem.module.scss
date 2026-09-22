@@ -13,7 +13,7 @@
     position: relative;
 
     padding-block: $spacing-md;
-    padding-inline-start: $spacing-xxs;
+    // padding-inline-start: $spacing-xxs;
     padding-inline-end: $spacing-xl;
 
     text-align: start;
@@ -40,6 +40,10 @@
           opacity: 0.05;
         }
       }
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-inline-start: $spacing-xxs;
     }
   }
 
@@ -134,8 +138,12 @@
     align-items: flex-start;
     gap: $spacing-lg;
 
-    padding-block: $spacing-lg;
-    padding-inline: $spacing-xxs;
+    padding-block-end: $spacing-md;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-block: $spacing-lg;
+      padding-inline: $spacing-xxs;
+    }
   }
 }
 

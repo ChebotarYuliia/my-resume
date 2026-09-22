@@ -18,7 +18,7 @@
   max-block-size: 100svh;
   overflow: hidden;
 
-  transition: opacity $transition-duration $default-ease;
+  transition: opacity $duration-base $ease-playful;
 
   @media (min-width: $breakpoint-tablet) {
     display: none;
@@ -45,7 +45,7 @@
     padding-block-start: calc(var(--header-height) * 1.2);
 
     transform: translate3d(105%, 0, 0);
-    transition: transform $transition-duration $default-ease;
+    transition: transform $duration-base $ease-playful;
 
     .active & {
       transform: none;
@@ -79,7 +79,9 @@
         $parent: false,
         $transform: true,
         $className: ".active",
-        $delay: #{calc(var(--i, 0) * #{$animation-delay})}
+        $delay: #{calc(var(--i, 0) * #{$animation-delay})},
+        $ease: $ease-playful,
+        $duration: $duration-base
       );
     }
   }

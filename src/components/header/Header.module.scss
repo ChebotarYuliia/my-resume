@@ -71,6 +71,8 @@
     font-size: clamp($font-size-xs-min, 2vw, $font-size-xs);
     margin-inline-end: $spacing-sm;
 
+    color: var(--section-color-font);
+
     @media (min-width: $breakpoint-tablet) {
       margin-inline-end: 0;
       margin-inline-start: $spacing-sm;
