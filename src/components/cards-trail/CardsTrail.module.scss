@@ -101,12 +101,12 @@
 
   &__slide {
     flex: 0 0 auto;
-    block-size: min(70vh, 400px);
+    block-size: min(70svh, 400px);
     inline-size: auto;
 
     border-radius: $border-radius;
     overflow: hidden;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
 
     img {
       object-fit: cover;
