@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  cloneElement,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { cloneElement, useEffect, useRef, useState } from "react";
 
 import s from "./Hero.module.scss";
 import { useInView } from "react-intersection-observer";
@@ -37,56 +31,47 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
   const nameRef = useRef<HTMLSpanElement>(null);
   const cursorContainerRef = useRef<HTMLHeadingElement>(null);
 
-  const firstRender = useRef(true);
-
   gsap.registerPlugin(TextPlugin);
 
-  const enterAnimation = useCallback(
-    (tl: gsap.core.Timeline) => {
-      const mq = gsap.matchMedia();
-
-      const nameEl = nameRef.current;
-
-      const textTypingOpts = (
-        value: string,
-        duration?: number,
-        ease?: string,
-      ) => {
-        return {
-          text: {
-            value,
-          },
-          duration: duration ?? 1,
-          ease: ease ?? "none",
-        };
-      };
-
-      if (inView && uiState.openAnimation === "completed" && firstRender) {
-        mq.add(`(prefers-reduced-motion: no-preference)`, () => {
-          tl.to(nameEl, {
-            ...textTypingOpts(name, name.length * 0.15, "power2.inOut"),
-            onComplete: () => {
-              setUIState({ heroEnterAnimation: "completed" });
-            },
-          });
-        });
-      }
-    },
-    [inView, name, uiState, setUIState],
-  );
+  const { openAnimation, heroEnterAnimation } = uiState;
 
   useEffect(() => {
-    if (uiState.heroEnterAnimation !== "completed") {
-      const tl = gsap.timeline();
-      enterAnimation(tl);
-      firstRender.current = false;
-
-      return () => {
-        tl.kill();
-      };
+    if (
+      heroEnterAnimation === "completed" ||
+      openAnimation !== "completed" ||
+      !inView
+    ) {
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enterAnimation]);
+
+    const nameEl = nameRef.current;
+    const mq = gsap.matchMedia();
+    const complete = () => setUIState({ heroEnterAnimation: "completed" });
+
+    mq.add(
+      {
+        motion: "(prefers-reduced-motion: no-preference)",
+        reduced: "(prefers-reduced-motion: reduce)",
+      },
+      (ctx) => {
+        if (ctx.conditions?.reduced || !nameEl) {
+          complete();
+          return;
+        }
+
+        gsap.to(nameEl, {
+          text: { value: name },
+          duration: name.length * 0.15,
+          ease: "power2.inOut",
+          onComplete: complete,
+        });
+      },
+    );
+
+    return () => {
+      mq.revert();
+    };
+  }, [inView, openAnimation, heroEnterAnimation, name, setUIState]);
 
   return (
     <div

@@ -29,40 +29,43 @@ export const Section = ({
   fullHeight = false,
   noSpacing = false,
 }: Props) => {
-  const { uiState, setUIState } = useUiState();
+  const { setUIState } = useUiState();
   const ref = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const trigger = triggerRef.current;
-    const parent = ref.current;
+  useGSAP(
+    () => {
+      const trigger = triggerRef.current;
+      const parent = ref.current;
 
-    if (!trigger || !parent) {
-      return;
-    }
+      if (!trigger || !parent) {
+        return;
+      }
 
-    const tl = gsap.timeline();
-    tl.add(() => {
-      const prevTheme =
-        parent.previousElementSibling?.getAttribute("data-theme");
+      const isFirstSection =
+        !parent.previousElementSibling?.hasAttribute("data-theme");
 
       ScrollTrigger.create({
         trigger,
         start: "top 50%",
-        onEnter: () => {
-          setUIState({ sectionTheme: theme });
+        endTrigger: parent,
+        end: "bottom 50%",
+        onToggle: (self) => {
+          if (self.isActive) {
+            setUIState({ sectionTheme: theme });
+          }
         },
+        // above the first section (hero) falls back to the default theme
         onLeaveBack: () => {
-          if (uiState.sectionTheme !== prevTheme && prevTheme) {
-            setUIState({ sectionTheme: prevTheme as TSectionTheme });
-          } else {
+          if (isFirstSection) {
             setUIState({ sectionTheme: "default" });
           }
         },
         invalidateOnRefresh: true,
       });
-    });
-  }, []);
+    },
+    { scope: ref, dependencies: [theme, setUIState] },
+  );
 
   return (
     <section

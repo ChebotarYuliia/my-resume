@@ -24,7 +24,19 @@ export const useScrollSmoother = () => {
       effects: true,
     });
 
+    // remounted after a locale switch: start at the top and recompute
+    // trigger positions once the new content's fonts and images settle
+    smoother.scrollTop(0);
+    ScrollTrigger.refresh();
+
+    let cancelled = false;
+    const refresh = () => !cancelled && ScrollTrigger.refresh();
+    document.fonts.ready.then(refresh);
+    window.addEventListener("load", refresh);
+
     return () => {
+      cancelled = true;
+      window.removeEventListener("load", refresh);
       smoother.kill();
     };
   }, [prefersReducedMotion]);

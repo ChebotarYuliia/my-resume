@@ -9,7 +9,7 @@ import classNames from "classnames/bind";
 import { ButtonProps } from "../Button/Button";
 import { useTranslations } from "use-intl";
 import { Locale } from "@/i18n/i18n";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const c = classNames.bind(s);
 
@@ -49,7 +49,7 @@ export const Header = ({ children, action, menu, locale }: Props) => {
       <div className={s.header__inner}>
         <div className={s.header__nav}>{children}</div>
         <div className={s.header__action}>{action}</div>
-        <Link className={s.header__locale} href={`/${nextLocale}`}>
+        <Link className={s.header__locale} href="/" locale={nextLocale}>
           {nextLocale}
         </Link>
         <button
