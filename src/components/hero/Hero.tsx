@@ -46,7 +46,11 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
 
     const nameEl = nameRef.current;
     const mq = gsap.matchMedia();
-    const complete = () => setUIState({ heroEnterAnimation: "completed" });
+    let done = false;
+    const complete = () => {
+      done = true;
+      setUIState({ heroEnterAnimation: "completed" });
+    };
 
     mq.add(
       {
@@ -69,7 +73,12 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
     );
 
     return () => {
-      mq.revert();
+      // reverting a finished tween would reset the typed name back to empty
+      if (done) {
+        mq.kill();
+      } else {
+        mq.revert();
+      }
     };
   }, [inView, openAnimation, heroEnterAnimation, name, setUIState]);
 
@@ -86,11 +95,9 @@ export const Hero = ({ name, subtitle, action, text, image }: Props) => {
         <div className={s.hero__contentWrap}>
           <div className={s.hero__content}>
             <h1 className={s.hero__nameContainer} ref={cursorContainerRef}>
-              {uiState.heroEnterAnimation === "completed" ? (
-                <span className={s.hero__name}>{name}</span>
-              ) : (
-                <span className={s.hero__name} ref={nameRef} />
-              )}
+              <span className={s.hero__name} ref={nameRef}>
+                {heroEnterAnimation === "completed" ? name : null}
+              </span>
             </h1>
 
             {subtitle && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,7 +12,11 @@ export const useScrollSmoother = () => {
   const { uiState } = useUiState();
   const { prefersReducedMotion } = uiState;
 
-  useEffect(() => {
+  // layout effect, not passive: on a locale switch the old smoother must be
+  // killed (resetting ScrollTrigger's default scroller to window) before the
+  // new sections create their triggers in their own layout effects; otherwise
+  // they bind to the old, detached #smooth-wrapper and never fire
+  useLayoutEffect(() => {
     if (prefersReducedMotion) {
       return;
     }
