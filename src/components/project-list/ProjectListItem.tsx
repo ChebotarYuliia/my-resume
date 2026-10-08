@@ -7,6 +7,7 @@ import Image from "next/image";
 import s from "./ProjectListItem.module.scss";
 import { PillProps } from "../pill/Pill";
 import classNames from "classnames/bind";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const c = classNames.bind(s);
 
@@ -72,6 +73,15 @@ export const ProjectListItem = ({
         role="region"
         aria-labelledby={id}
         inert={!active}
+        onTransitionEnd={(e) => {
+          // page height changed: recompute ScrollTrigger positions below
+          if (
+            e.target === e.currentTarget &&
+            e.propertyName === "grid-template-rows"
+          ) {
+            ScrollTrigger.refresh();
+          }
+        }}
       >
         <div className={s.projectListItem__panel}>
           <div className={s.projectListItem__panelInner}>
