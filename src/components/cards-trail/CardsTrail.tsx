@@ -21,7 +21,7 @@ type CardsTrailProps = {
 export function CardsTrail({
   items,
   alt,
-  gap = 140,
+  gap = 100,
   title,
 }: CardsTrailProps) {
   const flairRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -31,7 +31,8 @@ export function CardsTrail({
 
   const mousePos = useRef({ x: 0, y: 0 });
   const lastMousePos = useRef({ x: 0, y: 0 });
-  const cachedMousePos = useRef({ x: 0, y: 0 });
+  const hasPointer = useRef(false);
+  const isInsideRef = useRef(false);
 
   useEffect(() => {
     if (!items.length) return;
@@ -116,34 +117,39 @@ export function CardsTrail({
       indexRef.current++;
     };
     const cardTrail = () => {
+      if (!hasPointer.current || !listRef.current) return;
+
       const { x: mouseX, y: mouseY } = mousePos.current;
+      const rect = listRef.current.getBoundingClientRect();
+
+      const isInside =
+        mouseX >= rect.left &&
+        mouseX <= rect.right &&
+        mouseY >= rect.top &&
+        mouseY <= rect.bottom;
+
+      if (!isInside) {
+        isInsideRef.current = false;
+        return;
+      }
+
+      // Measure in document coords so scrolling with a still cursor counts as travel
+      const docX = mouseX + window.scrollX;
+      const docY = mouseY + window.scrollY;
+
       const { x: lastX, y: lastY } = lastMousePos.current;
+      const travelDistance = Math.hypot(lastX - docX, lastY - docY);
 
-      const travelDistance = Math.hypot(lastX - mouseX, lastY - mouseY);
-
-      cachedMousePos.current.x = gsap.utils.interpolate(
-        cachedMousePos.current.x || mouseX,
-        mouseX,
-        0.1,
-      );
-
-      cachedMousePos.current.y = gsap.utils.interpolate(
-        cachedMousePos.current.y || mouseY,
-        mouseY,
-        0.1,
-      );
-
-      if (travelDistance > gap) {
+      if (!isInsideRef.current || travelDistance > gap) {
+        isInsideRef.current = true;
         animateCard();
 
-        lastMousePos.current = {
-          x: mouseX,
-          y: mouseY,
-        };
+        lastMousePos.current = { x: docX, y: docY };
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      hasPointer.current = true;
       mousePos.current = {
         x: e.clientX,
         y: e.clientY,
@@ -177,9 +183,10 @@ export function CardsTrail({
             <Image
               src={`/pictures/${item.src}.webp`}
               alt={alt}
-              loading="lazy"
-              width={600}
-              height={600}
+              loading="eager"
+              width={item.width}
+              height={item.height}
+              sizes="140px"
             />
           </li>
         ))}
