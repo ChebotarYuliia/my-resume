@@ -156,7 +156,10 @@ main {
 #smooth-content {
   overflow: visible;
   inline-size: 100%;
-  // Padding (not margin) so ScrollSmoother's clientHeight-based scroll range
-  // actually includes this gap, and stays transparent so Footer shows through.
-  padding-block-end: var(--footer-height, 0px);
+}
+
+// Transparent gap at the end of #smooth-content that uncovers the Footer.
+// In-flow, so ScrollSmoother's clientHeight-based scroll range includes it.
+.footer-spacer {
+  block-size: var(--footer-height, 0px);
 }

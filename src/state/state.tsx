@@ -12,6 +12,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 export type OpenAnimationState = "active" | "completed";
 export type HeroAnimationState = "initial" | "completed";
+export type FooterRevealState = "hidden" | "partial" | "full";
 export const SectionTheme = [
   "default",
   "primary",
@@ -28,7 +29,7 @@ type UIStateProps = {
   heroEnterAnimation: HeroAnimationState;
   prefersReducedMotion: boolean;
   sectionTheme: TSectionTheme;
-  footerRevealed: boolean;
+  footerReveal: FooterRevealState;
 };
 
 type UIStateContext = {
@@ -42,7 +43,7 @@ const uiStateDefaults = {
   heroEnterAnimation: "initial" as HeroAnimationState,
   prefersReducedMotion: false,
   sectionTheme: "default" as TSectionTheme,
-  footerRevealed: false,
+  footerReveal: "hidden" as FooterRevealState,
 };
 
 export const UIStateContext = createContext<UIStateContext>({

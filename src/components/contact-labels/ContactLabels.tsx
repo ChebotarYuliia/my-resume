@@ -28,7 +28,7 @@ export const SocialLabel = ({ socials }: SocialLabelProps) => {
   return (
     <InView
       className={c(s.contactLabels, "socials", {
-        hide: uiState.footerRevealed,
+        hide: uiState.footerReveal !== "hidden",
       })}
       inClassName={s.inView}
     >
@@ -72,7 +72,7 @@ export const EmailLabel = ({ email }: EmailLabelProps) => {
   return (
     <InView
       className={c(s.contactLabels, "email", {
-        hide: uiState.footerRevealed,
+        hide: uiState.footerReveal !== "hidden",
       })}
       inClassName={s.inView}
     >

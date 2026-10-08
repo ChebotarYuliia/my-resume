@@ -27,7 +27,10 @@ export const Footer = ({ socials, email }: Props) => {
   return (
     <footer
       ref={footerRef}
-      className={c(s.footer, { inView: uiState.footerRevealed })}
+      className={c(s.footer, {
+        inView: uiState.footerReveal !== "hidden",
+        interactive: uiState.footerReveal === "full",
+      })}
     >
       <div className={s.footer__inner}>
         <div className={s.footer__row}>
